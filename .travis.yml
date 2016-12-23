@@ -1,2 +1,9 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: Pg4xc94vHP0vQh3DQI3jZFKHczsf1zZO5butrT0LBBknhXMbRXs5g5JRTSOID7OwLDxy1AcUYjgK320zXnQhhRQen/BsKX+DWT1MgmDBLVnX/cP1R+1iJ1JxXYUWIwc8aW0tx4mXWHgAbohOh+ckQQ15TbIw3h87nlk9s+WQP1YKhg9dFqXs9dpCsfysHvR5RDu6FuSHCoybGe3PHWCyzzZrQPltSGAZJO3C+/y/k23l0wvx2TV7b53DEUovQXFbscz6dee2AK18/NzI9O3K1NqKxi+Mbpo14k+NJTPtjvCxy8KOzpPOyZjRdX/Zfz+oIQFmAm2j2TQA2ndJFNU6KV/OFAUgwWpQ97V+lk9o7yWPUpL/jhZYK3qW0+em2Xn28GrvYW3+IrAeXIJxo1rJC4K2L/1Iq5zVhQUQN6a0nnBrjZHx8iqF/4H6cfx61iGh42DMt/eR/8OmxgyIaz6+XO621VUsY9y+34JMGKJjNqHOvkmvZzwShqrZlWHBkLWcyMBg8fL3dI5BGHk5Yjl7PpdwAsskHZXUct4G/HkXFK50Y+BWu+28YXWxuphJWSHDndzPr/tTjrccHo8JoWTpoAIDbs8ROwnMxJ2T3lE3HazRLf2zBJ6Si4S1Tc2xrkCLGcLZUUpyBV7uACj+WdvReTLffnQ6OIiKaY93hd2HjaA=
+  app: aeropress-me-app
+  on:
+    repo: bvellek/aeropress-me-app
