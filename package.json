@@ -2,13 +2,19 @@
   "name": "aeropress-me-app",
   "version": "1.0.0",
   "main": "server.js",
+  "scripts": {
+    "test": "mocha"
+  },
   "repository": {
-  "type": "git",
-  "url": "git+https://github.com/bvellek/aeropress-me-app.git"
-},
+    "type": "git",
+    "url": "git+https://github.com/bvellek/aeropress-me-app.git"
+  },
   "author": "Ben Vellek",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.14.0"
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "express": "^4.14.0",
+    "mocha": "^3.2.0"
   }
 }
