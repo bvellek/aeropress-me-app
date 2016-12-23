@@ -1,0 +1,14 @@
+{
+  "name": "aeropress-me-app",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+  "type": "git",
+  "url": "git+https://github.com/bvellek/aeropress-me-app.git"
+},
+  "author": "Ben Vellek",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
