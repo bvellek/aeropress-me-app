@@ -1,0 +1,79 @@
+* {
+  box-sizing: border-box;
+}
+header {
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.login-page {
+  text-align: center;
+}
+
+form {
+  margin: 0 auto;
+  max-width: 20em;
+}
+
+input,
+label {
+  margin: 0 auto;
+  display: block;
+}
+
+input {
+  border: 1px solid gray;
+}
+
+
+
+#google-login {
+  margin: 0 auto;
+  width: 4em;
+  display: block;
+}
+
+.head-logo {
+  font-weight: bold;
+}
+
+.svg-graphic {
+  margin: 0 auto;
+  width: 6em;
+}
+
+.svg-press {
+  transition: .7s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.svg-graphic:hover .svg-press {
+  stroke: black;
+}
+
+.svg-graphic:hover .svg-drop {
+  stroke-dasharray: .8;
+  stroke-dashoffset: 1000;
+
+  animation: offset 5s linear forwards;
+}
+
+
+@keyframes offset {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+
+@media only screen and (min-width: 40em) {
+
+  .svg-graphic {
+    width: 8em;
+  }
+
+  .svg-main-width {
+    stroke-width: 1.8;
+  }
+
+}
