@@ -11,6 +11,10 @@ h1, h2, h3, h4, legend, label {
   color: #303030;
 }
 
+h2 {
+  text-align: center;
+}
+
 input {
   background: #fff;
   border: 1px solid #979797;
@@ -67,6 +71,33 @@ input:focus, input:hover {
 }
 
 
+.login-page {
+  text-align: center;
+}
+
+form {
+  margin: 0 auto;
+  max-width: 20em;
+}
+
+
+#google-login {
+  margin: 0 auto;
+  width: 4em;
+  display: block;
+}
+
+
+.recipe-card {
+  background-color: #fff;
+  margin: 1em auto;
+  border: 1px solid #979797;
+  border-radius: 6px;
+  width: 30%;
+}
+
+
+
 @media only screen and (min-width: 80em) {
 
   .hero-callout {
@@ -84,21 +115,6 @@ input:focus, input:hover {
 }
 
 
-.login-page {
-  text-align: center;
-}
-
-form {
-  margin: 0 auto;
-  max-width: 20em;
-}
-
-
-#google-login {
-  margin: 0 auto;
-  width: 4em;
-  display: block;
-}
 
 
 
