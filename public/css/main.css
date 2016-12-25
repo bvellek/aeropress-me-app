@@ -1,10 +1,36 @@
 * {
   box-sizing: border-box;
 }
+
+body {
+  background: #E8E6E5;
+}
 header {
   margin: 0 auto;
   text-align: center;
   font-family: 'Roboto', sans-serif;
+}
+
+.logo-container {
+  background: #303030;
+}
+
+.svg-logo {
+  padding: 1em 2em 0.5em;
+  width: 80%;
+  max-width: 32.5em;
+}
+
+.hero-container {
+  width: 100%;
+  height: 30vh;
+  min-height: 18em;
+  background-image: url("../img/aeropress-hero.jpg");
+  background-size: cover;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  background-position: 45% 30%;
+  color: #fff;
 }
 
 .login-page {
