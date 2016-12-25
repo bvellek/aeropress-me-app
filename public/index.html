@@ -101,7 +101,9 @@
 
     <div class="input-page">
       <form class="new-recipe" action="index.html" method="post">
-      <h2>New Aeropress Recipe</h2>
+        <h2>New Aeropress Recipe</h2>
+        <label for="input-author">Recipe Author: </label>
+        <input id="input-author" type="text" name="author" value="">
 
         <fieldset>
           <label for="standard">Standard</label>
@@ -145,7 +147,7 @@
       <h2>Top Recipes</h2>
 
       <section class="recipe-card">
-        <h3 class="recipe-author">Recipe by: <span>Wille Yli-Luoma</span></h2>
+        <h3 class="recipe-author">Recipe Author: <span>Wille Yli-Luoma</span></h2>
         <h3 class="recipe-votes">Number of Upvotes: <span>40</span></h3>
         <h3 class="recipe-orientation">Orientation: <span>Inverted</span></h3>
         <h3 class="recipe-water-temp">Water Temperature: <span>90</span>&#8451</h3>
@@ -161,7 +163,7 @@
 
 
       <section class="recipe-card">
-        <h3 class="recipe-author">Recipe by: <span>Nick Hatch</span></h2>
+        <h3 class="recipe-author">Recipe Author: <span>Nick Hatch</span></h2>
         <h4 class="recipe-votes">Number of Upvotes: <span>35</span></h3>
         <h4 class="recipe-orientation">Orientation: <span>Upright</span></h3>
         <h4 class="recipe-water-temp">Water Temperature: <span>85</span>&#8451</h3>
@@ -183,7 +185,7 @@
     <div class="your-recipes-page">
     <h2>Your Recipes</h2>
     <section class="recipe-card">
-      <h3 class="recipe-author">Recipe by: <span>Ben Vellek</span></h2>
+      <h3 class="recipe-author">Recipe Author: <span>Ben Vellek</span></h2>
       <h4 class="recipe-votes">Number of Upvotes: <span>40</span></h3>
       <h4 class="recipe-orientation">Orientation: <span>Inverted</span></h3>
       <h4 class="recipe-water-temp">Water Temperature: <span>90</span>&#8451</h3>
@@ -205,8 +207,10 @@
     <div class="edit-recipe-page">
 
       <form class="edit-recipe" action="index.html" method="put">
-      <h2>Edit Your Recipe</h2>
+        <h2>Edit Your Recipe</h2>
 
+        <label for="author-edit">Recipe Author: </label>
+        <input id="author-edit" type="text" name="author" value="Wille Yli-Luoma" required>
         <fieldset>
           <label for="standard-edit">Standard</label>
           <input id="standard-edit" type="radio" name="orientation" value="standard" required checked>
