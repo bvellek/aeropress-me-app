@@ -15,6 +15,16 @@ h2 {
   text-align: center;
 }
 
+form {
+  margin: 0 auto;
+  max-width: 20em;
+  text-align: left;
+}
+
+input, label {
+  display: block;
+}
+
 input {
   background: #fff;
   border: 1px solid #979797;
@@ -29,17 +39,26 @@ input:focus, input:hover {
   border-radius: 3px;
 }
 
-
+.login-page,
+.registration-page,
+.input-page,
+.recipes-page,
+.your-recipes-page,
+.edit-recipe-page {
+  border: 1px solid #979797;
+  border-radius: 6px;
+  max-width: 90%;
+  margin: 0.5em auto;
+}
 
 .logo-container {
   margin: 0 auto;
-  text-align: center;
   background: #303030;
 }
 
 .svg-logo {
   padding: 1em 2em;
-  width: 75%;
+  width: 70%;
   max-width: 30em;
 }
 
@@ -75,10 +94,7 @@ input:focus, input:hover {
   text-align: center;
 }
 
-form {
-  margin: 0 auto;
-  max-width: 20em;
-}
+
 
 
 #google-login {
@@ -90,10 +106,11 @@ form {
 
 .recipe-card {
   background-color: #fff;
+  padding: 1em;
   margin: 1em auto;
   border: 1px solid #979797;
   border-radius: 6px;
-  width: 30%;
+  width: 28em;
 }
 
 
