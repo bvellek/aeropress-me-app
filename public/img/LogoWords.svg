@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="234px" height="35px" viewBox="0 0 234 35" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="234px" height="27px" viewBox="0 0 234 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
     <title>LogoWords</title>
     <desc>Created with Sketch.</desc>
@@ -14,8 +14,8 @@
                     <text id="ME" fill="#FFFFFF">
                         <tspan x="178" y="36">ME</tspan>
                     </text>
-                    <text id="press" fill="#25B238">
-                        <tspan x="85" y="36">press</tspan>
+                    <text id="Press" fill="#25B238">
+                        <tspan x="85" y="36">Press</tspan>
                     </text>
                 </g>
             </g>
