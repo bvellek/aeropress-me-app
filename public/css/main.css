@@ -59,14 +59,17 @@ input:focus, input:hover {
   background: #303030;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
-.main-nav {
+/*.main-nav {
   padding-right: 10%;
-}
+}*/
 
 .main-nav a {
   color: #fff;
+  padding: 1em;
+  font-size: 1em;
 }
 
 
