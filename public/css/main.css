@@ -58,13 +58,11 @@ input:focus, input:hover {
 .main-header {
   background: #303030;
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/*.main-nav {
-  padding-right: 10%;
-}*/
 
 .main-nav a {
   color: #fff;
