@@ -1,7 +1,18 @@
 const express = require('express');
+const passport = require('passport');
+const mongoose = require('mongoose');
+const flash = require('connect-flash');
+const session = require('express-session');
+const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+
+
 const app = express();
-app.use(express.static('public'));
-app.listen(process.env.PORT || 8080);
+
+
+
+
 
 
 app.get('/', (req, res) => {
@@ -9,3 +20,9 @@ app.get('/', (req, res) => {
 });
 
 module.exports = {app};
+
+
+
+
+app.use(express.static('public'));
+app.listen(process.env.PORT || 8080);
