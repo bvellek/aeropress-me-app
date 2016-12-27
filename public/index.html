@@ -17,7 +17,7 @@
 
   <body>
 
-    <header class="logo-header">
+    <header class="logo-header login-header">
       <div class="logo-container">
         <svg class="svg-logo" viewBox="0 0 234 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
@@ -57,9 +57,9 @@
             <fieldset>
                 <legend>Login</legend>
                 <label for="username">Username</label>
-                <input id="username" type="text" name="" value="" required>
+                <input id="username" type="text" name="username" value="" required>
                 <label for="password">Password</label>
-                <input id="password" type="password" name="" value="" required>
+                <input id="password" type="password" name="password" value="" required>
                 <button type="submit" name="button">Log In</button>
             </fieldset>
         </form>
@@ -76,20 +76,19 @@
     <div class="registration-page">
       <form class="" action="index.html" method="post">
         <fieldset>
-
-        <legend>Registration Information</legend>
-        <label for="reg-author-first">First Name:</label>
-        <input id="reg-author-first" type="text" name="user-first-name" value="" required>
-        <label for="reg-author-last">Last Name:</label>
-        <input id="reg-author-last" type="text" name="user-last-name" value="" required>
-        <label for="reg-email">Email:</label>
-        <input id="reg-email" type="email" name="user-email" value="" required>
-        <label for="reg-username">Username:</label>
-        <input id="reg-username" type="text" name="user-username" value="" required>
-        <label for="reg-password">Password:</label>
-        <input id="reg-password" type="password" name="user-confirm-password" value="" required>
-        <label for="reg-confirm-password">Confirm Password:</label>
-        <input id="reg-confirm-password" type="password" name="user-confirm-password" value="" required>
+          <legend>Registration Information</legend>
+          <label for="reg-author-first">First Name:</label>
+          <input id="reg-author-first" type="text" name="firstName" value="" required>
+          <label for="reg-author-last">Last Name:</label>
+          <input id="reg-author-last" type="text" name="lastName" value="" required>
+          <label for="reg-email">Email:</label>
+          <input id="reg-email" type="email" name="email" value="" required>
+          <label for="reg-username">Username:</label>
+          <input id="reg-username" type="text" name="username" value="" required>
+          <label for="reg-password">Password:</label>
+          <input id="reg-password" type="password" name="password" value="" required>
+          <label for="reg-confirm-password">Confirm Password:</label>
+          <input id="reg-confirm-password" type="password" name="user-confirm-password" value="" required>
         </fieldset>
         <button type="submit" name="button">Submit</button>
       </form>
@@ -97,11 +96,50 @@
     </div>
 
 
+<!-- Signed in Header -->
+    <header class="logo-header main-header">
+      <div class="logo-container main-logo-container">
+        <svg class="svg-logo" viewBox="0 0 234 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+            <title>LogoWords</title>
+            <desc>Created with Sketch.</desc>
+            <defs></defs>
+            <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-size="36" font-family="AvenirNext-Bold, Avenir Next" font-weight="bold">
+                <g id="Mobile-Hero" transform="translate(-40.000000, -27.000000)">
+                    <g id="Logo" transform="translate(0.000000, 1.000000)">
+                        <g id="LogoWords" transform="translate(41.000000, 16.000000)">
+                            <text id="Aero" fill="#C78944">
+                                <tspan x="0" y="36">Aero</tspan>
+                            </text>
+                            <text id="ME" fill="#FFFFFF">
+                                <tspan x="178" y="36">ME</tspan>
+                            </text>
+                            <text id="Press" fill="#25B238">
+                                <tspan x="85" y="36">Press</tspan>
+                            </text>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </svg>
+      </div>
+      <nav class="main-nav">
+        <a href="#">My Recipes</a>
+        <a href="#">All Recipes</a>
+        <a href="#">Submit New Recipe</a>
+      </nav>
+    </header>
+
+
 <!-- Input Page -->
 
     <div class="input-page">
       <form class="new-recipe" action="index.html" method="post">
         <h2>New Aeropress Recipe</h2>
+
+        <label for="input-title">Recipe Title: </label>
+        <input id="input-title" type="text" name="title" value="">
+
         <label for="input-author">Recipe Author: </label>
         <input id="input-author" type="text" name="author" value="">
 
@@ -116,16 +154,16 @@
         <fieldset>
           <legend>Mass</legend>
           <label for="water">Water (g)</label>
-          <input id="water" type="number" name="mass-water" value="" required>
+          <input id="water" type="number" name="massWater" value="" required>
           <label for="coffee">Coffee (g)</label>
-          <input id="coffee" type="number" name="mass-coffee" value="" required>
+          <input id="coffee" type="number" name="massCoffee" value="" required>
         </fieldset>
 
         <label for="water-temp">Water temperature (&#8451)</label>
-        <input id="water-temp" type="number" name="water-temp" value="" required>
+        <input id="water-temp" type="number" name="waterTemp" value="" required>
 
         <label for="grind-select">Grind Size</label>
-        <select class="grind" id="grind-select" name="grind-size" required>
+        <select class="grind" id="grind-select" name="grind" required>
           <option selected disabled hidden value=''></option>
           <option value="Extra Coarse">Extra Coarse</option>
           <option value="Coarse">Coarse</option>
@@ -135,8 +173,9 @@
           <option value="Fine">Fine</option>
           <option value="Extra Fine">Extra Fine</option>
         </select>
-        <textarea name="instructions" rows="8" cols="40" required></textarea>
-        <button type="submit" name="button">Submit</button>
+        <label for="instructions">Instructions</label>
+        <textarea id="instructions" name="instructions" rows="8" cols="40" required></textarea>
+        <button type="submit">Submit</button>
       </form>
     </div>
 
@@ -147,12 +186,13 @@
       <h2>Top Recipes</h2>
 
       <section class="recipe-card">
+        <h3 class="recipe-title">Wille's 1st Recipe</h3>
         <h3 class="recipe-author">Recipe Author: <span>Wille Yli-Luoma</span></h2>
-        <h3 class="recipe-votes">Number of Upvotes: <span>40</span></h3>
-        <h3 class="recipe-orientation">Orientation: <span>Inverted</span></h3>
-        <h3 class="recipe-water-temp">Water Temperature: <span>90</span>&#8451</h3>
-        <h3 class="recipe-water-mass">Water Mass: <span>240</span>g</h3>
-        <h3 class="recipe-coffee-mass">Coffee Mass: <span>17</span>g</h3>
+        <h4 class="recipe-votes">Number of Upvotes: <span>40</span></h3>
+        <h4 class="recipe-orientation">Orientation: <span>Inverted</span></h3>
+        <h4 class="recipe-water-temp">Water Temperature: <span>90</span>&#8451</h3>
+        <h4 class="recipe-water-mass">Water Mass: <span>240</span>g</h3>
+        <h4 class="recipe-coffee-mass">Coffee Mass: <span>17</span>g</h3>
         <h4 class="recipe-grind-size">Grind Size: <span>Coarse</span></h3>
         <details class="recipe-instructions">
             <summary>Instructions</summary>
@@ -163,6 +203,7 @@
 
 
       <section class="recipe-card">
+        <h3 class="recipe-title">The Best Aeropress Recipe</h3>
         <h3 class="recipe-author">Recipe Author: <span>Nick Hatch</span></h2>
         <h4 class="recipe-votes">Number of Upvotes: <span>35</span></h3>
         <h4 class="recipe-orientation">Orientation: <span>Upright</span></h3>
@@ -185,6 +226,7 @@
     <div class="your-recipes-page">
     <h2>Your Recipes</h2>
     <section class="recipe-card">
+      <h3 class="recipe-title">Wille's 1st Recipe</h3>
       <h3 class="recipe-author">Recipe Author: <span>Ben Vellek</span></h2>
       <h4 class="recipe-votes">Number of Upvotes: <span>40</span></h3>
       <h4 class="recipe-orientation">Orientation: <span>Inverted</span></h3>
@@ -209,6 +251,9 @@
       <form class="edit-recipe" action="index.html" method="put">
         <h2>Edit Your Recipe</h2>
 
+        <label for="title-edit">Recipe Title: </label>
+        <input id="title-edit" type="text" name="title" value="Wille's 1st Recipe">
+
         <label for="author-edit">Recipe Author: </label>
         <input id="author-edit" type="text" name="author" value="Wille Yli-Luoma" required>
         <fieldset>
@@ -222,16 +267,16 @@
         <fieldset>
           <legend>Mass</legend>
           <label for="water-edit">Water (g)</label>
-          <input id="water-edit" type="number" name="mass-water" value="240" required>
+          <input id="water-edit" type="number" name="massWater" value="240" required>
           <label for="coffee-edit">Coffee (g)</label>
-          <input id="coffee-edit" type="number" name="mass-coffee" value="17" required>
+          <input id="coffee-edit" type="number" name="massCoffee" value="17" required>
         </fieldset>
 
         <label for="water-temp-edit">Water temperature (&#8451)</label>
-        <input id="water-temp-edit" type="number" name="water-temp" value="90" required>
+        <input id="water-temp-edit" type="number" name="waterTemp" value="90" required>
 
         <label for="grind-select-edit">Grind Size</label>
-        <select class="grind" id="grind-select-edit" name="grind-size" required>
+        <select class="grind" id="grind-select-edit" name="grind" required>
           <option value="Extra Coarse">Extra Coarse</option>
           <option value="Coarse" selected>Coarse</option>
           <option value="Medium-Coarse">Medium-Coarse</option>
@@ -240,7 +285,8 @@
           <option value="Fine">Fine</option>
           <option value="Extra Fine">Extra Fine</option>
         </select>
-        <textarea name="instructions" rows="8" cols="40" required>Place 12g quite coarsely ground coffee into aeropress (set grind to taste), pre-infuse with about 50g gramms of 90 degrees celsius water, stir vigorously, 5 times, add remaining water to a total of 200 gramms, place cap on without stirring, press out air while still in inverted position, until drops appear on top, turn aeropress into a non-inverted position onto a pitcher, but do not press yet. After two minutes of brew time have past, press gently using body weight, as the Aeropress allows. Serve.</textarea>
+        <label for="edit-instructions">Instructions</label>
+        <textarea id="edit-instructions" name="instructions" rows="8" cols="40" required>Place 12g quite coarsely ground coffee into aeropress (set grind to taste), pre-infuse with about 50g gramms of 90 degrees celsius water, stir vigorously, 5 times, add remaining water to a total of 200 gramms, place cap on without stirring, press out air while still in inverted position, until drops appear on top, turn aeropress into a non-inverted position onto a pitcher, but do not press yet. After two minutes of brew time have past, press gently using body weight, as the Aeropress allows. Serve.</textarea>
         <button type="submit" name="button">Submit Edit</button>
         <button type="button" name="button">Delete Recipe</button>
       </form>

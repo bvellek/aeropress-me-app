@@ -52,14 +52,31 @@ input:focus, input:hover {
 }
 
 .logo-container {
-  margin: 0 auto;
   background: #303030;
 }
+
+.main-header {
+  background: #303030;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.main-nav a {
+  color: #fff;
+  padding: 1em;
+  font-size: 1em;
+}
+
+
 
 .svg-logo {
   padding: 1em 2em;
   width: 70%;
   max-width: 30em;
+  min-width: 25em;
 }
 
 .hero-container {
