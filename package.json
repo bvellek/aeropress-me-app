@@ -12,9 +12,12 @@
   "author": "Ben Vellek",
   "license": "MIT",
   "dependencies": {
+    "express": "^4.14.0",
+    "mongoose": "^4.7.4"
+  },
+  "devDependencies": {
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
-    "express": "^4.14.0",
     "mocha": "^3.2.0"
   }
 }
