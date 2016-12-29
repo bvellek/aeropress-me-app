@@ -6,9 +6,11 @@ const session = require('express-session');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const pug = require('pug');
 
 
 const app = express();
+app.set('view engine', 'pug');
 
 
 

@@ -30,15 +30,6 @@ const UserSchema = new mongoose.Schema({
   }
 });
 
-// UserSchema.methods.generateHash = function(password) {
-//   return bcrypt.hashSync(password, bcrypt.genSaltSyn(10), null);
-// };
-//
-// UserSchema.methods.validPassword = function(password) {
-//   return bcrypt.compareSync(password, this.local.password);
-// };
-//
-
 
 
 const User = mongoose.model('User', userSchema);
