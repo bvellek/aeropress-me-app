@@ -20,13 +20,13 @@ module.exports = function(passport) {
 
   //Local registration
 
-  passport.use('local-registration', new LocalStrategy({
+  passport.use('local-signup', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
     passReqToCallback: true
   },
-  function(req, email, password, firstName, lastName, done) {
-    process.nextTick(() => {
+  function(req, email, password, done) {
+    process.nextTick(function() {
       User.findOne({'email': email}, (err, user) => {
         if (err) {
           return done(err);
@@ -37,8 +37,8 @@ module.exports = function(passport) {
           const newUser = new User();
           newUser.email = email;
           newUser.password = newUser.hashPassword(password);
-          newUser.firstName = firstName;
-          newUser.lastName = lastName;
+          newUser.firstName = req.body.firstName;
+          newUser.lastName = req.body.lastName;
           newUser.save(err => {
             if (err) {
               throw err;

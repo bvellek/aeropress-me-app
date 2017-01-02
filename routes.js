@@ -12,7 +12,7 @@ module.exports = function(app, passport) {
     res.render('registration.pug', {message: req.flash('registerMessage')});
   });
 
-  app.post('/registration', passport.authenticate('local-registration', {
+  app.post('/registration', passport.authenticate('local-signup', {
     successRedirect: '/myrecipes',
     failureRedirect: '/registration',
     failureFlash: true

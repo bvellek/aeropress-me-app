@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 mongoose.Promise = global.Promise;
 
-const UserSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   email: {
     type: String,
     unique: true,
@@ -31,15 +31,15 @@ const UserSchema = new mongoose.Schema({
   }
 });
 
-UserSchema.methods.validatePassword = function(password) {
+userSchema.methods.validatePassword = function(password) {
   return bcrypt.compareSync(password, this.local.password);
 }
 
-UserSchema.methods.hashPassword = function(password) {
+userSchema.methods.hashPassword = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null)
 }
 
-const User = mongoose.model('User', UserSchema);
+const User = mongoose.model('User', userSchema);
 
 
 module.exports = {User};
