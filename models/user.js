@@ -8,16 +8,19 @@ const userSchema = new mongoose.Schema({
     type: String,
     unique: true,
     required: true,
+    lowercase:true,
     trim: true
   },
   firstName: {
     type: String,
-    required: true,
+    // required: true,
+    lowercase: true,
     trim: true
   },
   lastName: {
     type: String,
-    required: true,
+    // required: true,
+    lowercase: true,
     trim: true
   },
   password: {
@@ -31,15 +34,15 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-userSchema.methods.validatePassword = function(password) {
-  return bcrypt.compareSync(password, this.local.password);
-}
+userSchema.methods.validPassword = function(password) {
+  return bcrypt.compareSync(password, this.password);
+};
 
 userSchema.methods.hashPassword = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null)
-}
+};
 
 const User = mongoose.model('User', userSchema);
 
 
-module.exports = {User};
+module.exports = User;

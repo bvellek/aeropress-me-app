@@ -10,7 +10,7 @@ const pug = require('pug');
 
 
 const app = express();
-const {PORT, DATABASE_URL} = require('./config/config.js');
+const {PORT, DATABASE_URL} = require('./config/config');
 mongoose.Promise = global.Promise;
 
 
