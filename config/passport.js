@@ -33,6 +33,8 @@ module.exports = function(passport) {
         }
         if (user) {
           return done(null, false, req.flash('registrationMessage', 'That email is already taken.'));
+        } else if (!(password === req.body['user-confirm-password'])) {
+          return done(null, false, req.flash('registrationMessage', 'Passwords do not match.'))
         } else {
           const newUser = new User();
           newUser.email = email;
