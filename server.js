@@ -17,7 +17,7 @@ mongoose.Promise = global.Promise;
 
 
 
-// require('./config/passport')(passport);
+require('./config/passport')(passport);
 
 
 
@@ -38,10 +38,6 @@ app.use(flash());
 
 require('./routes')(app, passport);
 
-
-// app.get('/', (req, res) => {
-//   res.sendFile(__dirname + '/public/index.html');
-// });
 
 app.use(express.static('public'));
 
@@ -88,8 +84,6 @@ function closeServer() {
 
 if (require.main === module) {
   runServer().catch(err => console.error(err));
-};
+}
 
-
-
-module.exports = {app};
+module.exports = {app, runServer, closeServer};
