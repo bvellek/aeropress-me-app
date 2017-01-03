@@ -1,0 +1,60 @@
+extends layout
+
+block content
+  // Signed in Header
+  header.logo-header.main-header
+    .logo-container.main-logo-container
+      svg.svg-logo(viewbox='0 0 234 27', version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink')
+        // Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch
+        title LogoWords
+        desc Created with Sketch.
+        defs
+        g#Welcome(stroke='none', stroke-width='1', fill='none', fill-rule='evenodd', font-size='36', font-family='AvenirNext-Bold, Avenir Next', font-weight='bold')
+          g#Mobile-Hero(transform='translate(-40.000000, -27.000000)')
+            g#Logo(transform='translate(0.000000, 1.000000)')
+              g#LogoWords(transform='translate(41.000000, 16.000000)')
+                text#Aero(fill='#C78944')
+                  tspan(x='0', y='36') Aero
+                text#ME(fill='#FFFFFF')
+                  tspan(x='178', y='36') ME
+                text#Press(fill='#25B238')
+                  tspan(x='85', y='36') Press
+    nav.main-nav
+      a(href='/myrecipes') My Recipes
+      a(href='#') All Recipes
+      a(href='/logout') Logout
+      // Input Page
+  .input-page
+    form.new-recipe(action='index.html', method='post')
+      h2 New Aeropress Recipe
+      label(for='input-title') Recipe Title:
+      input#input-title(type='text', name='title', value='')
+      label(for='input-author') Recipe Author:
+      input#input-author(type='text', name='author', value='')
+      fieldset
+        label(for='standard') Standard
+        input#standard(type='radio', name='orientation', value='standard', required='')
+        legend Orientation
+        label(for='inverted') Inverted
+        input#inverted(type='radio', name='orientation', value='inverted', required='')
+      fieldset
+        legend Mass
+        label(for='water') Water (g)
+        input#water(type='number', name='massWater', value='', required='')
+        label(for='coffee') Coffee (g)
+        input#coffee(type='number', name='massCoffee', value='', required='')
+      label(for='water-temp') Water temperature (&#8451)
+      input#water-temp(type='number', name='waterTemp', value='', required='')
+      label(for='grind-select') Grind Size
+      select#grind-select.grind(name='grind', required='')
+        option(selected='', disabled='', hidden='', value='')
+        option(value='Extra Coarse') Extra Coarse
+        option(value='Coarse') Coarse
+        option(value='Medium-Coarse') Medium-Coarse
+        option(value='Medium') Medium
+        option(value='Medium-Fine') Medium-Fine
+        option(value='Fine') Fine
+        option(value='Extra Fine') Extra Fine
+      label(for='instructions') Instructions
+      textarea#instructions(name='instructions', rows='8', cols='40', required='')
+      button(type='submit') Submit

@@ -34,9 +34,20 @@ module.exports = function(app, passport) {
     });
   });
 
+//New Recipe Page
+  app.get('/newrecipe', isLoggedIn, (req, res) => {
+    res.render('newrecipe.pug', {
+      user: req.user,
+      title: 'New AeroPressMe Recipe'
+    });
+  });
+
 
 //Logout Route
-
+  app.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+  });
 
 //Google Routes
   app.get('/auth/google', passport.authenticate('google', {scope : ['profile', 'email']}));
