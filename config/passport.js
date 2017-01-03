@@ -1,5 +1,11 @@
 const LocalStrategy = require('passport-local').Strategy;
+const GoogleStrategy = require('passport-google-oauth').Strategy;
+
+//Load user model
 const User = require('../models/user');
+
+//Load auth variables
+const configAuth = require('./auth');
 
 
 module.exports = function(passport) {
@@ -79,3 +85,40 @@ module.exports = function(passport) {
     });
   }));
 };
+
+
+//Google Authentication
+
+passport.use(new GoogleStrategy({
+  clientID: configAuth.googleAuth.clientID,
+  clientSecret: configAuth.googleAuth.clientSecret,
+  callbackURL: configAuth.googleAuth.callbackURL,
+},
+  function(token, refreshToken, profile, done) {
+    process.nextTick(function() {
+      User.findOne({'google.id': profile.id}, function(err, user) {
+        if (err) {
+          return done(err);
+        }
+
+        if (user) {
+          return done(null, user);
+        } else {
+          const newUser = new User();
+
+          newUser.google.id = profile.id;
+          newUser.google.token = token;
+          newUser.email = profile.emails[0].value;
+          newUser.firstName = profile.givenName;
+          newUser.lastName = profile.familyName;
+
+          newUser.save(function(err) {
+            if (err) {
+              throw err;
+            }
+            return done(null, newUser);
+          });
+        }
+      });
+    });
+}));
