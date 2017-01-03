@@ -1,5 +1,5 @@
 const LocalStrategy = require('passport-local').Strategy;
-const GoogleStrategy = require('passport-google-oauth').Strategy;
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 //Load user model
 const User = require('../models/user');
@@ -26,7 +26,7 @@ module.exports = function(passport) {
 
 
 
-  //Local registration
+//Local registration
 
   passport.use('local-signup', new LocalStrategy({
     usernameField: 'email',
@@ -69,9 +69,7 @@ module.exports = function(passport) {
     passReqToCallback: true
   },
   function(req, email, password, done) {
-    // console.log('.', req, email);
     User.findOne({'email' : email}, function(err, user) {
-      // console.log('..', user, err);
       if (err) {
         return done(err);
       }
@@ -84,41 +82,38 @@ module.exports = function(passport) {
       return done(null, user);
     });
   }));
-};
+
 
 
 //Google Authentication
-
-passport.use(new GoogleStrategy({
-  clientID: configAuth.googleAuth.clientID,
-  clientSecret: configAuth.googleAuth.clientSecret,
-  callbackURL: configAuth.googleAuth.callbackURL,
-},
-  function(token, refreshToken, profile, done) {
-    process.nextTick(function() {
-      User.findOne({'google.id': profile.id}, function(err, user) {
-        if (err) {
-          return done(err);
-        }
-
-        if (user) {
-          return done(null, user);
-        } else {
-          const newUser = new User();
-
-          newUser.google.id = profile.id;
-          newUser.google.token = token;
-          newUser.email = profile.emails[0].value;
-          newUser.firstName = profile.givenName;
-          newUser.lastName = profile.familyName;
-
-          newUser.save(function(err) {
-            if (err) {
-              throw err;
-            }
-            return done(null, newUser);
-          });
-        }
+  passport.use(new GoogleStrategy({
+    clientID: configAuth.googleAuth.clientID,
+    clientSecret: configAuth.googleAuth.clientSecret,
+    callbackURL: configAuth.googleAuth.callbackURL,
+  },
+    function(token, refreshToken, profile, done) {
+      process.nextTick(function() {
+        User.findOne({'google.id': profile.id}, function(err, user) {
+          if (err) {
+            return done(err);
+          }
+          if (user) {
+            return done(null, user);
+          } else {
+            const newUser = new User();
+            newUser.google.id = profile.id;
+            newUser.google.token = token;
+            newUser.email = profile.emails[0].value;
+            newUser.firstName = profile.name.givenName;
+            newUser.lastName = profile.name.familyName;
+            newUser.save(function(err) {
+              if (err) {
+                throw err;
+              }
+              return done(null, newUser);
+            });
+          }
+        });
       });
-    });
-}));
+  }));
+};

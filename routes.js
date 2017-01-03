@@ -34,6 +34,19 @@ module.exports = function(app, passport) {
     });
   });
 
+
+//Logout Route
+
+
+//Google Routes
+  app.get('/auth/google', passport.authenticate('google', {scope : ['profile', 'email']}));
+
+  app.get('/auth/google/callback', passport.authenticate('google', {
+    successRedirect: '/myrecipes',
+    failureRedirect: '/'
+  }));
+
+
   function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
       return next();
