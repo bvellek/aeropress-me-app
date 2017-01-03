@@ -1,47 +1,40 @@
-doctype html
-head
-  meta(charset='utf-8')
-  meta(http-equiv='x-ua-compatible', content='ie=edge')
-  title AeroPressMe
-  meta(name='description', content='Share your Aeropress recipes and vote for your favorites.')
-  meta(name='viewport', content='width=device-width, initial-scale=1')
-  meta(property='og:image', content='aeropress.svg')
-  link(rel='shortcut icon', href='img/favicon.ico', type='image/x-icon')
-  link(href='https://fonts.googleapis.com/css?family=Lato:400,900', rel='stylesheet')
-  link(rel='stylesheet', href='css/normalize.css')
-  link(rel='stylesheet', href='css/main.css')
-header.logo-header.login-header
-  .logo-container
-    svg.svg-logo(viewbox='0 0 234 27', version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink')
-      // Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch
-      title LogoWords
-      desc Created with Sketch.
-      defs
-      g#Welcome(stroke='none', stroke-width='1', fill='none', fill-rule='evenodd', font-size='36', font-family='AvenirNext-Bold, Avenir Next', font-weight='bold')
-        g#Mobile-Hero(transform='translate(-40.000000, -27.000000)')
-          g#Logo(transform='translate(0.000000, 1.000000)')
-            g#LogoWords(transform='translate(41.000000, 16.000000)')
-              text#Aero(fill='#C78944')
-                tspan(x='0', y='36') Aero
-              text#ME(fill='#FFFFFF')
-                tspan(x='178', y='36') ME
-              text#Press(fill='#25B238')
-                tspan(x='85', y='36') Press
-  section.hero-container
-    .hero-callout
-      h1 Maximize your AeroPress experience
-.registration-page
-  form(action='/registration', method='post')
-    fieldset
-      legend Registration Information
-      label(for='reg-author-first') First Name:
-      input#reg-author-first(type='text', name='firstName', value='', required='')
-      label(for='reg-author-last') Last Name:
-      input#reg-author-last(type='text', name='lastName', value='', required='')
-      label(for='reg-email') Email:
-      input#reg-email(type='email', name='email', value='', required='')
-      label(for='reg-password') Password:
-      input#reg-password(type='password', name='password', value='', required='')
-      label(for='reg-confirm-password') Confirm Password:
-      input#reg-confirm-password(type='password', name='user-confirm-password', value='', required='')
-    button(type='submit', name='button') Submit
+extends layout
+
+block content
+  header.logo-header.login-header
+    .logo-container
+      svg.svg-logo(viewbox='0 0 234 27', version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink')
+        // Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch
+        title LogoWords
+        desc Created with Sketch.
+        defs
+        g#Welcome(stroke='none', stroke-width='1', fill='none', fill-rule='evenodd', font-size='36', font-family='AvenirNext-Bold, Avenir Next', font-weight='bold')
+          g#Mobile-Hero(transform='translate(-40.000000, -27.000000)')
+            g#Logo(transform='translate(0.000000, 1.000000)')
+              g#LogoWords(transform='translate(41.000000, 16.000000)')
+                text#Aero(fill='#C78944')
+                  tspan(x='0', y='36') Aero
+                text#ME(fill='#FFFFFF')
+                  tspan(x='178', y='36') ME
+                text#Press(fill='#25B238')
+                  tspan(x='85', y='36') Press
+    section.hero-container
+      .hero-callout
+        h1 Maximize your AeroPress experience
+  .registration-page
+    form(action='/registration', method='post')
+      fieldset
+        legend Registration Information
+        if message.length>0
+          h1= message
+        label(for='reg-author-first') First Name:
+        input#reg-author-first(type='text', name='firstName', value='', required='')
+        label(for='reg-author-last') Last Name:
+        input#reg-author-last(type='text', name='lastName', value='', required='')
+        label(for='reg-email') Email:
+        input#reg-email(type='email', name='email', value='', required='')
+        label(for='reg-password') Password:
+        input#reg-password(type='password', name='password', value='', required='')
+        label(for='reg-confirm-password') Confirm Password:
+        input#reg-confirm-password(type='password', name='user-confirm-password', value='', required='')
+      button(type='submit', name='button') Submit

@@ -3,7 +3,7 @@ module.exports = function(app, passport) {
 
 //Landing Page
   app.get('/', (req, res) => {
-    res.render('index.pug');
+    res.render('index.pug', {title: 'AeroPressMe', message: req.flash('loginMessage')});
   });
 
   //Login form
@@ -15,7 +15,7 @@ module.exports = function(app, passport) {
 
 //Registration Page
   app.get('/registration', (req, res) => {
-    res.render('registration.pug', {message: req.flash('registerMessage')});
+    res.render('registration.pug', {title: 'Register AeroPressMe', message: req.flash('registrationMessage')});
   });
 
   //Registration form
@@ -29,7 +29,8 @@ module.exports = function(app, passport) {
 // My Recipes Page
   app.get('/myrecipes', isLoggedIn, (req, res) => {
     res.render('myrecipes.pug', {
-      user: req.user
+      user: req.user,
+      title: 'My AeroPressMe Recipes'
     });
   });
 
