@@ -14,12 +14,7 @@ const {PORT, DATABASE_URL} = require('./config/config');
 mongoose.Promise = global.Promise;
 
 
-
-
-
 require('./config/passport')(passport);
-
-
 
 
 app.use(morgan('common'));
