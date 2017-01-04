@@ -7,3 +7,10 @@ deploy:
   app: aeropress-me-app
   on:
     repo: bvellek/aeropress-me-app
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+     packages:
+    - gcc-4.8
+    - g++-4.8
