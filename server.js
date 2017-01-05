@@ -16,7 +16,6 @@ mongoose.Promise = global.Promise;
 
 require('./config/passport')(passport);
 
-
 app.use(morgan('common'));
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -29,16 +28,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-
-
 require('./routes')(app, passport);
-
-
 app.use(express.static('public'));
-
-
-
-
 
 
 

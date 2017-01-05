@@ -42,6 +42,14 @@ module.exports = function(app, passport) {
     });
   });
 
+// All Recipes Page
+  app.get('/allrecipes', isLoggedIn, (req, res) => {
+    res.render('allrecipes.pug', {
+      user: req.user,
+      title: 'AeroPressMe Recipes'
+    });
+  });
+
 
 //Logout Route
   app.get('/logout', function(req, res) {

@@ -15,9 +15,10 @@ const recipeSchema = new mongoose.Schema({
   waterTemp: Number,
   grind: String,
   instructions: String,
-  votes: //data from votes collection
-  owner: {
-    userID: , //creator userID or username?
+  votes: Number, //data from votes collection
+  ownerID: {
+    type: String,
+    required: true //creator userID or username?
   },
   created: {
     type: Date,
