@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  include ./partials/_mainHeader.pug
+  // Input Page
+  .input-page
+    form.new-recipe(action='index.html', method='post')
+      h2 New AeroPress Recipe
+      label(for='input-title') Recipe Title:
+      input#input-title(type='text', name='title', value='')
+      label(for='input-author') Recipe Author:
+      input#input-author(type='text', name='author', value='')
+      fieldset
+        label(for='standard') Standard
+        input#standard(type='radio', name='orientation', value='standard', required='')
+        legend Orientation
+        label(for='inverted') Inverted
+        input#inverted(type='radio', name='orientation', value='inverted', required='')
+      fieldset
+        legend Mass
+        label(for='water') Water (g)
+        input#water(type='number', name='massWater', value='', required='')
+        label(for='coffee') Coffee (g)
+        input#coffee(type='number', name='massCoffee', value='', required='')
+      label(for='water-temp') Water temperature (&#8451)
+      input#water-temp(type='number', name='waterTemp', value='', required='')
+      label(for='grind-select') Grind Size
+      select#grind-select.grind(name='grind', required='')
+        option(selected='', disabled='', hidden='', value='')
+        option(value='Extra Coarse') Extra Coarse
+        option(value='Coarse') Coarse
+        option(value='Medium-Coarse') Medium-Coarse
+        option(value='Medium') Medium
+        option(value='Medium-Fine') Medium-Fine
+        option(value='Fine') Fine
+        option(value='Extra Fine') Extra Fine
+      label(for='instructions') Instructions
+      textarea#instructions(name='instructions', rows='8', cols='40', required='')
+      button(type='submit') ☕️ Submit

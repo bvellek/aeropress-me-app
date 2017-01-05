@@ -10,7 +10,8 @@
 
     <meta property="og:image" content="aeropress.svg">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">    <link rel="stylesheet" href="css/normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
   </head>
 
@@ -56,8 +57,8 @@
         <form class="login" action="index.html" method="post">
             <fieldset>
                 <legend>Login</legend>
-                <label for="username">Username</label>
-                <input id="username" type="text" name="username" value="" required>
+                <label for="user-email">Email</label>
+                <input id="user-email" type="email" name="email" value="" required>
                 <label for="password">Password</label>
                 <input id="password" type="password" name="password" value="" required>
                 <button type="submit" name="button">Log In</button>
@@ -83,8 +84,6 @@
           <input id="reg-author-last" type="text" name="lastName" value="" required>
           <label for="reg-email">Email:</label>
           <input id="reg-email" type="email" name="email" value="" required>
-          <label for="reg-username">Username:</label>
-          <input id="reg-username" type="text" name="username" value="" required>
           <label for="reg-password">Password:</label>
           <input id="reg-password" type="password" name="password" value="" required>
           <label for="reg-confirm-password">Confirm Password:</label>
@@ -127,6 +126,7 @@
         <a href="#">My Recipes</a>
         <a href="#">All Recipes</a>
         <a href="#">Submit New Recipe</a>
+        <a href="/logout">Logout</a>
       </nav>
     </header>
 
@@ -175,7 +175,7 @@
         </select>
         <label for="instructions">Instructions</label>
         <textarea id="instructions" name="instructions" rows="8" cols="40" required></textarea>
-        <button type="submit">Submit</button>
+        <button type="submit">☕️ Submit</button>
       </form>
     </div>
 
@@ -187,35 +187,35 @@
 
       <section class="recipe-card">
         <h3 class="recipe-title">Wille's 1st Recipe</h3>
-        <h3 class="recipe-author">Recipe Author: <span>Wille Yli-Luoma</span></h2>
-        <h4 class="recipe-votes">Number of Upvotes: <span>40</span></h3>
-        <h4 class="recipe-orientation">Orientation: <span>Inverted</span></h3>
-        <h4 class="recipe-water-temp">Water Temperature: <span>90</span>&#8451</h3>
-        <h4 class="recipe-water-mass">Water Mass: <span>240</span>g</h3>
-        <h4 class="recipe-coffee-mass">Coffee Mass: <span>17</span>g</h3>
-        <h4 class="recipe-grind-size">Grind Size: <span>Coarse</span></h3>
+        <h3 class="recipe-author">Recipe Author: <span>Wille Yli-Luoma</span></h3>
+        <h4 class="recipe-votes">Number of Upvotes: <span>40</span></h4>
+        <h4 class="recipe-orientation">Orientation: <span>Inverted</span></h4>
+        <h4 class="recipe-water-temp">Water Temperature: <span>90</span>&#8451</h4>
+        <h4 class="recipe-water-mass">Water Mass: <span>240</span>g</h4>
+        <h4 class="recipe-coffee-mass">Coffee Mass: <span>17</span>g</h4>
+        <h4 class="recipe-grind-size">Grind Size: <span>Coarse</span></h4>
         <details class="recipe-instructions">
             <summary>Instructions</summary>
             <p>Place 12g quite coarsely ground coffee into aeropress (set grind to taste), pre-infuse with about 50g gramms of 90 degrees celsius water, stir vigorously, 5 times, add remaining water to a total of 200 gramms, place cap on without stirring, press out air while still in inverted position, until drops appear on top, turn aeropress into a non-inverted position onto a pitcher, but do not press yet. After two minutes of brew time have past, press gently using body weight, as the Aeropress allows. Serve.</p>
         </details>
-        <button type="button" name="button">^ Upvote</button>
+        <button type="button" name="button">👍 Upvote</button>
       </section>
 
 
       <section class="recipe-card">
         <h3 class="recipe-title">The Best Aeropress Recipe</h3>
-        <h3 class="recipe-author">Recipe Author: <span>Nick Hatch</span></h2>
-        <h4 class="recipe-votes">Number of Upvotes: <span>35</span></h3>
-        <h4 class="recipe-orientation">Orientation: <span>Upright</span></h3>
-        <h4 class="recipe-water-temp">Water Temperature: <span>85</span>&#8451</h3>
-        <h4 class="recipe-water-mass">Water Mass: <span>280</span>g</h3>
-        <h4 class="recipe-coffee-mass">Coffee Mass: <span>17.5</span>g</h3>
-        <h4 class="recipe-grind-size">Grind Size: <span>Medium-Coarse</span></h3>
+        <h3 class="recipe-author">Recipe Author: <span>Nick Hatch</span></h3>
+        <h4 class="recipe-votes">Number of Upvotes: <span>35</span></h4>
+        <h4 class="recipe-orientation">Orientation: <span>Upright</span></h4>
+        <h4 class="recipe-water-temp">Water Temperature: <span>85</span>&#8451</h4>
+        <h4 class="recipe-water-mass">Water Mass: <span>280</span>g</h4>
+        <h4 class="recipe-coffee-mass">Coffee Mass: <span>17.5</span>g</h4>
+        <h4 class="recipe-grind-size">Grind Size: <span>Medium-Coarse</span></h4>
         <details class="recipe-instructions">
             <summary>Instructions</summary>
             <p>Add 50-60g of water, stir five times, let bloom for 25 seconds, add the rest of the water over 20 seconds. Plunge over 1 minute into cold cup.</p>
         </details>
-        <button type="button" name="button">^ Upvote</button>
+        <button type="button" name="button">👍 Upvote</button>
       </section>
 
     </div>
@@ -227,13 +227,13 @@
     <h2>Your Recipes</h2>
     <section class="recipe-card">
       <h3 class="recipe-title">Wille's 1st Recipe</h3>
-      <h3 class="recipe-author">Recipe Author: <span>Ben Vellek</span></h2>
-      <h4 class="recipe-votes">Number of Upvotes: <span>40</span></h3>
-      <h4 class="recipe-orientation">Orientation: <span>Inverted</span></h3>
-      <h4 class="recipe-water-temp">Water Temperature: <span>90</span>&#8451</h3>
-      <h4 class="recipe-water-mass">Water Mass: <span>240</span>g</h3>
-      <h4 class="recipe-coffee-mass">Coffee Mass: <span>17</span>g</h3>
-      <h4 class="recipe-grind-size">Grind Size: <span>Coarse</span></h3>
+      <h3 class="recipe-author">Recipe Author: <span>Ben Vellek</span></h3>
+      <h4 class="recipe-votes">Number of Upvotes: <span>40</span></h4>
+      <h4 class="recipe-orientation">Orientation: <span>Inverted</span></h4>
+      <h4 class="recipe-water-temp">Water Temperature: <span>90</span>&#8451</h4>
+      <h4 class="recipe-water-mass">Water Mass: <span>240</span>g</h4>
+      <h4 class="recipe-coffee-mass">Coffee Mass: <span>17</span>g</h4>
+      <h4 class="recipe-grind-size">Grind Size: <span>Coarse</span></h4>
       <details class="recipe-instructions">
           <summary>Instructions</summary>
           <p>Place 12g quite coarsely ground coffee into aeropress (set grind to taste), pre-infuse with about 50g gramms of 90 degrees celsius water, stir vigorously, 5 times, add remaining water to a total of 200 gramms, place cap on without stirring, press out air while still in inverted position, until drops appear on top, turn aeropress into a non-inverted position onto a pitcher, but do not press yet. After two minutes of brew time have past, press gently using body weight, as the Aeropress allows. Serve.</p>
