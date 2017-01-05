@@ -4,7 +4,7 @@ block content
   include ./partials/_mainHeader.pug
   // Input Page
   .input-page
-    form.new-recipe(action='index.html', method='post')
+    form.new-recipe(action='/newrecipe', method='post')
       h2 New AeroPress Recipe
       label(for='input-title') Recipe Title:
       input#input-title(type='text', name='title', value='')

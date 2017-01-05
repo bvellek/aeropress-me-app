@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const recipeSchema = new mongoose.Schema({
   title: {
     type: String,
-    default: //author's # recipe
-  }
+    default: `Recipe ${Date.now}`//author's # recipe
+  },
   author: {
     type: String,
-    default: //creator name using creator ID to get creator name
+    default: 'author' //creator name using creator ID to get creator name
   },
   orientation: String,
   massWater: Number,
@@ -18,7 +18,7 @@ const recipeSchema = new mongoose.Schema({
   votes: Number, //data from votes collection
   ownerID: {
     type: String,
-    required: true //creator userID or username?
+    // required: true //creator userID or username?
   },
   created: {
     type: Date,

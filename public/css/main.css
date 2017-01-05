@@ -95,7 +95,7 @@ input:focus, input:hover {
 
 .hero-callout {
   font-size: 1.5em;
-  width: 20em;
+  max-width: 20em;
   margin: auto 2em auto auto;
 }
 
@@ -104,6 +104,7 @@ input:focus, input:hover {
   padding-top: 15%;
   color: #fff;
   display: block;
+  overflow-wrap: normal;
 }
 
 
@@ -129,7 +130,6 @@ input:focus, input:hover {
   border-radius: 6px;
   width: 28em;
 }
-
 
 
 @media only screen and (min-width: 80em) {

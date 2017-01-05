@@ -1,9 +1,14 @@
+const Recipe = require('./models/recipe');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+
 module.exports = function(app, passport) {
 
 
 //Landing Page
   app.get('/', (req, res) => {
-    res.render('index.pug', {title: 'AeroPressMe', message: req.flash('loginMessage')});
+    res.render('index', {title: 'AeroPressMe', message: req.flash('loginMessage')});
   });
 
   //Login form
@@ -15,7 +20,7 @@ module.exports = function(app, passport) {
 
 //Registration Page
   app.get('/registration', (req, res) => {
-    res.render('registration.pug', {title: 'Register AeroPressMe', message: req.flash('registrationMessage')});
+    res.render('registration', {title: 'Register AeroPressMe', message: req.flash('registrationMessage')});
   });
 
   //Registration form
@@ -28,7 +33,7 @@ module.exports = function(app, passport) {
 
 // My Recipes Page
   app.get('/myrecipes', isLoggedIn, (req, res) => {
-    res.render('myrecipes.pug', {
+    res.render('myrecipes', {
       user: req.user,
       title: 'My AeroPressMe Recipes'
     });
@@ -36,18 +41,46 @@ module.exports = function(app, passport) {
 
 //New Recipe Page
   app.get('/newrecipe', isLoggedIn, (req, res) => {
-    res.render('newrecipe.pug', {
+    res.render('newrecipe', {
       user: req.user,
       title: 'New AeroPressMe Recipe'
     });
   });
 
+  app.post('/newrecipe', isLoggedIn, (req, res) => {
+    const requiredFields = ['orientation', 'massWater', 'massCoffee', 'waterTemp', 'grind', 'instructions'];
+    requiredFields.forEach(field => {
+      if (!(field in req.body)) {
+        res.status(400).json(
+          {error: `Missing "${field}" in request body`});
+        }
+      });
+    Recipe
+      .create(Object.assign({}, req.body))
+      .then(recipe => res.status(201).json(recipe)) //.apiRepr()))
+      .then(res.redirect('/myrecipes'))
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({error: 'something went wrong'});
+      });
+  });
+
 // All Recipes Page
   app.get('/allrecipes', isLoggedIn, (req, res) => {
-    res.render('allrecipes.pug', {
-      user: req.user,
-      title: 'AeroPressMe Recipes'
-    });
+    Recipe
+      .find()
+      .exec()
+      .then(recipes => {
+        res.json(recipes) //.map(method => method.apiRepr()))
+        })
+      .then(
+        res.render('allrecipes', {
+        user: req.user,
+        title: 'AeroPressMe Recipes'}))
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({error: 'somethign went wrong'});
+      });
   });
 
 
@@ -70,7 +103,7 @@ module.exports = function(app, passport) {
     if (req.isAuthenticated()) {
       return next();
     }
-    res.redirect('/myrecipes');
+    res.redirect('/');
   }
 
 }
