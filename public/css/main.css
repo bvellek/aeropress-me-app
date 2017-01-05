@@ -101,7 +101,6 @@ input:focus, input:hover {
 
 .hero-callout > *:first-child {
   font-weight: 900;
-  padding-top: 15%;
   color: #fff;
   display: block;
   overflow-wrap: normal;
