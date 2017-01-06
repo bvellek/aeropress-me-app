@@ -1,4 +1,5 @@
 const Recipe = require('./models/recipe');
+const User = require('./models/user');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
@@ -15,7 +16,8 @@ module.exports = function(app, passport) {
   app.post('/', passport.authenticate('local-login', {
     successRedirect: '/myrecipes',
     failureRedirect: '/',
-    failureFlash: true
+    failureFlash: true,
+    session: true
   }));
 
 //Registration Page
@@ -27,7 +29,8 @@ module.exports = function(app, passport) {
   app.post('/registration', passport.authenticate('local-signup', {
     successRedirect: '/myrecipes',
     failureRedirect: '/registration',
-    failureFlash: true
+    failureFlash: true,
+    session: true
   }));
 
 
@@ -55,10 +58,17 @@ module.exports = function(app, passport) {
           {error: `Missing "${field}" in request body`});
         }
       });
+    let body = Object.assign({}, req.body);
+    if (body.author === '') {
+      body.author = titleCase(`${req.user.firstName} ${req.user.lastName}`);
+    }
+    if (body.title === '') {
+      delete body.title;
+    }
     Recipe
-      .create(Object.assign({}, req.body))
-      .then(recipe => res.status(201).json(recipe)) //.apiRepr()))
+      .create(Object.assign({'ownerID': req.user.id}, body))
       .then(res.redirect('/myrecipes'))
+      .then(res.end())
       .catch(err => {
         console.error(err);
         res.status(500).json({error: 'something went wrong'});
@@ -104,6 +114,12 @@ module.exports = function(app, passport) {
       return next();
     }
     res.redirect('/');
+  }
+
+  function titleCase(str) {
+    return str.toLowerCase().split(' ').map(function(word) {
+      return word.replace(word[0], word[0].toUpperCase());
+    }).join(' ');
   }
 
 }

@@ -13,7 +13,8 @@ module.exports = function(passport) {
   //session setup
 
   passport.serializeUser((user, done) => {
-    done(null, user.id);
+    var user = {_id: user._id, firstName: user.firstName, lastName: user.lastName, email: user.email}
+    done(null, user);
   });
 
   passport.deserializeUser((id, done) => {

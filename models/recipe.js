@@ -3,12 +3,9 @@ const mongoose = require('mongoose');
 const recipeSchema = new mongoose.Schema({
   title: {
     type: String,
-    default: `Recipe ${Date.now}`//author's # recipe
+    default: `Recipe ${new Date().toISOString()}`//author's # recipe
   },
-  author: {
-    type: String,
-    default: 'author' //creator name using creator ID to get creator name
-  },
+  author: String,
   orientation: String,
   massWater: Number,
   massCoffee: Number,
@@ -17,8 +14,7 @@ const recipeSchema = new mongoose.Schema({
   instructions: String,
   votes: Number, //data from votes collection
   ownerID: {
-    type: String,
-    // required: true //creator userID or username?
+    type: String
   },
   created: {
     type: Date,
