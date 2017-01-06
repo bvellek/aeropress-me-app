@@ -8,7 +8,7 @@ const voteSchema = new mongoose.Schema({
   voterID: {
     type: String,
     required: true
-  }
+  },
   created: {
     type: Date,
     default: Date.now

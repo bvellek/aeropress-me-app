@@ -1,18 +1,17 @@
 const Recipe = require('./models/recipe');
 const User = require('./models/user');
+const Vote = require('./models/vote');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 module.exports = function(app, passport) {
 
-
 //Landing Page
   app.get('/', (req, res) => {
     res.render('index', {title: 'AeroPressMe', message: req.flash('loginMessage')});
   });
 
-  //Login form
   app.post('/', passport.authenticate('local-login', {
     successRedirect: '/myrecipes',
     failureRedirect: '/',
@@ -20,12 +19,12 @@ module.exports = function(app, passport) {
     session: true
   }));
 
+
 //Registration Page
   app.get('/registration', (req, res) => {
     res.render('registration', {title: 'Register AeroPressMe', message: req.flash('registrationMessage')});
   });
 
-  //Registration form
   app.post('/registration', passport.authenticate('local-signup', {
     successRedirect: '/myrecipes',
     failureRedirect: '/registration',
@@ -36,11 +35,15 @@ module.exports = function(app, passport) {
 
 // My Recipes Page
   app.get('/myrecipes', isLoggedIn, (req, res) => {
-    res.render('myrecipes', {
-      user: req.user,
-      title: 'My AeroPressMe Recipes'
+    Recipe
+    .find({ownerID: req.user.id}, function(err, recipes) {
+      res.render('myrecipes', {
+        title: 'My AeroPressMe Recipes',
+        recipes: recipes
+      });
     });
   });
+
 
 //New Recipe Page
   app.get('/newrecipe', isLoggedIn, (req, res) => {
@@ -75,30 +78,38 @@ module.exports = function(app, passport) {
       });
   });
 
+
 // All Recipes Page
   app.get('/allrecipes', isLoggedIn, (req, res) => {
-    Recipe
-      .find()
-      .exec()
-      .then(recipes => {
-        res.json(recipes) //.map(method => method.apiRepr()))
-        })
-      .then(
-        res.render('allrecipes', {
-        user: req.user,
-        title: 'AeroPressMe Recipes'}))
-      .catch(err => {
-        console.error(err);
-        res.status(500).json({error: 'somethign went wrong'});
+    Recipe.find(function(err, recipes) {
+      res.render('allrecipes', {
+        title: 'All Recipes',
+        recipes: recipes
       });
+    });
   });
 
+  app.post('/allrecipes/:id', isLoggedIn, (req, res) => {
+    Vote
+    // .findById()
+    .create(Object.assign({
+      'voterID': req.user.id
+      //recipe ID
+    }))
+    .then(res.redirect('/allrecipes'))
+    .then(res.end())
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({error: 'something went wrong'});
+    });
+  });
 
 //Logout Route
   app.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
   });
+
 
 //Google Routes
   app.get('/auth/google', passport.authenticate('google', {scope : ['profile', 'email']}));
@@ -109,6 +120,7 @@ module.exports = function(app, passport) {
   }));
 
 
+//Functions
   function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
       return next();

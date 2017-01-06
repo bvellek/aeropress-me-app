@@ -13,9 +13,7 @@ const recipeSchema = new mongoose.Schema({
   grind: String,
   instructions: String,
   votes: Number, //data from votes collection
-  ownerID: {
-    type: String
-  },
+  ownerID: String,
   created: {
     type: Date,
     default: Date.now
