@@ -36,15 +36,24 @@ module.exports = function(app, passport) {
 // My Recipes Page
   app.get('/myrecipes', isLoggedIn, (req, res) => {
     Recipe
-    .find({ownerID: req.user.id}, function(err, recipes) {
-      res.render('myrecipes', {
-        title: 'My AeroPressMe Recipes',
-        recipes: recipes
+      .find({ownerID: req.user.id}, function(err, recipes) {
+        res.render('myrecipes', {
+          title: 'My AeroPressMe Recipes',
+          recipes: recipes
+        });
       });
-    });
   });
 
-
+//Edit Recipe Page
+  app.get('/editrecipes/:id', (req, res) => {
+    Recipe
+      .findById(req.params.id, (err, recipe) => {
+        res.render('editrecipes', {
+          title: 'Edit My AeroPressMe Recipe',
+          recipe: recipe
+        });
+      });
+  });
 //New Recipe Page
   app.get('/newrecipe', isLoggedIn, (req, res) => {
     res.render('newrecipe', {
@@ -82,20 +91,27 @@ module.exports = function(app, passport) {
 // All Recipes Page
   app.get('/allrecipes', isLoggedIn, (req, res) => {
     Recipe.find(function(err, recipes) {
-      res.render('allrecipes', {
-        title: 'All Recipes',
-        recipes: recipes
-      });
+      let recipePromises = recipes.map((recipe) => {
+        return getVotesByRecipeID(recipe.id).then((votes) => {
+          recipe.votes = votes;
+          return recipe;
+        });
+      })
+      Promise.all(recipePromises).then(function(recipesWithVotes) {
+        res.render('allrecipes', {
+          title: 'All Recipes',
+          recipes: recipesWithVotes
+        });
+      })
     });
   });
 
-  app.post('/allrecipes/:id', isLoggedIn, (req, res) => {
+  app.post('/allrecipes', isLoggedIn, (req, res) => {
     Vote
-    // .findById()
-    .create(Object.assign({
-      'voterID': req.user.id
-      //recipe ID
-    }))
+      .create(Object.assign({
+      'voterID': req.user.id,
+      'recipeID': req.body.recipeID
+      }))
     .then(res.redirect('/allrecipes'))
     .then(res.end())
     .catch(err => {
@@ -134,4 +150,15 @@ module.exports = function(app, passport) {
     }).join(' ');
   }
 
+  function getVotesByRecipeID(recipeID) {
+    return new Promise(function(res, rej) {
+      Vote
+        .find({'recipeID': recipeID})
+        .exec(function (err, results) {
+          let count = results.length
+          console.log(count);
+          res(count);
+        });
+      })
+    }
 }

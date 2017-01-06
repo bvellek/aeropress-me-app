@@ -35,4 +35,4 @@ block content
         details.recipe-instructions
           summary Instructions
           p #{recipe.instructions}
-        button(type='button', name='button') Edit Recipe
+        a(href=`/editrecipes/${recipe.id}`) Edit Recipe

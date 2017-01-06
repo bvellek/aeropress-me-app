@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  include ./partials/_mainHeader.pug
+  div.edit-recipe-page
+    form.edit-recipe(action='index.html', method='put')
+      h2 Edit Your Recipe
+      label(for='title-edit') Recipe Title:
+      input#title-edit(type='text', name='title', value= recipe.title)
+      label(for='author-edit') Recipe Author:
+      input#author-edit(type='text', name='author', value= recipe.author, required='')
+      fieldset
+        legend Orientation
+        label(for='standard-edit') Standard
+        input#standard-edit(type='radio', name='orientation', value='standard', required='', checked='')
+        label(for='inverted-edit') Inverted
+        input#inverted-edit(type='radio', name='orientation', value='inverted', required='')
+      fieldset
+        legend Mass
+        label(for='water-edit') Water (g)
+        input#water-edit(type='number', name='massWater', value= recipe.massWater, required='')
+        label(for='coffee-edit') Coffee (g)
+        input#coffee-edit(type='number', name='massCoffee', value= recipe.massCoffee, required='')
+      label(for='water-temp-edit') Water temperature (&#8451)
+      input#water-temp-edit(type='number', name='waterTemp', value= recipe.waterTemp, required='')
+      label(for='grind-select-edit') Grind Size
+      select#grind-select-edit.grind(name='grind', required='')
+        option(value='Extra Coarse') Extra Coarse
+        option(value='Coarse') Coarse
+        option(value='Medium-Coarse') Medium-Coarse
+        option(value='Medium') Medium
+        option(value='Medium-Fine') Medium-Fine
+        option(value='Fine') Fine
+        option(value='Extra Fine') Extra Fine
+      label(for='edit-instructions') Instructions
+      textarea#edit-instructions(name='instructions', rows='8', cols='40', required='') #{recipe.instructions}
+      button(type='submit', name='button') Submit Edit
+      button(type='button', name='button') Delete Recipe

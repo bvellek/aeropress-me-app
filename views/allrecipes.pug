@@ -13,7 +13,7 @@ block content
           span #{recipe.author}
         h4.recipe-votes
           | Number of Upvotes:
-          span 40
+          span #{recipe.votes}
         h4.recipe-orientation
           | Orientation:
           span #{recipe.orientation}
@@ -35,4 +35,6 @@ block content
         details.recipe-instructions
           summary Instructions
           p #{recipe.instructions}
-        button(type='button', name='button') 👍 Upvote
+        form.upvote(action='/allrecipes', method='post')
+          input(type='hidden', value= recipe.id name='recipeID')
+          button(type='submit', name='button') 👍 Upvote
