@@ -34,15 +34,33 @@ module.exports = function(app, passport) {
 
 
 // My Recipes Page
+  // app.get('/myrecipes', isLoggedIn, (req, res) => {
+  //   Recipe
+  //     .find({ownerID: req.user.id}, function(err, recipes) {
+  //       res.render('myrecipes', {
+  //         title: 'My AeroPressMe Recipes',
+  //         recipes: recipes
+  //       });
+  //     });
+  // });
+
   app.get('/myrecipes', isLoggedIn, (req, res) => {
-    Recipe
-      .find({ownerID: req.user.id}, function(err, recipes) {
+    Recipe.find({ownerID: req.user.id}, function(err, recipes) {
+      let recipePromises = recipes.map((recipe) => {
+        return getVotesByRecipeID(recipe.id).then((votes) => {
+          recipe.votes = votes;
+          return recipe;
+        });
+      })
+      Promise.all(recipePromises).then(function(recipesWithVotes) {
         res.render('myrecipes', {
           title: 'My AeroPressMe Recipes',
-          recipes: recipes
+          recipes: recipesWithVotes
         });
-      });
+      })
+    });
   });
+
 
 //Edit Recipe Page
   app.get('/editrecipes/:id', (req, res) => {
@@ -54,6 +72,8 @@ module.exports = function(app, passport) {
         });
       });
   });
+
+
 //New Recipe Page
   app.get('/newrecipe', isLoggedIn, (req, res) => {
     res.render('newrecipe', {
@@ -96,13 +116,13 @@ module.exports = function(app, passport) {
           recipe.votes = votes;
           return recipe;
         });
-      })
+      });
       Promise.all(recipePromises).then(function(recipesWithVotes) {
         res.render('allrecipes', {
-          title: 'All Recipes',
+          title: 'All AeroPressMe Recipes',
           recipes: recipesWithVotes
         });
-      })
+      });
     });
   });
 
