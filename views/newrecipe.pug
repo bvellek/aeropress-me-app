@@ -1,7 +1,8 @@
 extends layout
+block navigation
+    include ./partials/_mainHeader.pug
 
 block content
-  include ./partials/_mainHeader.pug
   // Input Page
   .input-page
     form.new-recipe(action='/newrecipe', method='post')

@@ -1,7 +1,8 @@
 extends layout
+block navigation
+    include ./partials/_firstHeader.pug
 
 block content
-  include ./partials/_firstHeader.pug
   .registration-page
     form(action='/registration', method='post')
       fieldset

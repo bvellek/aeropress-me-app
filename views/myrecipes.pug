@@ -1,7 +1,8 @@
 extends layout
-
+block navigation
+    include ./partials/_mainHeader.pug
+    
 block content
-  include ./partials/_mainHeader.pug
   div.your-recipes-page
     h2 My Recipes
     if recipes

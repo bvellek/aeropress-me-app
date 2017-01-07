@@ -1,9 +1,8 @@
 extends layout
-
-
+block navigation
+    include ./partials/_firstHeader.pug
 
 block content
-  include ./partials/_firstHeader.pug
   // Login Page
   .login-page
     form.login(action='/', method='post')
