@@ -13,9 +13,9 @@ block content
       fieldset
         legend Orientation
         label(for='standard-edit') Standard
-        input#standard-edit(type='radio', name='orientation', value='standard', required='', checked='')
+        input#standard-edit(type='radio', name='orientation', value='standard', required='', checked=recipe.orientation=='Standard')
         label(for='inverted-edit') Inverted
-        input#inverted-edit(type='radio', name='orientation', value='inverted', required='')
+        input#inverted-edit(type='radio', name='orientation', value='inverted', required='', checked=recipe.orientation=='Inverted')
       fieldset
         legend Mass
         label(for='water-edit') Water (g)
@@ -26,13 +26,13 @@ block content
       input#water-temp-edit(type='number', name='waterTemp', value= recipe.waterTemp, required='', min="0", step=".01")
       label(for='grind-select-edit') Grind Size
       select#grind-select-edit.grind(name='grind', required='')
-        option(value='Extra Coarse') Extra Coarse
-        option(value='Coarse') Coarse
-        option(value='Medium-Coarse') Medium-Coarse
-        option(value='Medium') Medium
-        option(value='Medium-Fine') Medium-Fine
-        option(value='Fine') Fine
-        option(value='Extra Fine') Extra Fine
+        option(value='Extra Coarse', selected=recipe.grind=='Extra Coarse') Extra Coarse
+        option(value='Coarse', selected=recipe.grind=='Coarse') Coarse
+        option(value='Medium-Coarse', selected=recipe.grind=='Medium-Coarse') Medium-Coarse
+        option(value='Medium', selected=recipe.grind=='Medium') Medium
+        option(value='Medium-Fine', selected=recipe.grind=='Medium-Fine') Medium-Fine
+        option(value='Fine', selected=recipe.grind=='Fine') Fine
+        option(value='Extra Fine', selected=recipe.grind=='Extra Fine') Extra Fine
       label(for='edit-instructions') Instructions
       textarea#edit-instructions(name='instructions', rows='8', cols='40', required='') #{recipe.instructions}
       button(type='submit', name='button') Submit Edit

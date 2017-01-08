@@ -34,16 +34,6 @@ module.exports = function(app, passport) {
 
 
 // My Recipes Page
-  // app.get('/myrecipes', isLoggedIn, (req, res) => {
-  //   Recipe
-  //     .find({ownerID: req.user.id}, function(err, recipes) {
-  //       res.render('myrecipes', {
-  //         title: 'My AeroPressMe Recipes',
-  //         recipes: recipes
-  //       });
-  //     });
-  // });
-
   app.get('/myrecipes', isLoggedIn, (req, res) => {
     Recipe.find({ownerID: req.user.id}, function(err, recipes) {
       let recipePromises = recipes.map((recipe) => {
