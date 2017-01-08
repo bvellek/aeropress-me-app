@@ -28,9 +28,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+
+// 'path' variable available for Pug templates
 app.use(function setLocals(req, res, next) {
     res.locals.path = req.path;
-    // 'path' variable is now available in your Jade Template
     next();
 });
 

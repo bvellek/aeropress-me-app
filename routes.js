@@ -51,6 +51,19 @@ module.exports = function(app, passport) {
     });
   });
 
+  //Delete Recipe and all votes for recipe
+  app.post('/myrecipes/:id', isLoggedIn, (req, res) => {
+    Vote
+      .find({recipeID: req.params.id})
+      .remove()
+      .exec();
+    Recipe
+      .findByIdAndRemove(req.params.id)
+      .exec()
+      .then(res.redirect('/myrecipes'))
+      .then(res.end());
+  });
+
 
 //Edit Recipe Page
   app.get('/editrecipe/:id', isLoggedIn, (req, res) => {
@@ -148,6 +161,7 @@ module.exports = function(app, passport) {
       res.status(500).json({error: 'something went wrong'});
     });
   });
+
 
 //Logout Route
   app.get('/logout', function(req, res) {
