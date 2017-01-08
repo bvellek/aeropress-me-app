@@ -4,7 +4,7 @@ block navigation
 
 block content
   div.edit-recipe-page
-    form.edit-recipe(action='index.html', method='put')
+    form.edit-recipe(action=`/editrecipe/${recipe.id}`, method='post')
       h2 Edit Your Recipe
       label(for='title-edit') Recipe Title:
       input#title-edit(type='text', name='title', value= recipe.title)
@@ -13,9 +13,9 @@ block content
       fieldset
         legend Orientation
         label(for='standard-edit') Standard
-        input#standard-edit(type='radio', name='orientation', value='standard', required='', checked=recipe.orientation=='Standard')
+        input#standard-edit(type='radio', name='orientation', value='Standard', required='', checked=recipe.orientation=='Standard')
         label(for='inverted-edit') Inverted
-        input#inverted-edit(type='radio', name='orientation', value='inverted', required='', checked=recipe.orientation=='Inverted')
+        input#inverted-edit(type='radio', name='orientation', value='Inverted', required='', checked=recipe.orientation=='Inverted')
       fieldset
         legend Mass
         label(for='water-edit') Water (g)

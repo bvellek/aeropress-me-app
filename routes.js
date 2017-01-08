@@ -53,13 +53,32 @@ module.exports = function(app, passport) {
 
 
 //Edit Recipe Page
-  app.get('/editrecipes/:id', (req, res) => {
+  app.get('/editrecipe/:id', isLoggedIn, (req, res) => {
     Recipe
       .findById(req.params.id, (err, recipe) => {
-        res.render('editrecipes', {
+        res.render('editrecipe', {
           title: 'Edit My AeroPressMe Recipe',
           recipe: recipe
         });
+      });
+  });
+
+  app.post('/editrecipe/:id', isLoggedIn, (req, res) => {
+    const updated = {};
+    const updateableFields = ['title', 'orientation', 'author', 'massWater', 'massCoffee', 'grind', 'instructions'];
+    updateableFields.forEach(field => {
+      if (field in req.body) {
+        updated[field] = req.body[field];
+      }
+    });
+    Recipe
+      .findByIdAndUpdate(req.params.id, {$set: updated})
+      .exec()
+      .then(res.redirect('/myrecipes'))
+      .then(res.end())
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({error: 'something went wrong'});
       });
   });
 
