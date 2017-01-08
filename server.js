@@ -28,6 +28,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+app.use(function setLocals(req, res, next) {
+    res.locals.path = req.path;
+    // 'path' variable is now available in your Jade Template
+    next();
+});
+
 require('./routes')(app, passport);
 app.use(express.static('public'));
 

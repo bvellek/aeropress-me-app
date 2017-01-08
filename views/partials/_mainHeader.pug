@@ -17,7 +17,7 @@ header.logo-header.main-header
               text#Press(fill='#25B238')
                 tspan(x='85', y='36') Press
   nav.main-nav
-    a(href='/allrecipes') All Recipes
-    a(href='/myrecipes') My Recipes
-    a(href='/newrecipe') Submit New Recipe
+    a(href='/allrecipes', hidden=path=='/allrecipes') All Recipes
+    a(href='/myrecipes', hidden=path=='/myrecipes') My Recipes
+    a(href='/newrecipe', hidden=path=='/newrecipe') Submit New Recipe
     a(href='/logout') Logout

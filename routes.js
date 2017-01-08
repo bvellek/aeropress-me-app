@@ -185,7 +185,6 @@ module.exports = function(app, passport) {
         .find({'recipeID': recipeID})
         .exec(function (err, results) {
           let count = results.length
-          console.log(count);
           res(count);
         });
       })
