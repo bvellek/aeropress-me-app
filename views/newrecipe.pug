@@ -12,19 +12,19 @@ block content
       label(for='input-author') Recipe Author:
       input#input-author(type='text', name='author')
       fieldset
+        legend Orientation
         label(for='standard') Standard
         input#standard(type='radio', name='orientation', value='Standard', required='')
-        legend Orientation
         label(for='inverted') Inverted
         input#inverted(type='radio', name='orientation', value='Inverted', required='')
       fieldset
         legend Mass
         label(for='water') Water (g)
-        input#water(type='number', name='massWater', value='', required='')
+        input#water(type='number', name='massWater', value='', required='', min="0", step=".01")
         label(for='coffee') Coffee (g)
-        input#coffee(type='number', name='massCoffee', value='', required='')
+        input#coffee(type='number', name='massCoffee', value='', required='', min="0", step=".01")
       label(for='water-temp') Water temperature (&#8451)
-      input#water-temp(type='number', name='waterTemp', value='', required='')
+      input#water-temp(type='number', name='waterTemp', value='', required='', min="0", step=".01")
       label(for='grind-select') Grind Size
       select#grind-select.grind(name='grind', required='')
         option(selected='', disabled='', hidden='', value='')
