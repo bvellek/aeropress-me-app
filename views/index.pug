@@ -15,9 +15,10 @@ block content
         label(for='password') Password
         input#password(type='password', name='password', value='', required='')
         button(type='submit', name='button') Log In
-    a(href='/auth/google')
-      | Login or Register with:
-      img#google-login(src='img/google_signin_buttons/web/vector/btn_google_light_normal_ios.svg', alt='google login')
+    div.google-login-anchor
+      a(href='/auth/google')
+        | Login with:
+        img#google-login(src='img/google_signin_buttons/web/vector/btn_google_light_normal_ios.svg', alt='google login')
     a(href='/registration') Register
     |  |
     a(href='mailto:resetpassword@AeroPressMe.com') Forgot password?
