@@ -5,7 +5,7 @@ block navigation
 block content
   // Input Page
   .input-page
-    form.new-recipe(action='/newrecipe', method='post')
+    form.aero-form.new-recipe(action='/newrecipe', method='post')
       h2 New AeroPress Recipe
       label(for='input-title') Recipe Title:
       input#input-title(type='text', name='title')
@@ -37,4 +37,4 @@ block content
         option(value='Extra Fine') Extra Fine
       label(for='instructions') Instructions
       textarea#instructions(name='instructions', rows='8', cols='40', required='')
-      button(type='submit') ☕️ Submit
+      button.aero-btn(type='submit') ☕️ Submit

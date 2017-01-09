@@ -5,7 +5,7 @@ block navigation
 block content
   // Login Page
   .login-page
-    form.login(action='/', method='post')
+    form.aero-form(action='/', method='post')
       fieldset
         legend Login
         if message.length>0
@@ -14,11 +14,11 @@ block content
         input#user-email(type='email', name='email', value='', required='')
         label(for='password') Password
         input#password(type='password', name='password', value='', required='')
-        button(type='submit', name='button') Log In
-    div.google-login-anchor
-      a(href='/auth/google')
-        | Login with:
-        img#google-login(src='img/google_signin_buttons/web/vector/btn_google_light_normal_ios.svg', alt='google login')
-    a(href='/registration') Register
-    |  |
-    a(href='mailto:resetpassword@AeroPressMe.com') Forgot password?
+        button.aero-btn(type='submit', name='button') Log In
+        a.google-login-anchor(href='/auth/google')
+          span Login with:&nbsp;
+          img#google-login(src='img/google_signin_buttons/web/vector/btn_google_light_normal_ios.svg', alt='google login')
+        div.form-links
+          a(href='/registration') Register
+          |  |&nbsp;
+          a(href='mailto:resetpassword@AeroPressMe.com') Forgot password?

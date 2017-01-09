@@ -4,7 +4,7 @@ block navigation
 
 block content
   div.edit-recipe-page
-    form.edit-recipe(action=`/editrecipe/${recipe.id}`, method='post')
+    form.aero-form.edit-recipe(action=`/editrecipe/${recipe.id}`, method='post')
       h2 Edit Your Recipe
       label(for='title-edit') Recipe Title:
       input#title-edit(type='text', name='title', value= recipe.title)
@@ -35,5 +35,5 @@ block content
         option(value='Extra Fine', selected=recipe.grind=='Extra Fine') Extra Fine
       label(for='edit-instructions') Instructions
       textarea#edit-instructions(name='instructions', rows='8', cols='40', required='') #{recipe.instructions}
-      button(type='submit', name='submit-button') ✍️ Submit Edit
-      button(type='submit', formaction=`/myrecipes/${recipe.id}`, name='delete-button', formmethod="post") ❌ Delete Recipe
+      button.aero-btn(type='submit', name='submit-button') ✍️ Submit Edit
+      button.aero-btn(type='submit', formaction=`/myrecipes/${recipe.id}`, name='delete-button', formmethod="post") ❌ Delete Recipe

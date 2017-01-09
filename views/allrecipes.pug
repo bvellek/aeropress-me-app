@@ -38,6 +38,6 @@ block content
         details.recipe-instructions
           summary Instructions
           p #{recipe.instructions}
-        form.upvote(action='/allrecipes', method='post')
+        form.upvote-form(action='/allrecipes', method='post')
           input(type='hidden', value= recipe.id name='recipeID')
           button(type='submit', name='button') 👍 Upvote
