@@ -1,9 +1,10 @@
 extends layout
+block navigation
+    include ./partials/_firstHeader.pug
 
 block content
-  include ./partials/_firstHeader.pug
-  .registration-page
-    form(action='/registration', method='post')
+  div.registration-page
+    form.aero-form(action='/registration', method='post')
       fieldset
         legend Registration Information
         if message.length>0
@@ -18,4 +19,4 @@ block content
         input#reg-password(type='password', name='password', value='', required='')
         label(for='reg-confirm-password') Confirm Password:
         input#reg-confirm-password(type='password', name='user-confirm-password', value='', required='')
-      button(type='submit', name='button') Submit
+        button.aero-btn(type='submit', name='button') ☕️ Submit

@@ -1,0 +1,41 @@
+extends layout
+block navigation
+    include ./partials/_mainHeader.pug
+
+block content
+  div.edit-recipe-page
+    h2 Edit Your Recipe
+    form.aero-form.recipe-form(action=`/editrecipe/${recipe.id}`, method='post')
+      label(for='title-edit') Recipe Title:
+      input#title-edit(type='text', name='title', value= recipe.title)
+      label(for='author-edit') Recipe Author:
+      input#author-edit(type='text', name='author', value= recipe.author, required='')
+      fieldset.orientation-container
+        legend Orientation
+        div.orientation-radio
+          label(for='standard-edit') Standard&nbsp;
+          input#standard-edit(type='radio', name='orientation', value='Standard', required='', checked=recipe.orientation=='Standard')
+        div.orientation-radio
+          label(for='inverted-edit') Inverted&nbsp;&nbsp;
+          input#inverted-edit(type='radio', name='orientation', value='Inverted', required='', checked=recipe.orientation=='Inverted')
+      fieldset
+        legend Mass
+        label(for='water-edit') Water (g)
+        input#water-edit(type='number', name='massWater', value= recipe.massWater, required='', min="0", step=".01")
+        label(for='coffee-edit') Coffee (g)
+        input#coffee-edit(type='number', name='massCoffee', value= recipe.massCoffee, required='', min="0", step=".01")
+      label(for='water-temp-edit') Water temperature (&#8451)
+      input#water-temp-edit(type='number', name='waterTemp', value= recipe.waterTemp, required='', min="0", step=".01")
+      label(for='grind-select-edit') Grind Size
+      select#grind-select-edit.grind(name='grind', required='')
+        option(value='Extra Coarse', selected=recipe.grind=='Extra Coarse') Extra Coarse
+        option(value='Coarse', selected=recipe.grind=='Coarse') Coarse
+        option(value='Medium-Coarse', selected=recipe.grind=='Medium-Coarse') Medium-Coarse
+        option(value='Medium', selected=recipe.grind=='Medium') Medium
+        option(value='Medium-Fine', selected=recipe.grind=='Medium-Fine') Medium-Fine
+        option(value='Fine', selected=recipe.grind=='Fine') Fine
+        option(value='Extra Fine', selected=recipe.grind=='Extra Fine') Extra Fine
+      label(for='edit-instructions') Instructions
+      textarea#edit-instructions(name='instructions', rows='8', cols='40', required='') #{recipe.instructions}
+      button.aero-btn.edit-btn(type='submit', name='submit-button') ✍️ Submit Edit
+      button.aero-btn.edit-btn(type='submit', formaction=`/myrecipes/${recipe.id}`, name='delete-button', formmethod="post") ❌ Delete Recipe

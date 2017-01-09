@@ -20,6 +20,7 @@
     "body-parser": "^1.15.2",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-alpha.2",
     "express": "^4.14.0",
     "express-session": "^1.14.2",
     "method-override": "^2.3.7",

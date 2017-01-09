@@ -1,29 +1,32 @@
 extends layout
+block navigation
+    include ./partials/_mainHeader.pug
 
 block content
-  include ./partials/_mainHeader.pug
   // Input Page
-  .input-page
-    form.new-recipe(action='index.html', method='post')
-      h2 New AeroPress Recipe
+  div.input-page
+    h2 New AeroPress Recipe
+    form.aero-form.recipe-form(action='/newrecipe', method='post')
       label(for='input-title') Recipe Title:
-      input#input-title(type='text', name='title', value='')
+      input#input-title(type='text', name='title')
       label(for='input-author') Recipe Author:
-      input#input-author(type='text', name='author', value='')
-      fieldset
-        label(for='standard') Standard
-        input#standard(type='radio', name='orientation', value='standard', required='')
+      input#input-author(type='text', name='author')
+      fieldset.orientation-container
         legend Orientation
-        label(for='inverted') Inverted
-        input#inverted(type='radio', name='orientation', value='inverted', required='')
+        div.orientation-radio
+          label(for='standard') Standard&nbsp;
+          input#standard(type='radio', name='orientation', value='Standard', required='')
+        div.orientation-radio
+          label(for='inverted') Inverted&nbsp;&nbsp;
+          input#inverted(type='radio', name='orientation', value='Inverted', required='')
       fieldset
         legend Mass
         label(for='water') Water (g)
-        input#water(type='number', name='massWater', value='', required='')
+        input#water(type='number', name='massWater', value='', required='', min="0", step=".01")
         label(for='coffee') Coffee (g)
-        input#coffee(type='number', name='massCoffee', value='', required='')
+        input#coffee(type='number', name='massCoffee', value='', required='', min="0", step=".01")
       label(for='water-temp') Water temperature (&#8451)
-      input#water-temp(type='number', name='waterTemp', value='', required='')
+      input#water-temp(type='number', name='waterTemp', value='', required='', min="0", step=".01")
       label(for='grind-select') Grind Size
       select#grind-select.grind(name='grind', required='')
         option(selected='', disabled='', hidden='', value='')
@@ -36,4 +39,4 @@ block content
         option(value='Extra Fine') Extra Fine
       label(for='instructions') Instructions
       textarea#instructions(name='instructions', rows='8', cols='40', required='')
-      button(type='submit') ☕️ Submit
+      button.aero-btn(type='submit') ☕️ Submit

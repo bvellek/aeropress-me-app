@@ -16,7 +16,6 @@ mongoose.Promise = global.Promise;
 
 require('./config/passport')(passport);
 
-
 app.use(morgan('common'));
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -30,15 +29,14 @@ app.use(passport.session());
 app.use(flash());
 
 
+// 'path' variable available for Pug templates
+app.use(function setLocals(req, res, next) {
+    res.locals.path = req.path;
+    next();
+});
 
 require('./routes')(app, passport);
-
-
 app.use(express.static('public'));
-
-
-
-
 
 
 

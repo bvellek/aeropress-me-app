@@ -1,5 +1,39 @@
 extends layout
+block navigation
+    include ./partials/_mainHeader.pug
 
 block content
-  include ./partials/_mainHeader.pug
-    
+  div.your-recipes-page
+    h2 My Recipes
+    if recipes
+    each recipe in recipes
+      section.recipe-card
+        h3.recipe-title #{recipe.title}
+        h3.recipe-author
+          | Recipe Author:&nbsp;
+          span #{recipe.author}
+        h4.recipe-votes
+          | Number of Upvotes:&nbsp;
+          span #{recipe.votes}
+        h4.recipe-orientation
+          | Orientation:&nbsp;
+          span #{recipe.orientation}
+        h4.recipe-water-temp
+          | Water Temperature:&nbsp;
+          span #{recipe.waterTemp}
+          | &#8451
+        h4.recipe-water-mass
+          | Water Mass:&nbsp;
+          span #{recipe.massWater}
+          | g
+        h4.recipe-coffee-mass
+          | Coffee Mass:&nbsp;
+          span #{recipe.massCoffee}
+          | g
+        h4.recipe-grind-size
+          | Grind Size:&nbsp;
+          span #{recipe.grind}
+        details.recipe-instructions
+          summary Instructions
+          p #{recipe.instructions}
+        a(href=`/editrecipe/${recipe.id}`) ✍️ Edit Recipe
