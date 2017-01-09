@@ -111,6 +111,11 @@ input:focus, input:hover {
     box-shadow: 0 0 2px 0 rgba(73, 143, 225, 0.70);
 }
 
+
+/****
+AeroForm Styles
+****/
+
 .aero-form {
     background-color: #f9f9f9;
     padding: 0.625em 0.25em;
@@ -137,6 +142,14 @@ input:focus, input:hover {
 }
 
 
+/****
+Page Styles
+****/
+
+.login-page, .registration-page, .input-page, .recipes-page, .your-recipes-page, .edit-recipe-page {
+    text-align: center;
+}
+
 
 /****
 Header Styles
@@ -159,6 +172,12 @@ Header Styles
     color: #fff;
     padding: 1em;
     font-size: 1em;
+}
+
+.main-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .main-nav a:hover {
@@ -199,9 +218,11 @@ Header Styles
     padding-left: .25em;
 }
 
-.login-page, .registration-page, .input-page, .recipes-page, .your-recipes-page, .edit-recipe-page {
-    text-align: center;
-}
+
+
+/****
+Login Page Styles
+****/
 
 .google-login-anchor {
     margin: 2em auto 0.625em;
@@ -230,6 +251,77 @@ Header Styles
 
 
 /****
+Recipe Form Styles
+****/
+
+.recipe-form {
+  max-width: 28em;
+  padding: 1em;
+}
+.recipe-form fieldset {
+  padding-left: 0.5em;
+  padding-top: 1em;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  margin: 0.5em auto 0.5em 0;
+  width: 90%;
+}
+
+.recipe-form legend {
+  text-align: left;
+}
+
+.recipe-form input {
+  width: 90%;
+  margin-bottom: 0.5em;
+}
+
+.orientation-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.orientation-radio {
+  display: flex;
+  flex-direction: row;
+}
+
+.recipe-form input[type='radio'] {
+  box-shadow: none;
+}
+
+.recipe-form input[type='number'] {
+  width: 6em;
+  margin: 0.25em auto 0.625em 1em;
+  text-align: right;
+}
+
+.recipe-form select {
+  margin-left: 1em;
+  height: 2em;
+  background-color: #fff;
+}
+
+.recipe-form label[for='instructions'],
+.recipe-form label[for='edit-instructions'] {
+  margin-top: 1em;
+}
+
+.recipe-form textarea {
+  width: 95%;
+  margin-left: 0.625em;
+  border-radius: 3px;
+  border-color: lightgrey;
+}
+
+.edit-btn {
+  display: inline-block;
+  margin: 0.5em;
+}
+
+
+
+/****
 Recipe Styles
 ****/
 
@@ -247,7 +339,7 @@ Recipe Styles
 Media Queries
 ****/
 
-@media only screen and (min-width: 48em) {
+@media only screen and (min-width: 54em) {
     .logo-container {
         text-align: left;
     }

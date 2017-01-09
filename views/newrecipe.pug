@@ -4,19 +4,21 @@ block navigation
 
 block content
   // Input Page
-  .input-page
-    form.aero-form.new-recipe(action='/newrecipe', method='post')
-      h2 New AeroPress Recipe
+  div.input-page
+    h2 New AeroPress Recipe
+    form.aero-form.recipe-form(action='/newrecipe', method='post')
       label(for='input-title') Recipe Title:
       input#input-title(type='text', name='title')
       label(for='input-author') Recipe Author:
       input#input-author(type='text', name='author')
-      fieldset
+      fieldset.orientation-container
         legend Orientation
-        label(for='standard') Standard
-        input#standard(type='radio', name='orientation', value='Standard', required='')
-        label(for='inverted') Inverted
-        input#inverted(type='radio', name='orientation', value='Inverted', required='')
+        div.orientation-radio
+          label(for='standard') Standard&nbsp;
+          input#standard(type='radio', name='orientation', value='Standard', required='')
+        div.orientation-radio
+          label(for='inverted') Inverted&nbsp;&nbsp;
+          input#inverted(type='radio', name='orientation', value='Inverted', required='')
       fieldset
         legend Mass
         label(for='water') Water (g)

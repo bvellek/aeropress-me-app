@@ -4,18 +4,20 @@ block navigation
 
 block content
   div.edit-recipe-page
-    form.aero-form.edit-recipe(action=`/editrecipe/${recipe.id}`, method='post')
-      h2 Edit Your Recipe
+    h2 Edit Your Recipe
+    form.aero-form.recipe-form(action=`/editrecipe/${recipe.id}`, method='post')
       label(for='title-edit') Recipe Title:
       input#title-edit(type='text', name='title', value= recipe.title)
       label(for='author-edit') Recipe Author:
       input#author-edit(type='text', name='author', value= recipe.author, required='')
-      fieldset
+      fieldset.orientation-container
         legend Orientation
-        label(for='standard-edit') Standard
-        input#standard-edit(type='radio', name='orientation', value='Standard', required='', checked=recipe.orientation=='Standard')
-        label(for='inverted-edit') Inverted
-        input#inverted-edit(type='radio', name='orientation', value='Inverted', required='', checked=recipe.orientation=='Inverted')
+        div.orientation-radio
+          label(for='standard-edit') Standard&nbsp;
+          input#standard-edit(type='radio', name='orientation', value='Standard', required='', checked=recipe.orientation=='Standard')
+        div.orientation-radio
+          label(for='inverted-edit') Inverted&nbsp;&nbsp;
+          input#inverted-edit(type='radio', name='orientation', value='Inverted', required='', checked=recipe.orientation=='Inverted')
       fieldset
         legend Mass
         label(for='water-edit') Water (g)
@@ -35,5 +37,5 @@ block content
         option(value='Extra Fine', selected=recipe.grind=='Extra Fine') Extra Fine
       label(for='edit-instructions') Instructions
       textarea#edit-instructions(name='instructions', rows='8', cols='40', required='') #{recipe.instructions}
-      button.aero-btn(type='submit', name='submit-button') ✍️ Submit Edit
-      button.aero-btn(type='submit', formaction=`/myrecipes/${recipe.id}`, name='delete-button', formmethod="post") ❌ Delete Recipe
+      button.aero-btn.edit-btn(type='submit', name='submit-button') ✍️ Submit Edit
+      button.aero-btn.edit-btn(type='submit', formaction=`/myrecipes/${recipe.id}`, name='delete-button', formmethod="post") ❌ Delete Recipe
