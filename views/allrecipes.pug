@@ -5,6 +5,8 @@ block navigation
 block content
   div.recipes-page
     h2 Top Recipes
+    if message.length>0
+      h1= message
     if recipes
     each recipe in recipes
       section.recipe-card

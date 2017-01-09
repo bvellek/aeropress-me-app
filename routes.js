@@ -3,6 +3,7 @@ const User = require('./models/user');
 const Vote = require('./models/vote');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+
 mongoose.Promise = global.Promise;
 
 module.exports = function(app, passport) {
@@ -54,7 +55,7 @@ module.exports = function(app, passport) {
   //Delete Recipe and all votes for recipe
   app.post('/myrecipes/:id', isLoggedIn, (req, res) => {
     Vote
-      .find({recipeID: req.params.id})
+      .find({'recipeID': req.params.id})
       .remove()
       .exec();
     Recipe
@@ -125,7 +126,6 @@ module.exports = function(app, passport) {
       .then(res.end())
       .catch(err => {
         console.error(err);
-        res.status(500).json({error: 'something went wrong'});
       });
   });
 
@@ -142,23 +142,33 @@ module.exports = function(app, passport) {
       Promise.all(recipePromises).then(function(recipesWithVotes) {
         res.render('allrecipes', {
           title: 'All AeroPressMe Recipes',
-          recipes: recipesWithVotes
+          recipes: recipesWithVotes,
+          message: req.flash('voteMessage')
         });
       });
     });
   });
 
   app.post('/allrecipes', isLoggedIn, (req, res) => {
-    Vote
-      .create(Object.assign({
-      'voterID': req.user.id,
-      'recipeID': req.body.recipeID
-      }))
-    .then(res.redirect('/allrecipes'))
-    .then(res.end())
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({error: 'something went wrong'});
+    Vote.findOne({'recipeID': req.body.recipeID, 'voterID': req.user.id}, (err, vote) => {
+      if (err) {
+        console.error(err);
+      }
+      if (vote) {
+        console.log('SHOULD FLASH!!');
+        req.flash('voteMessage', 'You have already upvoted this recipe.');
+      } else {
+        Vote
+          .create(Object.assign({
+          'voterID': req.user.id,
+          'recipeID': req.body.recipeID
+          }))
+          .then(res.redirect('/allrecipes'))
+          .then(res.end())
+          .catch(err => {
+            console.error(err);
+          });
+      }
     });
   });
 
