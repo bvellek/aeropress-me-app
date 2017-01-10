@@ -3,9 +3,13 @@ const mongoose = require('mongoose');
 const recipeSchema = new mongoose.Schema({
   title: {
     type: String,
-    default: `Recipe ${new Date().toISOString()}`//author's # recipe
+    default: `Recipe ${new Date().toISOString()}`, //author's # recipe
+    maxlength: 40
   },
-  author: String,
+  author: {
+    type: String,
+    maxlength: 25
+  },
   orientation: String,
   massWater: Number,
   massCoffee: Number,

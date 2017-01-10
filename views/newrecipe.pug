@@ -8,9 +8,9 @@ block content
     h2 New AeroPress Recipe
     form.aero-form.recipe-form(action='/newrecipe', method='post')
       label(for='input-title') Recipe Title:
-      input#input-title(type='text', name='title')
+      input#input-title(type='text', name='title', maxlength='40')
       label(for='input-author') Recipe Author:
-      input#input-author(type='text', name='author')
+      input#input-author(type='text', name='author', maxlength='25')
       fieldset.orientation-container
         legend Orientation
         div.orientation-radio
