@@ -170,6 +170,20 @@ Flash Alert Styles
 
 
 /****
+No Recipe Styles
+****/
+
+.no-recipes {
+  background-color: #fff;
+  padding: 2em 1em 2em 1em;
+  margin: 1em auto;
+  border-radius: 3px;
+  max-width: 28em;
+  text-align: center;
+  font-weight: 700;
+}
+
+/****
 Header Styles
 ****/
 

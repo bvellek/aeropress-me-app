@@ -37,3 +37,5 @@ block content
           summary Instructions
           p #{recipe.instructions}
         a(href=`/editrecipe/${recipe.id}`) ✍️ Edit Recipe
+    else
+      section.no-recipes Welcome! You have not submitted any recipes yet. Please submit a new recipe or check out recipes from other users.
