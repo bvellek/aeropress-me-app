@@ -6,7 +6,7 @@ block content
   div.recipes-page
     h2 Top Recipes
     if message.length>0
-      h1= message
+      section.flash-alert= message
     if recipes
     each recipe in recipes
       section.recipe-card

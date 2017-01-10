@@ -9,7 +9,7 @@ block content
       fieldset
         legend Login
         if message.length>0
-          h1= message
+          section.flash-alert= message
         label(for='user-email') Email
         input#user-email(type='email', name='email', value='', required='')
         label(for='password') Password
