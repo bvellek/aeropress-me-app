@@ -1,12 +1,56 @@
-const chai = require('chai'),
-      chaiHTTP = require('chai-http');
-
+const chai = require('chai');
+const chaiHTTP = require('chai-http');
+const mongoose = require('mongoose');
+const faker = require('faker');
 
 const should = chai.should();
 
-const {app} = require('../server');
+const Recipe = require('../models/recipe');
+const User = require('../models/user');
+const Vote = require('../models/vote');
+const {app, runServer, closeServer} = require('../server');
 
 chai.use(chaiHTTP);
+
+
+function seedRecipeData() {
+  console.log('seeding Recipe data');
+  const seedData = [];
+
+  for (let i = 0; i <= 10; i++) {
+    seedData.push(generateRecipeData());
+  }
+  return Recipe.insertMany(seedData);
+}
+
+
+function generateRecipeOrientation() {
+  const orientations = ['Standard', 'Inverted'];
+  return orientations[Math.floor(Math.random() * orientations.length)];
+}
+
+function generateRecipeGrind() {
+  const grinds = ['Extra Coarse', 'Coarse', 'Medium-Coarse', 'Medium', 'Medium-Fine', 'Fine', 'Extra Fine'];
+  return grinds[Math.floor(Math.random() * grinds.length)];
+}
+
+function generateRecipeData() {
+  return {
+    title: faker.lorem.sentence(),
+    author: `${faker.name.firstName()} ${faker.name.lastName()}`,
+    orientation: generateRecipeOrientation(),
+    massWater: faker.random.number(),
+    massCoffee: faker.random.number(),
+    waterTemp: faker.random.number(),
+    grind: generateRecipeGrind(),
+    instructions: faker.lorem.paragraph()
+  };
+}
+
+function tearDownDb() {
+  console.warm('Deleting DB');
+  return mongoose.connection.dropDatabase();
+}
 
 
 describe('HTML', function() {
