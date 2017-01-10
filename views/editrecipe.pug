@@ -7,9 +7,9 @@ block content
     h2 Edit Your Recipe
     form.aero-form.recipe-form(action=`/editrecipe/${recipe.id}`, method='post')
       label(for='title-edit') Recipe Title:
-      input#title-edit(type='text', name='title', value= recipe.title)
+      input#title-edit(type='text', name='title', maxlength='40', value= recipe.title)
       label(for='author-edit') Recipe Author:
-      input#author-edit(type='text', name='author', value= recipe.author, required='')
+      input#author-edit(type='text', name='author', maxlength='25' value= recipe.author, required='')
       fieldset.orientation-container
         legend Orientation
         div.orientation-radio
