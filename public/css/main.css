@@ -11,7 +11,7 @@ body {
 General Styles
 ****/
 
-h1, h2, h3, h4, legend, label, span {
+h1, h2, h3, h4, legend, label, span, summary {
     font-family: 'Lato', sans-serif;
     color: #303030;
 }
@@ -78,7 +78,7 @@ Form Styles
 
 form {
     margin: .625em auto;
-    max-width: 20em;
+    max-width: 18em;
     text-align: left;
 }
 
@@ -127,7 +127,8 @@ AeroForm Styles
 }
 
 .aero-form input {
-    width: 18em;
+    width: 95%;
+    max-width: 18em;
     line-height: 2em;
     margin: 0 auto 0.25em;
 }
@@ -171,7 +172,7 @@ Header Styles
 .main-nav a {
     color: #fff;
     padding: 1em;
-    font-size: 1em;
+    font-size: 0.825em;
 }
 
 .main-nav {
@@ -185,10 +186,10 @@ Header Styles
 }
 
 .svg-logo {
-    padding: 1em 2em;
+    padding: 0.5em 0.625em;
     width: 70%;
     max-width: 30em;
-    min-width: 25em;
+    min-width: 14em;
 }
 
 .hero-container {
@@ -205,7 +206,7 @@ Header Styles
 }
 
 .hero-callout {
-    font-size: 1.5em;
+    font-size: 1.2em;
     max-width: 20em;
     margin: auto 2em auto auto;
 }
@@ -322,24 +323,194 @@ Recipe Form Styles
 
 
 /****
-Recipe Styles
+Recipe Card Styles
 ****/
 
 .recipe-card {
-    background-color: #fff;
-    padding: 1em;
-    margin: 1em auto;
-    border: 1px solid #979797;
-    border-radius: 6px;
-    max-width: 28em;
+  background-color: #fff;
+  padding: 1em 1em 0.5em 1em;
+  margin: 1em auto;
+  border-radius: 3px;
+  max-width: 28em;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
 }
 
+.recipe-heading {
+  margin-bottom: 1.4em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+    .vote-container {
+      text-align: center;
+      margin-right: 1em;
+    }
+
+        .vote-container figure {
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 700;
+          font-size: 2.25em;
+          margin: 0 1rem;
+          color: rgba(37,178,56,0.7);
+        }
+
+        .vote-container figcaption {
+          font-size: 0.75em;
+          color: rgba(48,48,48,0.7);
+        }
+
+    .title-container {
+      align-self: center;
+      margin: 0 auto;
+    }
+
+        .title-container .recipe-title {
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 700;
+          font-size: 1.5em;
+          margin: 0 auto;
+          text-align: center;
+        }
+
+.info-container h4 {
+  color: rgba(48,48,48,0.75);
+  margin: 0.5em auto;
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  flex-wrap: wrap;
+  overflow: hidden;
+  max-width: 20em;
+}
+
+.info-container span {
+  font-weight: 700;
+}
+
+.recipe-instructions {
+  margin-top: 1em;
+  margin-bottom: 1.5em;
+}
+
+.recipe-instructions summary {
+  font-weight: 700;
+  color: rgba(48,48,48,0.75);
+}
+
+.recipe-instructions p {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.9em;
+  width: 90%;
+  margin: 0.625em auto;
+}
+
+.recipe-card a {
+  margin: 0 auto;
+  text-align: center;
+  width: 8em;
+  -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
+  box-shadow: inset 0px 1px 0px 0px #ffffff;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #f6f6f6));
+  background: -moz-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+  background: -webkit-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+  background: -o-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+  background: -ms-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+  background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6', GradientType=0);
+  background-color: #ffffff;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #dcdcdc;
+  display: inline-block;
+  cursor: pointer;
+  color: #303030;
+  font-weight: bold;
+  padding: 0.3em 0.8em;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ffffff;
+  margin-top: 0.625em;
+}
+
+.recipe-card a:hover {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f6f6f6), color-stop(1, #ffffff));
+  background: -moz-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+  background: -webkit-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+  background: -o-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+  background: -ms-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+  background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
+  background-color: #f6f6f6;
+}
+
+.recipe-card form {
+  margin: 0 auto;
+  width: 7em;
+}
+
+.recipe-card form button {
+  margin: 0;
+}
 
 /****
 Media Queries
 ****/
 
-@media only screen and (min-width: 54em) {
+@media only screen and (min-width: 28.75em) {
+  form {
+      margin: .625em auto;
+      width: 75%;
+      max-width: 20em;
+      text-align: left;
+  }
+
+  .svg-logo {
+      padding: 1em 2em;
+      width: 70%;
+      max-width: 30em;
+      min-width: 20em;
+  }
+
+  .main-nav a {
+    font-size: 0.9em;
+  }
+
+  .hero-callout {
+    font-size: 1.5em;
+  }
+
+  .vote-container figure {
+    font-size: 4em;
+  }
+
+  .title-container .recipe-title {
+    font-size: 2.2em;
+  }
+
+  .info-container h4 {
+    width: 70%;
+  }
+  .recipe-instructions {
+    margin-left: 1em;
+  }
+
+  .recipe-instructions p {
+    width: 80%;
+    font-size: 1em;
+  }
+}
+
+@media only screen and (min-width: 52.5em) {
+    .main-nav a {
+      font-weight: 700;
+      font-size: 1em;
+    }
+
     .logo-container {
         text-align: left;
     }
