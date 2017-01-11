@@ -43,7 +43,19 @@ module.exports = function(app, passport) {
           return recipe;
         });
       })
-      Promise.all(recipePromises).then(function(recipesWithVotes) {
+      Promise.all(recipePromises).then((recipesWithVotes) => {
+        recipesWithVotes.sort((a, b) => {
+          if (b.votes > a.votes) {
+            return 1
+          } else if (a.votes > b.votes) {
+            return -1
+          } else {
+            return 0
+          }
+        })
+        return recipesWithVotes;
+      })
+      .then(function(recipesWithVotes) {
         res.render('myrecipes', {
           title: 'My AeroPressMe Recipes',
           recipes: recipesWithVotes
