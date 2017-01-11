@@ -38,7 +38,6 @@ module.exports = function(app, passport) {
     });
   });
 
-
   app.get('/login', (req, res) => {
     res.render('login', {title: 'AeroPressMe Login', message: req.flash('loginMessage')});
   });
