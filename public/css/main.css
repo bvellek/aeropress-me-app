@@ -428,12 +428,15 @@ Recipe Card Styles
       margin: 0 auto;
     }
 
-        .title-container .recipe-title {
+        .title-container .recipe-title,
+        .title-container .recipe-title a {
           font-family: 'Montserrat', sans-serif;
           font-weight: 700;
-          font-size: 1.5em;
+          font-size: 1.5rem;
           margin: 0 auto;
           text-align: center;
+          color: inherit;
+          text-decoration: none;
         }
 
 .info-container h4 {
@@ -469,7 +472,7 @@ Recipe Card Styles
   margin: 0.625em auto;
 }
 
-.recipe-card a {
+.recipe-card edit-link {
   margin: 0 auto;
   text-align: center;
   width: 8em;
@@ -498,7 +501,7 @@ Recipe Card Styles
   margin-top: 0.625em;
 }
 
-.recipe-card a:hover {
+.recipe-card .edit-link:hover {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f6f6f6), color-stop(1, #ffffff));
   background: -moz-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
   background: -webkit-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
@@ -557,8 +560,9 @@ Media Queries
     font-size: 4em;
   }
 
-  .title-container .recipe-title {
-    font-size: 2.2em;
+  .title-container .recipe-title,
+  .title-container .recipe-title a {
+    font-size: 2.2rem;
   }
 
   .info-container h4 {
