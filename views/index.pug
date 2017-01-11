@@ -3,22 +3,37 @@ block navigation
     include ./partials/_firstHeader.pug
 
 block content
-  // Login Page
-  div.login-page
-    form.aero-form(action='/', method='post')
-      fieldset
-        legend Login
-        if message.length>0
-          section.flash-alert= message
-        label(for='user-email') Email
-        input#user-email(type='email', name='email', value='', required='')
-        label(for='password') Password
-        input#password(type='password', name='password', value='', required='')
-        button.aero-btn(type='submit', name='button') Log In
-        a.google-login-anchor(href='/auth/google')
-          span Login with:&nbsp;
-          img#google-login(src='img/google_signin_buttons/web/vector/btn_google_light_normal_ios.svg', alt='google login')
-        div.form-links
-          a(href='/registration') Register
-          |  |&nbsp;
-          a(href='mailto:resetpassword@AeroPressMe.com') Forgot password?
+  if recipes
+  each recipe in recipes
+    section(id=`rec_${recipe.id}`, class='recipe-card')
+      div.recipe-heading
+        div.vote-container
+          figure.recipe-votes #{recipe.votes}
+          figcaption Upvotes
+        div.title-container
+          h3.recipe-title #{recipe.title}
+          //- h3
+          //-   a.visually-hidden(href=`/allrecipes#rec_${recipe.id}`) #{recipe.title}
+          //-   span.recipe-title #{recipe.title}
+      div.info-container
+        h4.recipe-author
+          | Recipe Author:&nbsp;
+          span #{recipe.author}
+        h4.recipe-orientation
+          | Orientation:&nbsp;
+          span #{recipe.orientation}
+        h4.recipe-water-temp
+          | Water Temperature:&nbsp;
+          span #{recipe.waterTemp}&#8451
+        h4.recipe-water-mass
+          | Water Mass:&nbsp;
+          span #{recipe.massWater}g
+        h4.recipe-coffee-mass
+          | Coffee Mass:&nbsp;
+          span #{recipe.massCoffee}g
+        h4.recipe-grind-size
+          | Grind Size:&nbsp;
+          span #{recipe.grind}
+      details.recipe-instructions
+        summary Instructions
+        p #{recipe.instructions}

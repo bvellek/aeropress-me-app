@@ -204,6 +204,7 @@ Header Styles
     text-align: center;
 }
 
+.login-header-bar,
 .main-header {
     background: #303030;
     display: flex;
@@ -212,10 +213,22 @@ Header Styles
     align-items: center;
 }
 
-.main-nav a {
-    color: #fff;
-    padding: 1em;
-    font-size: 0.825em;
+.svg-logo {
+    padding: 0.5em 0.625em;
+    width: 70%;
+    max-width: 30em;
+    min-width: 14em;
+}
+
+.login-header-bar .svg-logo {
+  padding: 1em 0.625em 0.5em;
+  min-width: 20.5em;
+}
+
+.login-header-bar .main-nav a {
+  font-size: 0.9em;
+  font-weight: 700;
+  padding-right: 1.5em;
 }
 
 .main-nav {
@@ -224,16 +237,16 @@ Header Styles
   justify-content: center;
 }
 
+.main-nav a {
+    color: #fff;
+    padding: 1em;
+    font-size: 0.825em;
+}
+
 .main-nav a:hover {
     color: #25B238;
 }
 
-.svg-logo {
-    padding: 0.5em 0.625em;
-    width: 70%;
-    max-width: 30em;
-    min-width: 14em;
-}
 
 .hero-container {
     width: 100%;
@@ -508,6 +521,14 @@ Recipe Card Styles
 Media Queries
 ****/
 
+@media only screen and (min-width: 26em) {
+  .login-header-bar {
+    justify-content: space-between;
+    padding-bottom: 0.625em;
+  }
+
+}
+
 @media only screen and (min-width: 28.75em) {
   form {
       margin: .625em auto;
@@ -561,9 +582,11 @@ Media Queries
     .logo-container {
         text-align: left;
     }
+
     .main-header {
         justify-content: space-between;
     }
+
 }
 
 @media only screen and (min-width: 80em) {
