@@ -9,6 +9,16 @@ mongoose.Promise = global.Promise;
 module.exports = function(app, passport) {
 
   // Landing Page - serve recipes sorted by upvotes
+
+
+  // app.get('/', (req, res) => {
+  //   res.render('login', {
+  //          title: 'AeroPressMe',
+  //        message: 'loginMessage'})
+  // });
+
+
+
   app.get('/', (req, res) => {
     Recipe.find(function(err, recipes) {
       let recipePromises = recipes.map((recipe) => {
@@ -17,6 +27,7 @@ module.exports = function(app, passport) {
           return recipe;
         });
       });
+
       Promise.all(recipePromises).then((recipesWithVotes) => {
           recipesWithVotes.sort((a, b) => {
             if (b.votes > a.votes) {
@@ -37,6 +48,7 @@ module.exports = function(app, passport) {
         });
     });
   });
+
 
   // Login Page
   app.get('/login', (req, res) => {
@@ -273,6 +285,35 @@ module.exports = function(app, passport) {
   //API Endpoints
   // Vote with AJAX request from frontend
 
+  // app.post('/api/allrecipes', isLoggedIn, (req, res) => {
+  //   console.log('This is my message: ', req.user.id, req.body.recipeID);
+  //   Vote.findOne({
+  //     'recipeID': req.body.recipeID,
+  //     'voterID': req.user.id
+  //   }, (err, vote) => {
+  //     if (err) {
+  //       console.error(err);
+  //     }
+  //     if (vote) {
+  //       res.status(200).json({'noVoteMessage': 'You have already upvoted this recipe'});
+  //     } else {
+  //       Vote
+  //         .create(Object.assign({
+  //           'voterID': req.user.id,
+  //           'recipeID': req.body.recipeID
+  //         }))
+  //
+  //         .then(getVotesByRecipeID(req.body.recipeID)
+  //         .then((votes) => res.status(201).json({'recipeVotes': votes}))
+  //         .catch(err => {
+  //           console.error(err);
+  //           res.status(500).json({
+  //             error: 'Something went wrong'
+  //           })
+  //         }));
+  //     }
+  //   });
+  // });
 
   app.post('/api/allrecipes', isLoggedIn, (req, res) => {
     console.log('This is my message: ', req.user.id, req.body.recipeID);
@@ -292,23 +333,20 @@ module.exports = function(app, passport) {
             'recipeID': req.body.recipeID
           }))
 
-          // .then(getVotesByRecipeID(req.body.recipeID))
-          // .then((votes) => {
-          //   // console.log('message 2', votes)
-          //   recipe.votes = votes;
-          //   console.log('message 3', recipe);
-          //   return recipe;
-          // })
-          .then(recipe => res.status(201).json(recipe))
+          .then(() => { getVotesByRecipeID(req.body.recipeID)
+          .then((votes) => res.status(201).json({'recipeVotes': votes}))
           .catch(err => {
             console.error(err);
             res.status(500).json({
               error: 'Something went wrong'
-            })
-          });
+            })}
+          )});
       }
     });
   });
+
+
+
 
   // app.post('/api/allrecipes', isLoggedIn, (req, res) => {
   //   console.log('This is my message: ', req.user.id, req.body.recipeID);
@@ -327,16 +365,21 @@ module.exports = function(app, passport) {
   //           'voterID': req.user.id,
   //           'recipeID': req.body.recipeID
   //         }))
-  //         .then(recipeVote => res.status(201).json(recipeVote))
+  //       }
+  //     });
+  //
+  //     getVotesByRecipeID(req.body.recipeID)
+  //         .then((count) => res.status(201).json({'recipeVotes': count}))
   //         .catch(err => {
   //           console.error(err);
   //           res.status(500).json({
   //             error: 'Something went wrong'
   //           })
   //         });
-  //     }
-  //   });
   // });
+
+
+
 
 
   // app.get('/api/recipes', (req, res) => {
@@ -428,15 +471,22 @@ module.exports = function(app, passport) {
     }).join(' ');
   }
 
+
+
   function getVotesByRecipeID(recipeID) {
     return new Promise(function(res, rej) {
+      // let VoterModel = mongoose.model('Vote', voteSchema);
       Vote
         .find({
           'recipeID': recipeID
         })
         .exec(function(err, results) {
-          let count = results.length
-          res(count);
+          if (err) {
+            rej(err);
+          } else {
+            let count = results.length
+            res(count);
+          }
         });
     })
   }

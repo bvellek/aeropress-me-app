@@ -48,17 +48,19 @@ function generateRecipeData() {
 }
 
 function tearDownDb() {
-  console.warm('Deleting DB');
+  console.warn('Deleting DB');
   return mongoose.connection.dropDatabase();
 }
 
 
 describe('HTML', function() {
 
-  it('should show static HTML', function(done) {
+  it('should show HTML', function(done) {
+    this.timeout(20000)
     chai.request(app)
       .get('/')
       .end(function(err, res) {
+        console.log(err);
         res.should.have.status(200);
         res.should.be.html;
         done();
