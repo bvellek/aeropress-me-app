@@ -472,7 +472,7 @@ Recipe Card Styles
   margin: 0.625em auto;
 }
 
-.recipe-card edit-link {
+.recipe-card .edit-link {
   margin: 0 auto;
   text-align: center;
   width: 8em;
