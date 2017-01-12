@@ -8,7 +8,7 @@ mongoose.Promise = global.Promise;
 
 module.exports = function(app, passport) {
 
-//Landing Page
+  // Landing Page - serve recipes sorted by upvotes
   app.get('/', (req, res) => {
     Recipe.find(function(err, recipes) {
       let recipePromises = recipes.map((recipe) => {
@@ -18,28 +18,32 @@ module.exports = function(app, passport) {
         });
       });
       Promise.all(recipePromises).then((recipesWithVotes) => {
-        recipesWithVotes.sort((a, b) => {
-          if (b.votes > a.votes) {
-            return 1
-          } else if (a.votes > b.votes) {
-            return -1
-          } else {
-            return 0
-          }
+          recipesWithVotes.sort((a, b) => {
+            if (b.votes > a.votes) {
+              return 1
+            } else if (a.votes > b.votes) {
+              return -1
+            } else {
+              return 0
+            }
+          })
+          return recipesWithVotes;
         })
-        return recipesWithVotes;
-      })
-      .then(function(recipesWithVotes) {
-        res.render('index', {
-          title: 'AeroPressMe',
-          recipes: recipesWithVotes
+        .then(function(recipesWithVotes) {
+          res.render('index', {
+            title: 'AeroPressMe',
+            recipes: recipesWithVotes
+          });
         });
-      });
     });
   });
 
+  // Login Page
   app.get('/login', (req, res) => {
-    res.render('login', {title: 'AeroPressMe Login', message: req.flash('loginMessage')});
+    res.render('login', {
+      title: 'AeroPressMe Login',
+      message: req.flash('loginMessage')
+    });
   });
 
   app.post('/login', passport.authenticate('local-login', {
@@ -50,9 +54,12 @@ module.exports = function(app, passport) {
   }));
 
 
-//Registration Page
+  // Registration Page
   app.get('/registration', (req, res) => {
-    res.render('registration', {title: 'Register AeroPressMe', message: req.flash('registrationMessage')});
+    res.render('registration', {
+      title: 'Register AeroPressMe',
+      message: req.flash('registrationMessage')
+    });
   });
 
   app.post('/registration', passport.authenticate('local-signup', {
@@ -63,9 +70,11 @@ module.exports = function(app, passport) {
   }));
 
 
-// My Recipes Page
+  // My Recipes Page - serve logged in user's recipes sorted by upvotes
   app.get('/myrecipes', isLoggedIn, (req, res) => {
-    Recipe.find({ownerID: req.user.id}, function(err, recipes) {
+    Recipe.find({
+      ownerID: req.user.id
+    }, function(err, recipes) {
       let recipePromises = recipes.map((recipe) => {
         return getVotesByRecipeID(recipe.id).then((votes) => {
           recipe.votes = votes;
@@ -73,30 +82,32 @@ module.exports = function(app, passport) {
         });
       })
       Promise.all(recipePromises).then((recipesWithVotes) => {
-        recipesWithVotes.sort((a, b) => {
-          if (b.votes > a.votes) {
-            return 1
-          } else if (a.votes > b.votes) {
-            return -1
-          } else {
-            return 0
-          }
+          recipesWithVotes.sort((a, b) => {
+            if (b.votes > a.votes) {
+              return 1
+            } else if (a.votes > b.votes) {
+              return -1
+            } else {
+              return 0
+            }
+          })
+          return recipesWithVotes;
         })
-        return recipesWithVotes;
-      })
-      .then(function(recipesWithVotes) {
-        res.render('myrecipes', {
-          title: 'My AeroPressMe Recipes',
-          recipes: recipesWithVotes
-        });
-      })
+        .then(function(recipesWithVotes) {
+          res.render('myrecipes', {
+            title: 'My AeroPressMe Recipes',
+            recipes: recipesWithVotes
+          });
+        })
     });
   });
 
-  //Delete Recipe and all votes for recipe
+  // Delete Recipe and all votes associated with the recipe
   app.post('/myrecipes/:id', isLoggedIn, (req, res) => {
     Vote
-      .find({'recipeID': req.params.id})
+      .find({
+        'recipeID': req.params.id
+      })
       .remove()
       .exec();
     Recipe
@@ -107,7 +118,7 @@ module.exports = function(app, passport) {
   });
 
 
-//Edit Recipe Page
+  // Edit Recipe Page
   app.get('/editrecipe/:id', isLoggedIn, (req, res) => {
     Recipe
       .findById(req.params.id, (err, recipe) => {
@@ -127,18 +138,24 @@ module.exports = function(app, passport) {
       }
     });
     Recipe
-      .findByIdAndUpdate(req.params.id, {$set: updated}, {new: true})
+      .findByIdAndUpdate(req.params.id, {
+        $set: updated
+      }, {
+        new: true
+      })
       .exec()
       .then(res.redirect('/myrecipes'))
       .then(res.end())
       .catch(err => {
         console.error(err);
-        res.status(500).json({error: 'something went wrong'});
+        res.status(500).json({
+          error: 'something went wrong'
+        });
       });
   });
 
 
-//New Recipe Page
+  //New Recipe Page - Create a new recipe
   app.get('/newrecipe', isLoggedIn, (req, res) => {
     res.render('newrecipe', {
       user: req.user,
@@ -150,10 +167,11 @@ module.exports = function(app, passport) {
     const requiredFields = ['orientation', 'massWater', 'massCoffee', 'waterTemp', 'grind', 'instructions'];
     requiredFields.forEach(field => {
       if (!(field in req.body)) {
-        res.status(400).json(
-          {error: `Missing "${field}" in request body`});
-        }
-      });
+        res.status(400).json({
+          error: `Missing "${field}" in request body`
+        });
+      }
+    });
     let body = Object.assign({}, req.body);
     if (body.author === '') {
       body.author = titleCase(`${req.user.firstName} ${req.user.lastName}`);
@@ -162,7 +180,9 @@ module.exports = function(app, passport) {
       delete body.title;
     }
     Recipe
-      .create(Object.assign({'ownerID': req.user.id}, body))
+      .create(Object.assign({
+        'ownerID': req.user.id
+      }, body))
       .then(res.redirect('/myrecipes'))
       .then(res.end())
       .catch(err => {
@@ -171,7 +191,7 @@ module.exports = function(app, passport) {
   });
 
 
-// All Recipes Page
+  // All Recipes Page - sorted by upvotes
   app.get('/allrecipes', isLoggedIn, (req, res) => {
     Recipe.find(function(err, recipes) {
       let recipePromises = recipes.map((recipe) => {
@@ -181,41 +201,45 @@ module.exports = function(app, passport) {
         });
       });
       Promise.all(recipePromises).then((recipesWithVotes) => {
-        recipesWithVotes.sort((a, b) => {
-          if (b.votes > a.votes) {
-            return 1
-          } else if (a.votes > b.votes) {
-            return -1
-          } else {
-            return 0
-          }
+          recipesWithVotes.sort((a, b) => {
+            if (b.votes > a.votes) {
+              return 1
+            } else if (a.votes > b.votes) {
+              return -1
+            } else {
+              return 0
+            }
+          })
+          return recipesWithVotes;
         })
-        return recipesWithVotes;
-      })
-      .then(function(recipesWithVotes) {
-        res.render('allrecipes', {
-          title: 'All AeroPressMe Recipes',
-          recipes: recipesWithVotes,
-          message: req.flash('voteMessage')
+        .then(function(recipesWithVotes) {
+          res.render('allrecipes', {
+            title: 'All AeroPressMe Recipes',
+            recipes: recipesWithVotes,
+            message: req.flash('voteMessage')
+          });
         });
-      });
     });
   });
 
+  // Upvote Recipe - upvote recipe if logged in user hasn't already upvoted
   app.post('/allrecipes', isLoggedIn, (req, res) => {
-    Vote.findOne({'recipeID': req.body.recipeID, 'voterID': req.user.id}, (err, vote) => {
+    Vote.findOne({
+      'recipeID': req.body.recipeID,
+      'voterID': req.user.id
+    }, (err, vote) => {
       if (err) {
         console.error(err);
       }
       if (vote) {
-        console.log('SHOULD FLASH!!');
+        // console.log('SHOULD FLASH!!');
         req.flash('voteMessage', 'You have already upvoted this recipe.');
         res.redirect('/allrecipes');
       } else {
         Vote
           .create(Object.assign({
-          'voterID': req.user.id,
-          'recipeID': req.body.recipeID
+            'voterID': req.user.id,
+            'recipeID': req.body.recipeID
           }))
           .then(res.redirect('/allrecipes'))
           .then(res.end())
@@ -227,15 +251,17 @@ module.exports = function(app, passport) {
   });
 
 
-//Logout Route
+  //Logout Route
   app.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
   });
 
 
-//Google Routes
-  app.get('/auth/google', passport.authenticate('google', {scope : ['profile', 'email']}));
+  //Google Routes
+  app.get('/auth/google', passport.authenticate('google', {
+    scope: ['profile', 'email']
+  }));
 
   app.get('/auth/google/callback', passport.authenticate('google', {
     successRedirect: '/myrecipes',
@@ -244,10 +270,13 @@ module.exports = function(app, passport) {
 
 
 
-//API Endpoints
-
+  //API Endpoints
+  // Vote with AJAX request from frontend
   app.post('/api/allrecipes', isLoggedIn, (req, res) => {
-    Vote.findOne({'recipeID': req.body.recipeID, 'voterID': req.user.id}, (err, vote) => {
+    Vote.findOne({
+      'recipeID': req.body.recipeID,
+      'voterID': req.user.id
+    }, (err, vote) => {
       if (err) {
         console.error(err);
       }
@@ -257,13 +286,15 @@ module.exports = function(app, passport) {
       } else {
         Vote
           .create(Object.assign({
-          'voterID': req.user.id,
-          'recipeID': req.body.recipeID
+            'voterID': req.user.id,
+            'recipeID': req.body.recipeID
           }))
           .then(recipeVote => res.status(201).json(recipeVote))
           .catch(err => {
             console.error(err);
-            res.status(500).json({error: 'Something went wrong'})
+            res.status(500).json({
+              error: 'Something went wrong'
+            })
           });
       }
     });
@@ -346,7 +377,7 @@ module.exports = function(app, passport) {
 
 
 
-//Functions
+  //Functions
   function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
       return next();
@@ -363,11 +394,13 @@ module.exports = function(app, passport) {
   function getVotesByRecipeID(recipeID) {
     return new Promise(function(res, rej) {
       Vote
-        .find({'recipeID': recipeID})
-        .exec(function (err, results) {
+        .find({
+          'recipeID': recipeID
+        })
+        .exec(function(err, results) {
           let count = results.length
           res(count);
         });
-      })
-    }
+    })
+  }
 }
