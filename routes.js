@@ -285,35 +285,6 @@ module.exports = function(app, passport) {
   //API Endpoints
   // Vote with AJAX request from frontend
 
-  // app.post('/api/allrecipes', isLoggedIn, (req, res) => {
-  //   console.log('This is my message: ', req.user.id, req.body.recipeID);
-  //   Vote.findOne({
-  //     'recipeID': req.body.recipeID,
-  //     'voterID': req.user.id
-  //   }, (err, vote) => {
-  //     if (err) {
-  //       console.error(err);
-  //     }
-  //     if (vote) {
-  //       res.status(200).json({'noVoteMessage': 'You have already upvoted this recipe'});
-  //     } else {
-  //       Vote
-  //         .create(Object.assign({
-  //           'voterID': req.user.id,
-  //           'recipeID': req.body.recipeID
-  //         }))
-  //
-  //         .then(getVotesByRecipeID(req.body.recipeID)
-  //         .then((votes) => res.status(201).json({'recipeVotes': votes}))
-  //         .catch(err => {
-  //           console.error(err);
-  //           res.status(500).json({
-  //             error: 'Something went wrong'
-  //           })
-  //         }));
-  //     }
-  //   });
-  // });
 
   app.post('/api/allrecipes', isLoggedIn, (req, res) => {
     console.log('This is my message: ', req.user.id, req.body.recipeID);
@@ -346,37 +317,6 @@ module.exports = function(app, passport) {
   });
 
 
-
-
-  // app.post('/api/allrecipes', isLoggedIn, (req, res) => {
-  //   console.log('This is my message: ', req.user.id, req.body.recipeID);
-  //   Vote.findOne({
-  //     'recipeID': req.body.recipeID,
-  //     'voterID': req.user.id
-  //   }, (err, vote) => {
-  //     if (err) {
-  //       console.error(err);
-  //     }
-  //     if (vote) {
-  //       res.status(200).json({'noVoteMessage': 'You have already upvoted this recipe'});
-  //     } else {
-  //       Vote
-  //         .create(Object.assign({
-  //           'voterID': req.user.id,
-  //           'recipeID': req.body.recipeID
-  //         }))
-  //       }
-  //     });
-  //
-  //     getVotesByRecipeID(req.body.recipeID)
-  //         .then((count) => res.status(201).json({'recipeVotes': count}))
-  //         .catch(err => {
-  //           console.error(err);
-  //           res.status(500).json({
-  //             error: 'Something went wrong'
-  //           })
-  //         });
-  // });
 
 
 
