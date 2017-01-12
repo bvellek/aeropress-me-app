@@ -272,7 +272,10 @@ module.exports = function(app, passport) {
 
   //API Endpoints
   // Vote with AJAX request from frontend
+
+
   app.post('/api/allrecipes', isLoggedIn, (req, res) => {
+    console.log('This is my message: ', req.user.id, req.body.recipeID);
     Vote.findOne({
       'recipeID': req.body.recipeID,
       'voterID': req.user.id
@@ -281,15 +284,22 @@ module.exports = function(app, passport) {
         console.error(err);
       }
       if (vote) {
-        res.status.flash('voteMessage', 'You have already upvoted this recipe.');
-        res.redirect('/allrecipes');
+        res.status(200).json({'noVoteMessage': 'You have already upvoted this recipe'});
       } else {
         Vote
           .create(Object.assign({
             'voterID': req.user.id,
             'recipeID': req.body.recipeID
           }))
-          .then(recipeVote => res.status(201).json(recipeVote))
+
+          // .then(getVotesByRecipeID(req.body.recipeID))
+          // .then((votes) => {
+          //   // console.log('message 2', votes)
+          //   recipe.votes = votes;
+          //   console.log('message 3', recipe);
+          //   return recipe;
+          // })
+          .then(recipe => res.status(201).json(recipe))
           .catch(err => {
             console.error(err);
             res.status(500).json({
@@ -300,6 +310,33 @@ module.exports = function(app, passport) {
     });
   });
 
+  // app.post('/api/allrecipes', isLoggedIn, (req, res) => {
+  //   console.log('This is my message: ', req.user.id, req.body.recipeID);
+  //   Vote.findOne({
+  //     'recipeID': req.body.recipeID,
+  //     'voterID': req.user.id
+  //   }, (err, vote) => {
+  //     if (err) {
+  //       console.error(err);
+  //     }
+  //     if (vote) {
+  //       res.status(200).json({'noVoteMessage': 'You have already upvoted this recipe'});
+  //     } else {
+  //       Vote
+  //         .create(Object.assign({
+  //           'voterID': req.user.id,
+  //           'recipeID': req.body.recipeID
+  //         }))
+  //         .then(recipeVote => res.status(201).json(recipeVote))
+  //         .catch(err => {
+  //           console.error(err);
+  //           res.status(500).json({
+  //             error: 'Something went wrong'
+  //           })
+  //         });
+  //     }
+  //   });
+  // });
 
 
   // app.get('/api/recipes', (req, res) => {
