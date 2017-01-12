@@ -30,7 +30,7 @@ module.exports = function(app, passport) {
           return recipesWithVotes;
         })
         .then(function(recipesWithVotes) {
-          res.render('index', {
+          res.status(200).render('index', {
             title: 'AeroPressMe',
             recipes: recipesWithVotes
           });
