@@ -56,11 +56,11 @@ function tearDownDb() {
 describe('HTML', function() {
 
   it('should show HTML', function(done) {
-    this.timeout(20000)
+    this.timeout(5000)
     chai.request(app)
       .get('/')
       .end(function(err, res) {
-        console.log(err);
+        console.log(err, res);
         res.should.have.status(200);
         res.should.be.html;
         done();

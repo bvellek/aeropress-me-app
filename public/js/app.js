@@ -7,9 +7,14 @@ function getRecipeID(form) {
 function updateUpvoteCount(data) {
   console.log(data);
   var recipeCardID = "#rec_" + data.recipeID;
-  console.log(recipeCardID, data.recipeID, data.recipeVotes);
-  $('recipeCardID').find('.recipe-votes').text(data.recipeVotes); // selects the correct thing but does not seem to change the text?
-  
+  if (data.recipeVotes) {
+    console.log(recipeCardID, data.recipeID, data.recipeVotes);
+    $(recipeCardID).find('.recipe-votes').text(data.recipeVotes);
+  } else {
+    console.log(data.noVoteMessage);
+    var message = '<div class="flash-alert">' + data.noVoteMessage + '</div>';
+    $(recipeCardID).prepend(message);
+  }
 }
 
 

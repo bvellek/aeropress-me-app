@@ -296,7 +296,10 @@ module.exports = function(app, passport) {
         console.error(err);
       }
       if (vote) {
-        res.status(200).json({'noVoteMessage': 'You have already upvoted this recipe'});
+        res.status(200).json({
+          'noVoteMessage': 'You have already upvoted this recipe',
+          'recipeID': req.body.recipeID
+        });
       } else {
         Vote
           .create(Object.assign({
