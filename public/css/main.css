@@ -6,6 +6,18 @@ body {
     background: #E8E6E5;
 }
 
+.visually-hidden {
+    position: absolute !important;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+    padding:0 !important;
+    border:0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
+}
+
+body:hover .visually-hidden a, body:hover .visually-hidden input, body:hover .visually-hidden button { display: none !important; }
 
 /****
 General Styles
@@ -153,6 +165,37 @@ Page Styles
 
 
 /****
+Flash Alert Styles
+****/
+
+.flash-alert {
+  color: #A94442;
+  background-color: #F2DEDE;
+  border: 1px solid #A94442;
+  border-radius: 3px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  padding: 1em;
+  margin: 0.625em 0;
+  text-align: center;
+}
+
+
+/****
+No Recipe Styles
+****/
+
+.no-recipes {
+  background-color: #fff;
+  padding: 2em 1em 2em 1em;
+  margin: 1em auto;
+  border-radius: 3px;
+  max-width: 28em;
+  text-align: center;
+  font-weight: 700;
+}
+
+/****
 Header Styles
 ****/
 
@@ -161,6 +204,7 @@ Header Styles
     text-align: center;
 }
 
+.login-header-bar,
 .main-header {
     background: #303030;
     display: flex;
@@ -169,10 +213,23 @@ Header Styles
     align-items: center;
 }
 
-.main-nav a {
-    color: #fff;
-    padding: 1em;
-    font-size: 0.825em;
+.svg-logo {
+    padding: 0.5em 0.625em;
+    width: 70%;
+    max-width: 30em;
+    min-width: 14em;
+}
+
+.login-header-bar .svg-logo {
+  padding: 1em 0.625em 0.5em;
+  min-width: 20.5em;
+}
+
+.login-header-bar .main-nav a {
+  font-size: 0.9em;
+  font-weight: 700;
+  padding-right: 1.5em;
+  padding-left: 1.5em;
 }
 
 .main-nav {
@@ -181,16 +238,16 @@ Header Styles
   justify-content: center;
 }
 
+.main-nav a {
+    color: #fff;
+    padding: 1em;
+    font-size: 0.825em;
+}
+
 .main-nav a:hover {
     color: #25B238;
 }
 
-.svg-logo {
-    padding: 0.5em 0.625em;
-    width: 70%;
-    max-width: 30em;
-    min-width: 14em;
-}
 
 .hero-container {
     width: 100%;
@@ -337,6 +394,10 @@ Recipe Card Styles
   flex-direction: column;
 }
 
+.recipe-card:target {
+  outline: 3px solid rgba(37,178,56,0.7);
+}
+
 .recipe-heading {
   margin-bottom: 1.4em;
   display: flex;
@@ -367,12 +428,15 @@ Recipe Card Styles
       margin: 0 auto;
     }
 
-        .title-container .recipe-title {
+        .title-container .recipe-title,
+        .title-container .recipe-title a {
           font-family: 'Montserrat', sans-serif;
           font-weight: 700;
-          font-size: 1.5em;
+          font-size: 1.5rem;
           margin: 0 auto;
           text-align: center;
+          color: inherit;
+          text-decoration: none;
         }
 
 .info-container h4 {
@@ -408,7 +472,7 @@ Recipe Card Styles
   margin: 0.625em auto;
 }
 
-.recipe-card a {
+.recipe-card .edit-link {
   margin: 0 auto;
   text-align: center;
   width: 8em;
@@ -437,7 +501,7 @@ Recipe Card Styles
   margin-top: 0.625em;
 }
 
-.recipe-card a:hover {
+.recipe-card .edit-link:hover {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f6f6f6), color-stop(1, #ffffff));
   background: -moz-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
   background: -webkit-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
@@ -460,6 +524,14 @@ Recipe Card Styles
 /****
 Media Queries
 ****/
+
+@media only screen and (min-width: 26.5em) {
+  .login-header-bar {
+    justify-content: space-between;
+    padding-bottom: 0.625em;
+  }
+
+}
 
 @media only screen and (min-width: 28.75em) {
   form {
@@ -488,8 +560,9 @@ Media Queries
     font-size: 4em;
   }
 
-  .title-container .recipe-title {
-    font-size: 2.2em;
+  .title-container .recipe-title,
+  .title-container .recipe-title a {
+    font-size: 2.2rem;
   }
 
   .info-container h4 {
@@ -514,9 +587,11 @@ Media Queries
     .logo-container {
         text-align: left;
     }
+
     .main-header {
         justify-content: space-between;
     }
+
 }
 
 @media only screen and (min-width: 80em) {

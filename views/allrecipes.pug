@@ -6,16 +6,19 @@ block content
   div.recipes-page
     h2 Top Recipes
     if message.length>0
-      h1= message
+      section.flash-alert= message
     if recipes
     each recipe in recipes
-      section.recipe-card
+      section(id=`rec_${recipe.id}`, class='recipe-card')
         div.recipe-heading
           div.vote-container
             figure.recipe-votes #{recipe.votes}
             figcaption Upvotes
           div.title-container
             h3.recipe-title #{recipe.title}
+            //- h3
+            //-   a.visually-hidden(href=`/allrecipes#rec_${recipe.id}`) #{recipe.title}
+            //-   span.recipe-title #{recipe.title}
         div.info-container
           h4.recipe-author
             | Recipe Author:&nbsp;
@@ -24,7 +27,7 @@ block content
             | Orientation:&nbsp;
             span #{recipe.orientation}
           h4.recipe-water-temp
-            | Water Temperature:&nbsp;
+            | Water Temp:&nbsp;
             span #{recipe.waterTemp}&#8451
           h4.recipe-water-mass
             | Water Mass:&nbsp;
@@ -41,3 +44,7 @@ block content
         form.upvote-form(action='/allrecipes', method='post')
           input(type='hidden', value= recipe.id name='recipeID')
           button(type='submit', name='button') 👍 Upvote
+  script(src="https://code.jquery.com/jquery-3.1.1.js",
+  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=",
+  crossorigin="anonymous")
+  script(src="./js/app.js", type="text/javascript")
