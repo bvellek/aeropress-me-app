@@ -28,7 +28,7 @@ module.exports = function(app, passport) {
         });
       });
 
-       return Promise.all(recipePromises).then((recipesWithVotes) => {
+       Promise.all(recipePromises).then((recipesWithVotes) => {
           recipesWithVotes.sort((a, b) => {
             if (b.votes > a.votes) {
               return 1
