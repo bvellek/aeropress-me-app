@@ -24,7 +24,10 @@ chai.use(chaiHTTP);
 // chai.use(chaiAsPromised);
 
 
-
+// Allows the middleware to think we're already authenticated.
+app.request.isAuthenticated = function() {
+  return true
+};
 
 
 function seedRecipeData() {
@@ -58,7 +61,7 @@ function generateRecipeData() {
     waterTemp: faker.random.number(),
     grind: generateRecipeGrind(),
     instructions: faker.lorem.paragraph()
-  };
+  }
 }
 
 function tearDownDb() {

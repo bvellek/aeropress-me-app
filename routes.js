@@ -244,7 +244,6 @@ module.exports = function(app, passport) {
         console.error(err);
       }
       if (vote) {
-        // console.log('SHOULD FLASH!!');
         req.flash('voteMessage', 'You have already upvoted this recipe.');
         res.redirect('/allrecipes');
       } else {
@@ -284,8 +283,6 @@ module.exports = function(app, passport) {
 
   //API Endpoints
   // Vote with AJAX request from frontend
-
-
   app.post('/api/allrecipes', isLoggedIn, (req, res) => {
     console.log('This is my message: ', req.user.id, req.body.recipeID);
     Vote.findOne({
@@ -414,8 +411,6 @@ module.exports = function(app, passport) {
       return word.replace(word[0], word[0].toUpperCase());
     }).join(' ');
   }
-
-
 
   function getVotesByRecipeID(recipeID) {
     return new Promise(function(res, rej) {
