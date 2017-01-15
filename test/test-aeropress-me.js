@@ -3,21 +3,29 @@ const chaiHTTP = require('chai-http');
 const mongoose = require('mongoose');
 const faker = require('faker');
 
+// Access to start and stop the server as well as connect to the DB
+const {DATABASE_URL, PORT} = require('../config/config');
+const {app, runServer, closeServer} = require('../server');
 
-const server = require('../server');
-
-const should = chai.should();
-const expect = chai.expect;
-
-const chaiAsPromised = require('chai-as-promised');
-
+// Access to models for recipes, users, and votes
 const Recipe = require('../models/recipe');
 const User = require('../models/user');
 const Vote = require('../models/vote');
-// const {app, runServer, closeServer} = require('../server');
 
+
+const should = chai.should();
+const expect = chai.expect;
 chai.use(chaiHTTP);
+
+
+
+// const {app, runServer, closeServer} = require('../server');
+// const chaiAsPromised = require('chai-as-promised');
 // chai.use(chaiAsPromised);
+
+
+
+
 
 function seedRecipeData() {
   console.log('seeding Recipe data');
@@ -59,13 +67,23 @@ function tearDownDb() {
 }
 
 
+
+
+
 describe('HTML', function() {
+
+
+  before(function() {
+    return runServer();
+  });
+
+  after(function() {
+    return closeServer();
+  });
 
   it('should show HTML', () => {
     const resolvingPromise = new Promise((resolve, reject) => {
-      // setTimeout(() => {resolve('it resolved')}, 1000);
-      // console.log(server.app);
-      chai.request('http://localhost:8080')
+      chai.request(app)
         .get('/')
         .end(function(err, res) {
           console.log(err, res);
@@ -76,14 +94,7 @@ describe('HTML', function() {
     });
     return resolvingPromise.then( (result) => {
       expect(result).to.equal('it resolved');
-      // expect(result).to.equal('array');
     })
-    // const result = await resolvingPromise;
-
-    // this.timeout(5000)
-
-    //
-      //
   });
 
 
