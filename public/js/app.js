@@ -14,12 +14,10 @@ function updateUpvoteCount(data) {
   }
 }
 
-
 function sendUpvoteToApi(recID, callback) {
   $.post('/api/allrecipes', {"recipeID": recID})
     .done(callback);
 }
-
 
 $(document).ready(function(e) {
 
