@@ -17,6 +17,9 @@ const should = chai.should();
 const expect = chai.expect;
 chai.use(chaiHTTP);
 
+const Browser = require('zombie'),
+assert = require('assert');
+
 
 
 
@@ -79,7 +82,14 @@ describe('Render Pages', function() {
 
 
   before(function() {
-    return runServer();
+    return runServer().then((port) => {
+      this.browser = new Browser({ site: `http://localhost:${port}` });
+    });
+  });
+  
+  // load the contact page
+  before(function(done) {
+    this.browser.visit('/login', done);
   });
 
 
@@ -95,6 +105,7 @@ describe('Render Pages', function() {
   after(function() {
     return closeServer();
   });
+  
 
   describe('Landing Page', () => {
 
@@ -128,6 +139,13 @@ describe('Render Pages', function() {
       return resolvingPromise.then( (result) => {
         expect(result).to.equal('it resolved');
       });
+    });
+    
+    it('should show contact a form', function() {
+      assert.ok(this.browser.success);
+      assert.equal(this.browser.text('form legend'), 'Login');
+      this.browser.assert.element('#user-email');
+      this.browser.assert.attribute('form', 'method', 'post');
     });
 
   })
