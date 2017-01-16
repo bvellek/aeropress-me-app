@@ -28,7 +28,7 @@ module.exports = function(app, passport) {
         });
       });
 
-      Promise.all(recipePromises).then((recipesWithVotes) => {
+       Promise.all(recipePromises).then((recipesWithVotes) => {
           recipesWithVotes.sort((a, b) => {
             if (b.votes > a.votes) {
               return 1
@@ -244,7 +244,6 @@ module.exports = function(app, passport) {
         console.error(err);
       }
       if (vote) {
-        // console.log('SHOULD FLASH!!');
         req.flash('voteMessage', 'You have already upvoted this recipe.');
         res.redirect('/allrecipes');
       } else {
@@ -284,8 +283,6 @@ module.exports = function(app, passport) {
 
   //API Endpoints
   // Vote with AJAX request from frontend
-
-
   app.post('/api/allrecipes', isLoggedIn, (req, res) => {
     console.log('This is my message: ', req.user.id, req.body.recipeID);
     Vote.findOne({
@@ -325,7 +322,7 @@ module.exports = function(app, passport) {
 
 
 
-
+// Other API endpoints for future ajax requests
   // app.get('/api/recipes', (req, res) => {
   //   Recipe.find(function(err, recipes) {
   //     let recipePromises = recipes.map((recipe) => {
@@ -414,8 +411,6 @@ module.exports = function(app, passport) {
       return word.replace(word[0], word[0].toUpperCase());
     }).join(' ');
   }
-
-
 
   function getVotesByRecipeID(recipeID) {
     return new Promise(function(res, rej) {
