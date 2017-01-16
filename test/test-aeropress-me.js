@@ -92,9 +92,6 @@ describe('Render Pages', function() {
     });
   });
 
-
-
-
   after(function() {
     return closeServer();
   });
@@ -119,7 +116,6 @@ describe('Render Pages', function() {
   });
 
   describe('Login Page', () => {
-
     // load the login page
     before(function(done) {
       this.browser.visit('/login', done);
@@ -169,14 +165,11 @@ describe('Render Pages', function() {
         assert.equal(this.browser.text('section.flash-alert'), 'Oops! Password is incorrect.');
       }).then(done, done);
     });
-
-
   })
 
 
   describe('Registration Page', () => {
-
-    // load the login page
+    // load the Registration page
     before(function(done) {
       this.browser.visit('/registration', done);
     });
@@ -234,6 +227,46 @@ describe('Render Pages', function() {
         assert.equal(this.browser.text('section.flash-alert'), 'Passwords do not match.');
       }).then(done, done);
     });
+  })
+
+  describe('My Recipes Page', () => {
+    // load the login page
+    before(function(done) {
+      this.browser.visit('/login');
+      this.browser.fill('#user-email', 'testuser@aeropressme.com');
+      this.browser.fill('#password', 'password');
+      this.browser.pressButton('button', done);
+    });
+
+
+    it('should show My Recipes Page', function() {
+      assert.ok(this.browser.success);
+      assert.equal(this.browser.text('.your-recipes-page h2'), 'My Recipes');
+    });
+
+    // it('should have email input and password input with a method of post for login form', function() {
+    //   this.browser.assert.element('#user-email');
+    //   this.browser.assert.element('#password');
+    //   this.browser.assert.attribute('form', 'method', 'post');
+    // });
+    //
+    // it('should show fail message for incorrect username', function(done) {
+    //   this.browser.fill('#user-email', 'notauser@mail.com');
+    //   this.browser.fill('#password', 'incorrectpassword');
+    //   this.browser.pressButton('button').then(() => {
+    //     assert.ok(this.browser.success);
+    //     assert.equal(this.browser.text('section.flash-alert'), 'No user found.');
+    //   }).then(done, done);
+    // });
+    //
+    // it('should show fail message for incorrect password', function(done) {
+    //   this.browser.fill('#user-email', 'testuser@aeropressme.com');
+    //   this.browser.fill('#password', 'incorrectpassword');
+    //   this.browser.pressButton('button').then(() => {
+    //     assert.ok(this.browser.success);
+    //     assert.equal(this.browser.text('section.flash-alert'), 'Oops! Password is incorrect.');
+    //   }).then(done, done);
+    // });
   })
 
 
