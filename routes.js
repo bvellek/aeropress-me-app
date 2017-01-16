@@ -322,7 +322,7 @@ module.exports = function(app, passport) {
 
 
 
-
+// Other API endpoints for future ajax requests
   // app.get('/api/recipes', (req, res) => {
   //   Recipe.find(function(err, recipes) {
   //     let recipePromises = recipes.map((recipe) => {
