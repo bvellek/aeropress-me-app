@@ -23,11 +23,6 @@ assert = require('assert');
 
 
 
-// const {app, runServer, closeServer} = require('../server');
-// const chaiAsPromised = require('chai-as-promised');
-// chai.use(chaiAsPromised);
-
-
 // Allows the middleware to think we're already authenticated.
 // app.request.isAuthenticated = function() {
 //   return true
@@ -75,6 +70,14 @@ assert = require('assert');
 // }
 
 
+  // beforeEach(function() {
+  //   return seedRecipeData();
+  // });
+  //
+  // afterEach(function() {
+  //   return tearDownDb();
+  // });
+
 
 
 
@@ -86,26 +89,14 @@ describe('Render Pages', function() {
       this.browser = new Browser({ site: `http://localhost:${port}` });
     });
   });
-  
-  // load the contact page
-  before(function(done) {
-    this.browser.visit('/login', done);
-  });
 
 
-  // beforeEach(function() {
-  //   return seedRecipeData();
-  // });
-  //
-  // afterEach(function() {
-  //   return tearDownDb();
-  // });
 
 
   after(function() {
     return closeServer();
   });
-  
+
 
   describe('Landing Page', () => {
 
@@ -126,6 +117,12 @@ describe('Render Pages', function() {
   });
 
   describe('Login Page', () => {
+
+    // load the login page
+    before(function(done) {
+      this.browser.visit('/login', done);
+    });
+
     it('should show HTML', () => {
       const resolvingPromise = new Promise((resolve, reject) => {
         chai.request(app)
@@ -140,7 +137,7 @@ describe('Render Pages', function() {
         expect(result).to.equal('it resolved');
       });
     });
-    
+
     it('should show contact a form', function() {
       assert.ok(this.browser.success);
       assert.equal(this.browser.text('form legend'), 'Login');
@@ -152,6 +149,12 @@ describe('Render Pages', function() {
 
 
   describe('Registration Page', () => {
+
+    // load the login page
+    before(function(done) {
+      this.browser.visit('/registration', done);
+    });
+
     it('should show HTML', () => {
       const resolvingPromise = new Promise((resolve, reject) => {
         chai.request(app)
