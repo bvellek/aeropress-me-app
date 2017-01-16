@@ -3,67 +3,153 @@ const chaiHTTP = require('chai-http');
 const mongoose = require('mongoose');
 const faker = require('faker');
 
-const should = chai.should();
+// Access to start and stop the server as well as connect to the DB
+const {DATABASE_URL, PORT} = require('../config/config');
+const {app, runServer, closeServer} = require('../server');
 
+// Access to models for recipes, users, and votes
 const Recipe = require('../models/recipe');
 const User = require('../models/user');
 const Vote = require('../models/vote');
-const {app, runServer, closeServer} = require('../server');
 
+
+const should = chai.should();
+const expect = chai.expect;
 chai.use(chaiHTTP);
 
 
-function seedRecipeData() {
-  console.log('seeding Recipe data');
-  const seedData = [];
-
-  for (let i = 0; i <= 10; i++) {
-    seedData.push(generateRecipeData());
-  }
-  return Recipe.insertMany(seedData);
-}
 
 
-function generateRecipeOrientation() {
-  const orientations = ['Standard', 'Inverted'];
-  return orientations[Math.floor(Math.random() * orientations.length)];
-}
-
-function generateRecipeGrind() {
-  const grinds = ['Extra Coarse', 'Coarse', 'Medium-Coarse', 'Medium', 'Medium-Fine', 'Fine', 'Extra Fine'];
-  return grinds[Math.floor(Math.random() * grinds.length)];
-}
-
-function generateRecipeData() {
-  return {
-    title: faker.lorem.sentence(),
-    author: `${faker.name.firstName()} ${faker.name.lastName()}`,
-    orientation: generateRecipeOrientation(),
-    massWater: faker.random.number(),
-    massCoffee: faker.random.number(),
-    waterTemp: faker.random.number(),
-    grind: generateRecipeGrind(),
-    instructions: faker.lorem.paragraph()
-  };
-}
-
-function tearDownDb() {
-  console.warn('Deleting DB');
-  return mongoose.connection.dropDatabase();
-}
+// const {app, runServer, closeServer} = require('../server');
+// const chaiAsPromised = require('chai-as-promised');
+// chai.use(chaiAsPromised);
 
 
-describe('HTML', function() {
+// Allows the middleware to think we're already authenticated.
+// app.request.isAuthenticated = function() {
+//   return true
+// };
 
-  it('should show HTML', function(done) {
-    this.timeout(5000)
-    chai.request(app)
-      .get('/')
-      .end(function(err, res) {
-        console.log(err, res);
-        res.should.have.status(200);
-        res.should.be.html;
-        done();
-      });
+
+// function seedRecipeData() {
+//   console.log('seeding Recipe data');
+//   const seedData = [];
+//
+//   for (let i = 0; i <= 10; i++) {
+//     seedData.push(generateRecipeData());
+//   }
+//   return TestRecipe.insertMany(seedData);
+// }
+//
+//
+// function generateRecipeOrientation() {
+//   const orientations = ['Standard', 'Inverted'];
+//   return orientations[Math.floor(Math.random() * orientations.length)];
+// }
+//
+// function generateRecipeGrind() {
+//   const grinds = ['Extra Coarse', 'Coarse', 'Medium-Coarse', 'Medium', 'Medium-Fine', 'Fine', 'Extra Fine'];
+//   return grinds[Math.floor(Math.random() * grinds.length)];
+// }
+//
+// function generateRecipeData() {
+//   return {
+//     title: faker.lorem.words(),
+//     author: `${faker.name.firstName()} ${faker.name.lastName()}`,
+//     orientation: generateRecipeOrientation(),
+//     massWater: faker.random.number(),
+//     massCoffee: faker.random.number(),
+//     waterTemp: faker.random.number(),
+//     grind: generateRecipeGrind(),
+//     instructions: faker.lorem.paragraph(),
+//     ownerID: 'test-user'
+//   }
+// }
+//
+// function tearDownDb() {
+//   console.warn('Deleting DB');
+//   return mongoose.connection.dropDatabase();
+// }
+
+
+
+
+
+describe('Render Pages', function() {
+
+
+  before(function() {
+    return runServer();
   });
+
+
+  // beforeEach(function() {
+  //   return seedRecipeData();
+  // });
+  //
+  // afterEach(function() {
+  //   return tearDownDb();
+  // });
+
+
+  after(function() {
+    return closeServer();
+  });
+
+  describe('Landing Page', () => {
+
+    it('should show HTML', () => {
+      const resolvingPromise = new Promise((resolve, reject) => {
+        chai.request(app)
+          .get('/')
+          .end(function(err, res) {
+            res.should.have.status(200);
+            res.should.be.html;
+            resolve('it resolved');
+          });
+      });
+      return resolvingPromise.then( (result) => {
+        expect(result).to.equal('it resolved');
+      });
+    });
+  });
+
+  describe('Login Page', () => {
+    it('should show HTML', () => {
+      const resolvingPromise = new Promise((resolve, reject) => {
+        chai.request(app)
+          .get('/login')
+          .end(function(err, res) {
+            res.should.have.status(200);
+            res.should.be.html;
+            resolve('it resolved');
+          });
+      });
+      return resolvingPromise.then( (result) => {
+        expect(result).to.equal('it resolved');
+      });
+    });
+
+  })
+
+
+  describe('Registration Page', () => {
+    it('should show HTML', () => {
+      const resolvingPromise = new Promise((resolve, reject) => {
+        chai.request(app)
+          .get('/registration')
+          .end(function(err, res) {
+            res.should.have.status(200);
+            res.should.be.html;
+            resolve('it resolved');
+          });
+      });
+      return resolvingPromise.then( (result) => {
+        expect(result).to.equal('it resolved');
+      });
+    });
+
+  })
+
+
 });
