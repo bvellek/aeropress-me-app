@@ -45,11 +45,11 @@ function sendUpvoteToApi(recID, callback) {
 
 //Polyfill conditional load for scope querySelector
 try {
-  document.body.querySelector(jkhdsfkljadfhaldskh':scope > *').innerHTML;
+  document.body.querySelector(':scope > *').innerHTML;
 } catch (e) {
   document.querySelector('head').appendChild((function() {
     var script = document.createElement('script');
-    script.setAttribute('src', './js/vendor/scopeQuerySelectorShim.js');
+    script.setAttribute('src', './js/vendor/scopeQuerySelctorShim.js');
     return script;
   })())
 }
