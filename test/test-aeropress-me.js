@@ -1,24 +1,33 @@
 const chai = require('chai');
 const chaiHTTP = require('chai-http');
 const mongoose = require('mongoose');
-const faker = require('faker');
+// const faker = require('faker');
 
 // Access to start and stop the server as well as connect to the DB
-const {DATABASE_URL, PORT} = require('../config/config');
-const {app, runServer, closeServer} = require('../server');
+const {
+  DATABASE_URL,
+  PORT
+} = require('../config/config');
+const {
+  app,
+  runServer,
+  closeServer
+} = require('../server');
 
 // Access to models for recipes, users, and votes
 const Recipe = require('../models/recipe');
 const User = require('../models/user');
 const Vote = require('../models/vote');
 
+// Zombie rquirements (Headless DOM)
+const Browser = require('zombie'),
+  assert = require('assert');
 
 const should = chai.should();
 const expect = chai.expect;
 chai.use(chaiHTTP);
 
-const Browser = require('zombie'),
-assert = require('assert');
+
 
 
 
@@ -70,13 +79,13 @@ assert = require('assert');
 // }
 
 
-  // beforeEach(function() {
-  //   return seedRecipeData();
-  // });
-  //
-  // afterEach(function() {
-  //   return tearDownDb();
-  // });
+// beforeEach(function() {
+//   return seedRecipeData();
+// });
+//
+// afterEach(function() {
+//   return tearDownDb();
+// });
 
 
 
@@ -86,12 +95,14 @@ describe('Render Pages', function() {
 
   before(function() {
     return runServer().then((port) => {
-      this.browser = new Browser({ site: `http://localhost:${port}` });
+      Browser.localhost('localhost', port);
+      this.browser = new Browser(
+      //   {
+      //   site: `http://localhost:${port}`
+      // }
+    );
     });
   });
-
-
-
 
   after(function() {
     return closeServer();
@@ -110,14 +121,13 @@ describe('Render Pages', function() {
             resolve('it resolved');
           });
       });
-      return resolvingPromise.then( (result) => {
+      return resolvingPromise.then((result) => {
         expect(result).to.equal('it resolved');
       });
     });
   });
 
   describe('Login Page', () => {
-
     // load the login page
     before(function(done) {
       this.browser.visit('/login', done);
@@ -133,24 +143,45 @@ describe('Render Pages', function() {
             resolve('it resolved');
           });
       });
-      return resolvingPromise.then( (result) => {
+      return resolvingPromise.then((result) => {
         expect(result).to.equal('it resolved');
       });
     });
 
-    it('should show contact a form', function() {
+    it('should show a login form', function() {
       assert.ok(this.browser.success);
       assert.equal(this.browser.text('form legend'), 'Login');
+
+    });
+
+    it('should have email input and password input with a method of post for login form', function() {
       this.browser.assert.element('#user-email');
+      this.browser.assert.element('#password');
       this.browser.assert.attribute('form', 'method', 'post');
     });
 
+    it('should show fail message for incorrect username', function(done) {
+      this.browser.fill('#user-email', 'notauser@mail.com');
+      this.browser.fill('#password', 'incorrectpassword');
+      this.browser.pressButton('button').then(() => {
+        assert.ok(this.browser.success);
+        assert.equal(this.browser.text('section.flash-alert'), 'No user found.');
+      }).then(done, done);
+    });
+
+    it('should show fail message for incorrect password', function(done) {
+      this.browser.fill('#user-email', 'testuser@aeropressme.com');
+      this.browser.fill('#password', 'incorrectpassword');
+      this.browser.pressButton('button').then(() => {
+        assert.ok(this.browser.success);
+        assert.equal(this.browser.text('section.flash-alert'), 'Oops! Password is incorrect.');
+      }).then(done, done);
+    });
   })
 
 
   describe('Registration Page', () => {
-
-    // load the login page
+    // load the Registration page
     before(function(done) {
       this.browser.visit('/registration', done);
     });
@@ -165,11 +196,119 @@ describe('Render Pages', function() {
             resolve('it resolved');
           });
       });
-      return resolvingPromise.then( (result) => {
+      return resolvingPromise.then((result) => {
         expect(result).to.equal('it resolved');
       });
     });
 
+    it('should show a registration form', function() {
+      assert.ok(this.browser.success);
+      assert.equal(this.browser.text('form legend'), 'Registration Information');
+
+    });
+
+    it('should have first name, last name, email, password, and confirm password inputs with a method of post', function() {
+      this.browser.assert.element('#reg-author-first');
+      this.browser.assert.element('#reg-author-last');
+      this.browser.assert.element('#reg-email');
+      this.browser.assert.element('#reg-password');
+      this.browser.assert.element('#reg-confirm-password');
+      this.browser.assert.attribute('form', 'method', 'post');
+    });
+
+    it('should show fail message for email already in use', function(done) {
+      this.browser.fill('#reg-author-first', 'Test');
+      this.browser.fill('#reg-author-last', 'User');
+      this.browser.fill('#reg-email', 'testuser@aeropressme.com');
+      this.browser.fill('#reg-password', 'password');
+      this.browser.fill('#reg-confirm-password', 'password');
+      this.browser.pressButton('button').then(() => {
+        assert.ok(this.browser.success);
+        assert.equal(this.browser.text('section.flash-alert'), 'That email is already taken.');
+      }).then(done, done);
+    });
+
+    it('should show fail message for non-matching password and confirm password fields', function(done) {
+      this.browser.fill('#reg-author-first', 'Test');
+      this.browser.fill('#reg-author-last', 'User');
+      this.browser.fill('#reg-email', 'newuser@aeropressme.com');
+      this.browser.fill('#reg-password', 'password');
+      this.browser.fill('#reg-confirm-password', 'NOTpassword');
+      this.browser.pressButton('button').then(() => {
+        assert.ok(this.browser.success);
+        assert.equal(this.browser.text('section.flash-alert'), 'Passwords do not match.');
+      }).then(done, done);
+    });
+  })
+
+  describe('My Recipes Page', () => {
+    // load the login page
+    before(function(done) {
+      this.browser.visit('/login')
+        .then(() => {
+          this.browser.fill('#user-email', 'testuser@aeropressme.com');
+          this.browser.fill('#password', 'password');
+        })
+        .then(() => {
+          return this.browser.pressButton('button');
+          console.log('test 1');
+        })
+        .then(done, done);
+
+      // this.browser.visit('/login');
+      // this.browser.fill('#user-email', 'testuser@aeropressme.com')
+      //   .fill('#password', 'password');
+      // return this.browser.pressButton('button', done);
+
+    });
+
+
+    it('should show My Recipes Page', function() {
+
+      const resolvingPromise = new Promise((resolve, reject) => {
+        console.log('requesting my recipes');
+        // resolve('it resolved');
+        chai.request(app)
+          .get('/myrecipes')
+          .end(function(err, res) {
+            console.log(err);
+            res.should.have.status(200);
+            res.should.be.html;
+            resolve('it resolved');
+          });
+      });
+      return resolvingPromise.then((result) => {
+        console.log(result);
+        expect(result).to.equal('it resolved');
+      });
+      // console.log('test 2', this.browser.success);
+      // assert.ok(this.browser.success);
+      // assert.equal(this.browser.text('.your-recipes-page h2'), 'My Recipes');
+    });
+
+    // it('should have email input and password input with a method of post for login form', function() {
+    //   this.browser.assert.element('#user-email');
+    //   this.browser.assert.element('#password');
+    //   this.browser.assert.attribute('form', 'method', 'post');
+    // });
+    //
+    // it('should show fail message for incorrect username', function(done) {
+    //   this.browser.fill('#user-email', 'notauser@mail.com');
+    //   this.browser.fill('#password', 'incorrectpassword');
+    //   this.browser.pressButton('button').then(() => {
+    //     assert.ok(this.browser.success);
+    //     assert.equal(this.browser.text('section.flash-alert'), 'No user found.');
+    //   }).then(done, done);
+    // });
+    //
+    // it('should show fail message for incorrect password', function(done) {
+    //   this.browser.fill('#user-email', 'testuser@aeropressme.com');
+    //   this.browser.fill('#password', 'incorrectpassword');
+    //   this.browser.pressButton('button').then(() => {
+    //     assert.ok(this.browser.success);
+    //     assert.equal(this.browser.text('section.flash-alert'), 'Oops! Password is incorrect.');
+    //   }).then(done, done);
+    // });
   })
 
 
