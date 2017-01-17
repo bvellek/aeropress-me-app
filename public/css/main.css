@@ -436,6 +436,8 @@ Recipe Card Styles
           margin: 0 auto;
           text-align: center;
           color: inherit;
+          word-break: break-all;
+          word-wrap: break-word;
           text-decoration: none;
         }
 
