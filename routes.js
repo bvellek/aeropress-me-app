@@ -9,16 +9,6 @@ mongoose.Promise = global.Promise;
 module.exports = function(app, passport) {
 
   // Landing Page - serve recipes sorted by upvotes
-
-
-  // app.get('/', (req, res) => {
-  //   res.render('login', {
-  //          title: 'AeroPressMe',
-  //        message: 'loginMessage'})
-  // });
-
-
-
   app.get('/', (req, res) => {
     Recipe.find(function(err, recipes) {
       let recipePromises = recipes.map((recipe) => {
@@ -27,7 +17,6 @@ module.exports = function(app, passport) {
           return recipe;
         });
       });
-
        Promise.all(recipePromises).then((recipesWithVotes) => {
           recipesWithVotes.sort((a, b) => {
             if (b.votes > a.votes) {
