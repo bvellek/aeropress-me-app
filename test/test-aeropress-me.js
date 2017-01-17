@@ -232,10 +232,15 @@ describe('Render Pages', function() {
   describe('My Recipes Page', () => {
     // load the login page
     before(function(done) {
-      this.browser.visit('/login');
-      this.browser.fill('#user-email', 'testuser@aeropressme.com');
-      this.browser.fill('#password', 'password');
-      this.browser.pressButton('button', done);
+      this.browser.visit('/login')
+      .then(() => {
+        this.browser.fill('#user-email', 'testuser@aeropressme.com');
+        this.browser.fill('#password', 'password');
+      })
+      .then(() => {
+        this.browser.pressButton('button');
+      })
+      .then(done, done);
     });
 
 
