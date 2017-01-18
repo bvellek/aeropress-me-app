@@ -4,15 +4,8 @@ const mongoose = require('mongoose');
 // const faker = require('faker');
 
 // Access to start and stop the server as well as connect to the DB
-const {
-  DATABASE_URL,
-  PORT
-} = require('../config/config');
-const {
-  app,
-  runServer,
-  closeServer
-} = require('../server');
+const {DATABASE_URL, PORT} = require('../config/config');
+const {app, runServer, closeServer} = require('../server');
 
 // Access to models for recipes, users, and votes
 const Recipe = require('../models/recipe');
@@ -20,8 +13,8 @@ const User = require('../models/user');
 const Vote = require('../models/vote');
 
 // Zombie rquirements (Headless DOM)
-const Browser = require('zombie'),
-  assert = require('assert');
+const Browser = require('zombie');
+const assert = require('assert');
 
 const should = chai.should();
 const expect = chai.expect;
@@ -208,6 +201,7 @@ describe('Render Pages', function() {
     });
   })
 
+
   describe('My Recipes Page', () => {
     // Load the login page & sign in with testuser@aeropressme.com
     before(function(done) {
@@ -222,6 +216,7 @@ describe('Render Pages', function() {
         .then(done, done);
     });
 
+    //Logout after tests are done for My Recipes Page
     after(function(done) {
       this.browser.visit('/login')
       .then(done, done);
@@ -234,6 +229,7 @@ describe('Render Pages', function() {
     });
 
   })
+
 
   describe('Submit New Recipe Page', () => {
     // Load the login page & sign in with testuser@aeropressme.com & visit New Recipe Page
@@ -252,6 +248,7 @@ describe('Render Pages', function() {
         .then(done, done);
     });
 
+    //Logout after tests are done for New Recipe Page
     after(function(done) {
       this.browser.visit('/login')
       .then(done, done);
@@ -296,6 +293,7 @@ describe('Render Pages', function() {
         .then(done, done);
     });
 
+    //Logout after tests are done for All Recipes Page
     after(function(done) {
       this.browser.visit('/login')
       .then(done, done);
