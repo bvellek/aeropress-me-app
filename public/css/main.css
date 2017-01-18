@@ -540,7 +540,7 @@ Recipe Card Styles
 Media Queries
 ****/
 
-}
+
 
 @media only screen and (min-width: 28.75em) {
   form {
@@ -591,6 +591,7 @@ Media Queries
   .login-header-bar {
     justify-content: space-between;
   }
+}
 
 @media only screen and (min-width: 52.5em) {
     .main-nav a {
