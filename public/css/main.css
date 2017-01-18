@@ -448,6 +448,7 @@ Recipe Card Styles
             word-break: break-all;
             white-space:pre-wrap;
             word-wrap: normal;
+            font-size: 4vw;
           }
         }
 
@@ -487,7 +488,7 @@ Recipe Card Styles
 .recipe-card .edit-link {
   margin: 0 auto;
   text-align: center;
-  width: 8em;
+  width: 8.4em;
   -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
   -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
   box-shadow: inset 0px 1px 0px 0px #ffffff;
