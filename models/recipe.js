@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const recipeSchema = new mongoose.Schema({
   title: {
     type: String,
-    default: `Recipe ${new Date().toISOString()}`, //author's # recipe
+    default: `Recipe ${new Date().toISOString()}`.replace(/\d\d\d\d-\d\d-/, (match) => (
+     `${match}<wbr>`)), //author's # recipe
     maxlength: 40
   },
   author: {

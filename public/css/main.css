@@ -443,13 +443,12 @@ Recipe Card Styles
         @-moz-document url-prefix() {
           .title-container .recipe-title,
           .title-container .recipe-title a {
-            -moz-hyphens: auto;
-            hyphens: auto;
+
             overflow-wrap: break-word;
-            word-break: break-all;
-            white-space:pre-wrap;
+
+            word-break: break-word;
+            /*white-space:pre-wrap;*/
             word-wrap: normal;
-            font-size: 4vw;
           }
         }
 

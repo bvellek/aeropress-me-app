@@ -384,7 +384,7 @@ describe('Render Pages', function() {
       .then(() => {
         console.log('this is the FIRST ahhhhhsdjfkhadlksfhjalsdkjfadl;sfjk', this.browser.html());
         // var button = this.browser.querySelector('button[name="delete-button"]')
-        return this.browser.pressButton('❌ Delete Recipe');
+        return this.browser.pressButton('delete-button');
       })
       .then(() => {
         console.log('this is the second second second second', this.browser.html());
