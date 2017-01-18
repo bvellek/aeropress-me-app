@@ -204,7 +204,6 @@ describe('Render Pages', function() {
     it('should show a registration form', function() {
       assert.ok(this.browser.success);
       assert.equal(this.browser.text('form legend'), 'Registration Information');
-
     });
 
     it('should have first name, last name, email, password, and confirm password inputs with a method of post', function() {
@@ -251,27 +250,17 @@ describe('Render Pages', function() {
         })
         .then(() => {
           return this.browser.pressButton('button');
-          console.log('test 1');
         })
         .then(done, done);
-
-      // this.browser.visit('/login');
-      // this.browser.fill('#user-email', 'testuser@aeropressme.com')
-      //   .fill('#password', 'password');
-      // return this.browser.pressButton('button', done);
-
     });
 
 
     it('should show My Recipes Page', function() {
 
       const resolvingPromise = new Promise((resolve, reject) => {
-        console.log('requesting my recipes');
-        // resolve('it resolved');
         chai.request(app)
           .get('/myrecipes')
           .end(function(err, res) {
-            console.log(err);
             res.should.have.status(200);
             res.should.be.html;
             resolve('it resolved');
@@ -281,9 +270,11 @@ describe('Render Pages', function() {
         console.log(result);
         expect(result).to.equal('it resolved');
       });
-      // console.log('test 2', this.browser.success);
-      // assert.ok(this.browser.success);
-      // assert.equal(this.browser.text('.your-recipes-page h2'), 'My Recipes');
+    });
+
+    it('should show a "my recipes" header', function() {
+      assert.ok(this.browser.success);
+      assert.equal(this.browser.text('.your-recipes-page h2'), 'My Recipes');
     });
 
     // it('should have email input and password input with a method of post for login form', function() {
