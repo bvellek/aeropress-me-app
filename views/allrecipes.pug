@@ -15,10 +15,7 @@ block content
             figure.recipe-votes #{recipe.votes}
             figcaption Upvotes
           div.title-container
-            h3.recipe-title #{recipe.title}
-            //- h3
-            //-   a.visually-hidden(href=`/allrecipes#rec_${recipe.id}`) #{recipe.title}
-            //-   span.recipe-title #{recipe.title}
+            h3.recipe-title !{recipe.title}
         div.info-container
           h4.recipe-author
             | Recipe Author:&nbsp;
