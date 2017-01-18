@@ -257,7 +257,7 @@ describe('Render Pages', function() {
 
     it('should show a "New AeroPress Recipe" header', function() {
       assert.ok(this.browser.success);
-      assert.equal(this.browser.text('.input-page h2'), 'New AeroPressMe Recipe');
+      assert.equal(this.browser.text('.input-page h2'), 'New AeroPressME Recipe');
     });
 
     it('should have a "New Recipe" form with method post and appropriate form inputs', function() {
