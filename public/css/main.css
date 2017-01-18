@@ -577,6 +577,7 @@ Media Queries
   .info-container h4 {
     width: 70%;
   }
+
   .recipe-instructions {
     margin-left: 1em;
   }
@@ -593,7 +594,7 @@ Media Queries
   }
 }
 
-@media only screen and (min-width: 52.5em) {
+@media only screen and (min-width: 61em) {
     .main-nav a {
       font-weight: 700;
       font-size: 1em;
@@ -606,7 +607,6 @@ Media Queries
     .main-header {
         justify-content: space-between;
     }
-
 }
 
 @media only screen and (min-width: 80em) {
@@ -620,50 +620,3 @@ Media Queries
         margin-right: 20%;
     }
 }
-
-
-/****
-Aeropress SVG stuff
-
-****/
-
-
-/*.svg-graphic {
-  margin: 0 auto;
-  width: 6em;
-}
-
-.svg-press {
-  transition: .7s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-}
-
-.svg-graphic:hover .svg-press {
-  stroke: black;
-}
-
-.svg-graphic:hover .svg-drop {
-  stroke-dasharray: .8;
-  stroke-dashoffset: 1000;
-
-  animation: offset 5s linear forwards;
-}
-
-
-@keyframes offset {
-  100% {
-    stroke-dashoffset: 0;
-  }
-}
-
-
-@media only screen and (min-width: 40em) {
-
-  .svg-graphic {
-    width: 8em;
-  }
-
-  .svg-main-width {
-    stroke-width: 1.8;
-  }
-
-}*/
