@@ -540,12 +540,6 @@ Recipe Card Styles
 Media Queries
 ****/
 
-@media only screen and (min-width: 26.5em) {
-  .login-header-bar {
-    justify-content: space-between;
-    padding-bottom: 0.625em;
-  }
-
 }
 
 @media only screen and (min-width: 28.75em) {
@@ -592,6 +586,11 @@ Media Queries
     font-size: 1em;
   }
 }
+
+@media only screen and (min-width: 37em) {
+  .login-header-bar {
+    justify-content: space-between;
+  }
 
 @media only screen and (min-width: 52.5em) {
     .main-nav a {
