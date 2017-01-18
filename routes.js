@@ -273,7 +273,6 @@ module.exports = function(app, passport) {
   //API Endpoints
   // Vote with AJAX request from frontend
   app.post('/api/allrecipes', isLoggedIn, (req, res) => {
-    console.log('This is my message: ', req.user.id, req.body.recipeID);
     Vote.findOne({
       'recipeID': req.body.recipeID,
       'voterID': req.user.id
@@ -403,7 +402,6 @@ module.exports = function(app, passport) {
 
   function getVotesByRecipeID(recipeID) {
     return new Promise(function(res, rej) {
-      // let VoterModel = mongoose.model('Vote', voteSchema);
       Vote
         .find({
           'recipeID': recipeID
