@@ -50,9 +50,8 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.upvote-form').forEach(function(form) {
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      console.log(this);
+      this.querySelector('button').disabled = true;
       var input = this.querySelector('input').value;
-      console.log(input);
       sendUpvoteToApi(input, updateUpvoteCount);
     });
   })
