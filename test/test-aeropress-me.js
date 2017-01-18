@@ -1,7 +1,7 @@
 const chai = require('chai');
 const chaiHTTP = require('chai-http');
 const mongoose = require('mongoose');
-// const faker = require('faker');
+const faker = require('faker');
 
 // Access to start and stop the server as well as connect to the DB
 const {DATABASE_URL, PORT} = require('../config/config');
@@ -42,15 +42,15 @@ chai.use(chaiHTTP);
 // }
 //
 //
-// function generateRecipeOrientation() {
-//   const orientations = ['Standard', 'Inverted'];
-//   return orientations[Math.floor(Math.random() * orientations.length)];
-// }
-//
-// function generateRecipeGrind() {
-//   const grinds = ['Extra Coarse', 'Coarse', 'Medium-Coarse', 'Medium', 'Medium-Fine', 'Fine', 'Extra Fine'];
-//   return grinds[Math.floor(Math.random() * grinds.length)];
-// }
+function generateRecipeOrientation() {
+  const orientations = ['Standard', 'Inverted'];
+  return orientations[Math.floor(Math.random() * orientations.length)];
+}
+
+function generateRecipeGrind() {
+  const grinds = ['Extra Coarse', 'Coarse', 'Medium-Coarse', 'Medium', 'Medium-Fine', 'Fine', 'Extra Fine'];
+  return grinds[Math.floor(Math.random() * grinds.length)];
+}
 //
 // function generateRecipeData() {
 //   return {
@@ -90,6 +90,7 @@ describe('Render Pages', function() {
     return runServer().then((port) => {
       Browser.localhost('localhost', port);
       this.browser = new Browser();
+      this.browser.runScripts = false;
     });
   });
 
@@ -305,9 +306,95 @@ describe('Render Pages', function() {
       assert.equal(this.browser.text('.recipes-page h2'), 'Top Recipes');
     });
 
+    it('should show a "already voted error message" when upvote button is clicked on Recipe 2', function(done) {
+    this.browser.pressButton('#rec_587bf7fb1cfc7c37b455f46a button')
+      .then(() => {
+        return this.browser.assert.element('.flash-alert');
+      })
+      .then(done, done);
+    });
+
   })
 
+  describe('Submit New Recipe, Edit Recipe, and Delete Recipe', () => {
+    // Load the login page & sign in with testuser@aeropressme.com
+    before(function(done) {
+      this.browser.visit('/login')
+        .then(() => {
+          this.browser.fill('#user-email', 'testuser@aeropressme.com');
+          this.browser.fill('#password', 'password');
+        })
+        .then(() => {
+          return this.browser.pressButton('button');
+        })
+        .then(done, done);
+    });
 
+    //Logout after tests are done for Submitting, editing, and deleting recipe
+    after(function(done) {
+      this.browser.visit('/login')
+      .then(done, done);
+    });
+
+    it('should submit a new recipe', function(done) {
+      this.browser.visit('/newrecipe')
+      .then(() => {
+        this.browser.fill('#input-title', faker.lorem.words());
+        this.browser.fill('#input-author', `${faker.name.firstName()} ${faker.name.lastName()}`);
+        this.browser.choose(generateRecipeOrientation());
+        this.browser.fill('#water', faker.random.number(1000, 0));
+        this.browser.fill('#coffee', faker.random.number(1000, 0));
+        this.browser.fill('#water-temp', faker.random.number(100, 0));
+        this.browser.select('#grind-select', generateRecipeGrind());
+        this.browser.fill('#instructions', faker.lorem.paragraph())
+      })
+        .then(() => {
+          return this.browser.pressButton('button');
+        })
+        .then(() => {
+          return this.browser.assert.element('.recipe-card');
+        })
+        .then(done, done);
+    });
+
+    it('should edit a recipe', function(done) {
+      this.browser.visit('/myrecipes')
+      .then(() => {
+        var link = this.browser.querySelector('.edit-link').href;
+        return this.browser.visit(link);
+      })
+      .then(() => {
+        return this.browser.fill('#title-edit', 'new title');
+      })
+      .then(() => {
+        return this.browser.pressButton('✍️ Submit Edit');
+      })
+      .then(() => {
+        return assert.equal(this.browser.text('.recipe-title'), 'new title')
+      })
+      .then(done, done);
+    });
+
+    it('should delete a recipe', function(done) {
+      this.browser.visit('/myrecipes')
+      .then(() => {
+        var link = this.browser.querySelector('.edit-link').href;
+        return this.browser.visit(link);
+      })
+      .then(() => {
+        console.log('this is the FIRST ahhhhhsdjfkhadlksfhjalsdkjfadl;sfjk', this.browser.html());
+        // var button = this.browser.querySelector('button[name="delete-button"]')
+        return this.browser.pressButton('❌ Delete Recipe');
+      })
+      .then(() => {
+        console.log('this is the second second second second', this.browser.html());
+        return this.browser.assert.element('.no-recipes');
+      })
+      .then(done, done);
+    });
+
+
+  })
 
 
 });
