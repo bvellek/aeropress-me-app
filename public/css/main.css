@@ -436,19 +436,18 @@ Recipe Card Styles
           margin: 0 auto;
           text-align: center;
           color: inherit;
-          word-break: break-word;
-          overflow-wrap: break-word;
-          word-wrap: break-word;
           text-decoration: none;
         }
 
         @-moz-document url-prefix() {
           .title-container .recipe-title,
           .title-container .recipe-title a {
-            word-break: break-all;
             -moz-hyphens: auto;
-            -ms-hyphens: auto;
             hyphens: auto;
+            overflow-wrap: break-word;
+            word-break: break-all;
+            white-space:pre-wrap;
+            word-wrap: normal;
           }
         }
 
