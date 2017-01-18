@@ -30,6 +30,7 @@ h1, h2, h3, h4, legend, label, span, summary {
 
 h2 {
     text-align: center;
+    font-weight: 900;
 }
 
 a {
@@ -483,6 +484,7 @@ Recipe Card Styles
   font-size: 0.9em;
   width: 90%;
   margin: 0.625em auto;
+  line-height: 1.2;
 }
 
 .recipe-card .edit-link {
