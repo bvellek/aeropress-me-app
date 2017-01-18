@@ -22,26 +22,16 @@ chai.use(chaiHTTP);
 
 
 
+function seedRecipeData() {
+  console.log('seeding Recipe data');
+  const seedData = [];
 
+  for (let i = 0; i <= 10; i++) {
+    seedData.push(generateRecipeData());
+  }
+  return Recipe.insertMany(seedData);
+}
 
-
-// Allows the middleware to think we're already authenticated.
-// app.request.isAuthenticated = function() {
-//   return true
-// };
-
-
-// function seedRecipeData() {
-//   console.log('seeding Recipe data');
-//   const seedData = [];
-//
-//   for (let i = 0; i <= 10; i++) {
-//     seedData.push(generateRecipeData());
-//   }
-//   return TestRecipe.insertMany(seedData);
-// }
-//
-//
 function generateRecipeOrientation() {
   const orientations = ['Standard', 'Inverted'];
   return orientations[Math.floor(Math.random() * orientations.length)];
@@ -51,20 +41,58 @@ function generateRecipeGrind() {
   const grinds = ['Extra Coarse', 'Coarse', 'Medium-Coarse', 'Medium', 'Medium-Fine', 'Fine', 'Extra Fine'];
   return grinds[Math.floor(Math.random() * grinds.length)];
 }
+
+function generateRecipeData() {
+  return {
+    title: faker.lorem.words(),
+    author: `${faker.name.firstName()} ${faker.name.lastName()}`,
+    orientation: generateRecipeOrientation(),
+    massWater: faker.random.number(),
+    massCoffee: faker.random.number(),
+    waterTemp: faker.random.number(),
+    grind: generateRecipeGrind(),
+    instructions: faker.lorem.paragraph(),
+    ownerID: 'test-user'
+  }
+}
+
+// function seedTestUser() {
+//   console.log('seeding test user');
+//   const seedUsers = [];
+//   seedUsers.push(generateTestUser());
+//   return User.insertMany(seedUsers);
+// }
 //
-// function generateRecipeData() {
+// function generateTestUser() {
 //   return {
-//     title: faker.lorem.words(),
-//     author: `${faker.name.firstName()} ${faker.name.lastName()}`,
-//     orientation: generateRecipeOrientation(),
-//     massWater: faker.random.number(),
-//     massCoffee: faker.random.number(),
-//     waterTemp: faker.random.number(),
-//     grind: generateRecipeGrind(),
-//     instructions: faker.lorem.paragraph(),
-//     ownerID: 'test-user'
+//   	lastName : "user",
+//   	firstName : "test",
+//   	password : "password",
+//   	email : "testuser@aeropressme.com",
 //   }
 // }
+
+function seedTestRecipe() {
+  console.log('seeding test recipe');
+  const seedRecipes = [];
+  seedRecipes.push(generateTestRecipe());
+  return Recipe.insertMany(seedRecipes);
+}
+
+function generateTestRecipe() {
+    return {
+      title: 'Test Recipe 1',
+      author: `${faker.name.firstName()} ${faker.name.lastName()}`,
+      orientation: generateRecipeOrientation(),
+      massWater: faker.random.number(),
+      massCoffee: faker.random.number(),
+      waterTemp: faker.random.number(),
+      grind: generateRecipeGrind(),
+      instructions: faker.lorem.paragraph(),
+      ownerID: 'test-user',
+      _id: '1234'
+    }
+}
 //
 // function tearDownDb() {
 //   console.warn('Deleting DB');
@@ -72,9 +100,12 @@ function generateRecipeGrind() {
 // }
 
 
-// beforeEach(function() {
-//   return seedRecipeData();
-// });
+beforeEach(function() {
+  return seedRecipeData()
+  .then(() => {
+    seedTestRecipe();
+  });
+});
 //
 // afterEach(function() {
 //   return tearDownDb();
@@ -306,8 +337,16 @@ describe('Render Pages', function() {
       assert.equal(this.browser.text('.recipes-page h2'), 'Top Recipes');
     });
 
-    it('should show a "already voted error message" when upvote button is clicked on Recipe 2', function(done) {
-    this.browser.pressButton('#rec_587bf7fb1cfc7c37b455f46a button')
+    it('should vote on a recipe Test Recipe 1', function(done) {
+      return this.browser.pressButton('#rec_1234 button')
+        .then(() => {
+          return assert.equal(this.browser.text('#rec_1234 .recipe-votes'), '1');
+        })
+        .then(done, done)
+    });
+
+    it('should show a "already voted error message" when upvote button is clicked on Test Recipe 1', function(done) {
+    this.browser.pressButton('#rec_1234 button')
       .then(() => {
         return this.browser.assert.element('.flash-alert');
       })
@@ -382,12 +421,14 @@ describe('Render Pages', function() {
         return this.browser.visit(link);
       })
       .then(() => {
-        console.log('this is the FIRST ahhhhhsdjfkhadlksfhjalsdkjfadl;sfjk', this.browser.html());
-        // var button = this.browser.querySelector('button[name="delete-button"]')
-        return this.browser.pressButton('delete-button');
+        // ZombieJS does not support the formaction attribute on the delete button so
+        // reset the form action to be that of the formaction from the delete button then
+        // press the submit edit button to execute delete
+        var deleteAction = this.browser.querySelector('button[name="delete-button"]').getAttribute('formaction');
+        this.browser.querySelector('.recipe-form').setAttribute('action', deleteAction)
+        return this.browser.pressButton('✍️ Submit Edit');
       })
       .then(() => {
-        console.log('this is the second second second second', this.browser.html());
         return this.browser.assert.element('.no-recipes');
       })
       .then(done, done);
