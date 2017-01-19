@@ -99,34 +99,14 @@ function tearDownDb() {
 }
 
 
-
-before(function() {
-  seedRecipeData();
-  seedTestRecipe();
-    seedTestUser();
-});
-
-// before(function() {
-//   return seedRecipeData()
-//   .then(() => {
-//     seedTestRecipe();
-//   })
-//   .then(() => {
-//     seedTestUser();
-//   });
-// });
-
-after(function() {
-  tearDownDb();
-});
-
-
-
-
 describe('Render Pages', function() {
 
 
   before(function() {
+    // before the tests seed some recipe data a test user
+    seedRecipeData();
+    seedTestRecipe();
+    seedTestUser();
     return runServer().then((port) => {
       Browser.localhost('localhost', port);
       this.browser = new Browser();
@@ -135,7 +115,11 @@ describe('Render Pages', function() {
   });
 
   after(function() {
-    return closeServer();
+    // after tests delete the database
+    return tearDownDb()
+    .then(() => {
+      return closeServer();
+    })
   });
 
 
@@ -346,21 +330,19 @@ describe('Render Pages', function() {
       assert.equal(this.browser.text('.recipes-page h2'), 'Top Recipes');
     });
 
-    // it('should vote on a recipe Test Recipe 1', function(done) {
-    //   return this.browser.pressButton('#rec_1234 button')
-    //     .then(() => {
-    //       return assert.equal(this.browser.text('#rec_1234 .recipe-votes'), '1');
-    //     })
-    //     .then(done, done)
-    // });
-    //
-    // it('should show a "already voted error message" when upvote button is clicked on Test Recipe 1', function(done) {
-    // this.browser.pressButton('#rec_1234 button')
-    //   .then(() => {
-    //     return this.browser.assert.element('.flash-alert');
-    //   })
-    //   .then(done, done);
-    // });
+    var testRecipe;
+    it('should vote on a recipe', function() {
+      testRecipe = this.browser.querySelector('.recipe-card').getAttribute('id');
+      return this.browser.pressButton(`#${testRecipe} button`);
+    });
+
+    it('should show a "already voted error message" when upvote button is clicked on same recipe', function(done) {
+      this.browser.pressButton(`#${testRecipe} button`)
+        .then(() => {
+          return this.browser.assert.element('.flash-alert');
+        })
+        .then(done, done);
+    });
 
   })
 
