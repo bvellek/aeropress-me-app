@@ -293,8 +293,11 @@ module.exports = function(app, passport) {
           }))
 
           .then(() => { getVotesByRecipeID(req.body.recipeID)
-          .then((votes) => res.status(201).json({'recipeVotes': votes,
-        'recipeID': req.body.recipeID}))
+          .then((votes) => res.status(201).json({
+            'recipeVotes': votes,
+            'recipeID': req.body.recipeID,
+            'successVoteMessage': 'Thanks for voting!'
+          }))
           .catch(err => {
             console.error(err);
             res.status(500).json({

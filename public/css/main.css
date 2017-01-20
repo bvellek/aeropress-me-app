@@ -181,6 +181,17 @@ Flash Alert Styles
   text-align: center;
 }
 
+.success-flash-alert {
+  color: #25B238;
+  background-color: #DFF0D8;
+  border: 1px solid #25B238;
+  border-radius: 3px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  padding: 1em;
+  margin: 0.625em 0;
+  text-align: center;
+}
 
 /****
 No Recipe Styles
@@ -441,14 +452,12 @@ Recipe Card Styles
           word-break: break-word;
         }
 
-        /*@-moz-document url-prefix() {
+        @-moz-document url-prefix() {
           .title-container .recipe-title,
           .title-container .recipe-title a {
-            overflow-wrap: break-word;
-            word-break: break-word;
-            word-wrap: normal;
+            overflow: hidden;
           }
-        }*/
+        }
 
 .info-container h4 {
   color: rgba(48,48,48,0.75);

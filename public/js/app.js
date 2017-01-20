@@ -2,6 +2,8 @@ function updateUpvoteCount(data) {
   var recipeCardID = "rec_" + data.recipeID;
   if (data.recipeVotes) {
     document.getElementById(recipeCardID).querySelector('.recipe-votes').innerHTML = data.recipeVotes;
+    var successMessage = '<div class="success-flash-alert">' + data.successVoteMessage + '</div>';
+    document.getElementById(recipeCardID).innerHTML += successMessage;
   } else {
     var message = '<div class="flash-alert">' + data.noVoteMessage + '</div>';
     document.getElementById(recipeCardID).innerHTML += message;
@@ -31,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       this.querySelector('button').disabled = true;
+      this.querySelector('button').style.display = "none";
       var input = this.querySelector('input').value;
       sendUpvoteToApi(input, updateUpvoteCount);
     });
