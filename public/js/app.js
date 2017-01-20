@@ -1,20 +1,3 @@
-//
-// function getRecipeID(form) {
-//   var recipeID = form.querySelector(':scope > input').value;
-//   return recipeID;
-// }
-
-// Polyfill conditional load for scope querySelector
-// try {
-//   document.body.querySelector(':scope > *').innerHTML;
-// } catch (e) {
-//   document.querySelector('head').appendChild((function() {
-//     var script = document.createElement('script');
-//     script.setAttribute('src', './js/vendor/scopeQuerySelctorShim.js');
-//     return script;
-//   })())
-// }
-
 function updateUpvoteCount(data) {
   var recipeCardID = "rec_" + data.recipeID;
   if (data.recipeVotes) {
@@ -26,16 +9,13 @@ function updateUpvoteCount(data) {
 }
 
 function sendUpvoteToApi(recID, callback) {
-  // fetch('/api/allrecipes', {method: 'post', body: JSON.stringify({'recipeID': recID})})
-  //   .then(callback);
   xhr = new XMLHttpRequest();
   var url = '/api/allrecipes';
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/json");
   xhr.onreadystatechange = function() {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      var json = JSON.parse(xhr.responseText)
-      console.log();
+    if (xhr.readyState == 4) {
+      var json = JSON.parse(xhr.responseText);
       callback(json);
     }
   }
@@ -59,8 +39,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+// function getRecipeID(form) {
+//   var recipeID = form.querySelector(':scope > input').value;
+//   return recipeID;
+// }
 
-
+// Polyfill conditional load for scope querySelector
+// try {
+//   document.body.querySelector(':scope > *').innerHTML;
+// } catch (e) {
+//   document.querySelector('head').appendChild((function() {
+//     var script = document.createElement('script');
+//     script.setAttribute('src', './js/vendor/scopeQuerySelctorShim.js');
+//     return script;
+//   })())
+// }
 
 //Code using jQuery
 // function getRecipeID(form) {
