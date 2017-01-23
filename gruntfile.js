@@ -12,6 +12,7 @@ module.exports = function(grunt) {
         },
         files: {
           '<%= dirs.theme %><%= dirs.css %>main.min.css': '<%= dirs.theme %><%= dirs.css %>main.css',
+          '<%= dirs.theme %><%= dirs.css %>normalize.min.css': '<%= dirs.theme %><%= dirs.css %>normalize.css'
         }
       },
     },
