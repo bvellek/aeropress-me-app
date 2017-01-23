@@ -6,10 +6,11 @@ html(lang='en')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     title= title
     meta(name='description', content='Share your Aeropress recipes and vote for your favorites.')
-    meta(property='og:image', content='aeropress.svg')
+    meta(property='og:image', content='img/Slice.svg')
     base(href='/')
     link(rel='shortcut icon', href='img/favicon.ico', type='image/x-icon')
-    link(href="https://fonts.googleapis.com/css?family=Lato:400,700,900|Montserrat:700" rel="stylesheet")
+    noscript
+      link(href="https://fonts.googleapis.com/css?family=Lato:400,700,900|Montserrat:700" rel="stylesheet")
     if process.env.NODE_ENV == 'production'
       link(rel='stylesheet', href='css/main.min.css')
       link(rel='stylesheet', href='css/normalize.min.css')
@@ -19,3 +20,13 @@ html(lang='en')
   body
     block navigation
     block content
+    block foot
+      script.
+        document.addEventListener('DOMContentLoaded', function() {
+          document.querySelector('html > head').appendChild((function(){
+            const link = document.createElement('link');
+            link.setAttribute('href', 'https://fonts.googleapis.com/css?family=Lato:400,700,900%7CMontserrat:700');
+            link.setAttribute('rel', 'stylesheet');
+            return link
+          })());
+        })

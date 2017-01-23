@@ -31,7 +31,7 @@ module.exports = function(app, passport) {
         })
         .then(function(recipesWithVotes) {
           res.status(200).render('index', {
-            title: 'AeroPressMe',
+            title: 'AeroPressME',
             recipes: recipesWithVotes
           });
         });
@@ -42,7 +42,7 @@ module.exports = function(app, passport) {
   // Login Page
   app.get('/login', (req, res) => {
     res.render('login', {
-      title: 'AeroPressMe Login',
+      title: 'AeroPressME Login',
       message: req.flash('loginMessage')
     });
   });
@@ -58,7 +58,7 @@ module.exports = function(app, passport) {
   // Registration Page
   app.get('/registration', (req, res) => {
     res.render('registration', {
-      title: 'Register AeroPressMe',
+      title: 'Register AeroPressME',
       message: req.flash('registrationMessage')
     });
   });
@@ -96,7 +96,7 @@ module.exports = function(app, passport) {
         })
         .then(function(recipesWithVotes) {
           res.render('myrecipes', {
-            title: 'My AeroPressMe Recipes',
+            title: 'My AeroPressME Recipes',
             recipes: recipesWithVotes
           });
         })
@@ -124,7 +124,7 @@ module.exports = function(app, passport) {
     Recipe
       .findById(req.params.id, (err, recipe) => {
         res.render('editrecipe', {
-          title: 'Edit My AeroPressMe Recipe',
+          title: 'Edit My AeroPressME Recipe',
           recipe: recipe
         });
       });
@@ -160,7 +160,7 @@ module.exports = function(app, passport) {
   app.get('/newrecipe', isLoggedIn, (req, res) => {
     res.render('newrecipe', {
       user: req.user,
-      title: 'New AeroPressMe Recipe'
+      title: 'New AeroPressME Recipe'
     });
   });
 
@@ -215,7 +215,7 @@ module.exports = function(app, passport) {
         })
         .then(function(recipesWithVotes) {
           res.render('allrecipes', {
-            title: 'All AeroPressMe Recipes',
+            title: 'All AeroPressME Recipes',
             recipes: recipesWithVotes,
             message: req.flash('voteMessage')
           });
