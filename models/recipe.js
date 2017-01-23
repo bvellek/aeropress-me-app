@@ -4,7 +4,7 @@ const recipeSchema = new mongoose.Schema({
   title: {
     type: String,
     default: `Recipe ${new Date().toISOString()}`.replace(/\d\d\d\d-\d\d-/, (match) => (
-     `${match}<wbr>`)), //author's # recipe
+     `${match}<wbr>`)), //default to recipe and date
     maxlength: 40
   },
   author: {

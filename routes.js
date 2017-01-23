@@ -17,7 +17,7 @@ module.exports = function(app, passport) {
           return recipe;
         });
       });
-       Promise.all(recipePromises).then((recipesWithVotes) => {
+      Promise.all(recipePromises).then((recipesWithVotes) => {
           recipesWithVotes.sort((a, b) => {
             if (b.votes > a.votes) {
               return 1
@@ -292,101 +292,23 @@ module.exports = function(app, passport) {
             'recipeID': req.body.recipeID
           }))
 
-          .then(() => { getVotesByRecipeID(req.body.recipeID)
-          .then((votes) => res.status(201).json({
-            'recipeVotes': votes,
-            'recipeID': req.body.recipeID,
-            'successVoteMessage': 'Thanks for voting!'
-          }))
-          .catch(err => {
-            console.error(err);
-            res.status(500).json({
-              error: 'Something went wrong'
-            })}
-          )});
+        .then(() => {
+          getVotesByRecipeID(req.body.recipeID)
+            .then((votes) => res.status(201).json({
+              'recipeVotes': votes,
+              'recipeID': req.body.recipeID,
+              'successVoteMessage': 'Thanks for voting!'
+            }))
+            .catch(err => {
+              console.error(err);
+              res.status(500).json({
+                error: 'Something went wrong'
+              })
+            })
+        });
       }
     });
   });
-
-
-
-
-
-
-// Other API endpoints for future ajax requests
-  // app.get('/api/recipes', (req, res) => {
-  //   Recipe.find(function(err, recipes) {
-  //     let recipePromises = recipes.map((recipe) => {
-  //       return getVotesByRecipeID(recipe.id).then((votes) => {
-  //         recipe.votes = votes;
-  //         return recipe;
-  //       });
-  //     });
-  //     Promise.all(recipePromises).then((recipesWithVotes) => {
-  //       res.json(recipesWithVotes);
-  //     })
-  //     .catch(err => {
-  //       console.error(err);
-  //       res.status(500).json({error: `Something went wrong`});
-  //     });
-  //   });
-  // });
-  //
-  // app.post('/api/recipes', (req, res) => {
-  //   const requiredFields = ['orientation', 'massWater', 'massCoffee', 'waterTemp', 'grind', 'instructions'];
-  //   requiredFields.forEach(field => {
-  //     if (!(field in req.body)) {
-  //       res.status(400).json({error: `Missing "${field}" in request body`});
-  //   }});
-  //
-  //   Recipe
-  //     .create(Object.assign({}, req.body))
-  //     .then(recipe => {
-  //       res.status(201).json(recipe)
-  //     })
-  //     .catch(err => {
-  //       console.error(err);
-  //       res.status(500).json({error: 'Something went wrong.'})
-  //     });
-  // });
-  //
-  // app.put('/api/recipes/:id', (req, res) => {
-  //   if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
-  //     res.status(400).json({error: `Request path id and request body id values must match`});
-  //   }
-  //
-  //   const updated = {};
-  //   const updateableFields = ['title', 'author', 'orientation', 'massWater', 'massCoffee', 'waterTemp', 'grind', 'instructions'];
-  //   updateableFields.forEach(field => {
-  //     if (field in req.body) {
-  //       updated[field] = req.body[field];
-  //     }
-  //   });
-  //
-  //   Recipe
-  //     .findByIdAndUpdate(req.params.id, {$set: updated}, {new: true})
-  //     .exec()
-  //     .then(updatedRecipe => {
-  //       res.status(201).json(updatedRecipe)
-  //     })
-  //     .catch(err => {
-  //       console.error(err);
-  //       res.status(500).json({error: `Something went wrong.`})
-  //     });
-  // });
-  //
-  // app.delete('/api/recipes/:id', (req, res) => {
-  //   Recipe
-  //     .findByIdAndRemove(req.params.id)
-  //     .exec()
-  //     .then(() => {
-  //       console.log(`Deleted recipe with id "${req.params.id}".`);
-  //       res.status(204).end();
-  //     });
-  // });
-
-
-
 
 
   //Functions

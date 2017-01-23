@@ -14,7 +14,7 @@ const app = express();
 const {PORT, DATABASE_URL} = require('./config/config');
 mongoose.Promise = global.Promise;
 
-
+// Compression for pagespeed
 app.use(compression({ level: 9, threshold: 0 }));
 
 require('./config/passport')(passport);
