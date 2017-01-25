@@ -33,5 +33,6 @@ block content
           | Grind Size:&nbsp;
           span #{recipe.grind}
       details.recipe-instructions
-        summary Instructions
+        summary Instructions&nbsp;
+          span.visually-hidden for !{recipe.title}
         p #{recipe.instructions}
