@@ -43,12 +43,33 @@ In the design phase of this application, I started by writing user stories to de
 In the development phase of this application, I followed a strategy of progressive enhancement with a RESTful architecture. I started with an HTML first approach, which enabled me to discover what aspects could be enhanced by adding client-side JavaScript. All functionality of the application is usable with client-side JavaScript disabled, however I discovered the primary enhancement of enabling client-side JavaScript would be asynchronous upvoting of recipes. This enhances the user experience because it no longer relies on form posts that require a refresh of the page after each vote. I also developed this application with automated testing for all of the user endpoints to allow for simple modifications.
 
 ### Accessibility
-| ![Screen Reader Accessibility](https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/UserFlow.jpg?raw=true) |
+
+| ![Screen Reader Accessibility](https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/screen-desk-voice.jpg?raw=true) |
 |:---:|
 | Screen Reader Title Context |
 
+Using a progressive enhancement strategy with an HTML first approach and within the contraints of web standards offered an implicit level of accessibility. This application was also tested for screen reader accessibility. Other accessibility improvements:
+
+- Keyboard Accessibility: `tabindex='0'` attributes were added to recipe titles so that tabbing through the pages was more intuitive.
+- VoiceOver Context: as shown in the figure above (highlighted in red) the recipe title was added as context for people using VoiceOver. There are visual cues that imply context so I used a `.visually-hidden` class from the [A11Y Project](http://a11yproject.com/posts/how-to-hide-content/) to maintain visual styles while enhancing the experience for those navigating without sight.
+- VoiceOver Rotor: the Rotor is a commonly used feature that allows for more efficient web browsing by listing common elements like headings, links, and images. To maximize this feature I ensured that all pages had proper heading structure.
+- Details and Summary Elements: use of the details and summary elements provide interactivity without the use of JavaScript to hide content.
+- Emoji: they are accessible to screen readers and also give AeroPress users who don't speak English some context for actions like upvoting recipes 👍. They also do not require any alt text or labels.
+
 
 ### Performance
+With the majority of tasks running on the server, I was able to keep this application fairly light weight. Emojis offer a nice touch while costing 0kB. In order to keep the application fast and light, I removed all jQuery in favor of vanilla JavaScript. The `app.js` file is only XXXXkB (without minification). The minified `main.min.css` file is only XXXXkB.  I also deferred font loading to keep initial page loads as fast as possible.
+```
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelector('html > head').appendChild((function(){
+    const link = document.createElement('link');
+    link.setAttribute('href', 'https://fonts.googleapis.com/css?family=Lato:400,700,900%7CMontserrat:700');
+    link.setAttribute('rel', 'stylesheet');
+    return link
+  })());
+})
+```
+
 
 
 ## Tech Used
@@ -57,7 +78,7 @@ In the development phase of this application, I followed a strategy of progressi
 
  - HTML5
  - CSS3
- - JavaScript
+ - Vanilla JavaScript
 
 ### Back-End
 
@@ -81,4 +102,4 @@ In the development phase of this application, I followed a strategy of progressi
 
 
 ## Future Improvements
-There are a number of enhancements and features that are in consideration for future versions of AeroPressME. These include automated 'forgot password' support, pagination of recipes, and additional sorting features.
+There are a number of enhancements and features that are in consideration for future versions of AeroPressME. These include automated 'forgot password' support, pagination of recipes, additional sorting features, offline support, and rich text editing for recipe instructions (to provide ability for ordered lists).
