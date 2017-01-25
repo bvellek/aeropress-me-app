@@ -37,11 +37,7 @@ AeroPressMM is a web application that I designed and developed to help the AeroP
 In the design phase of this application, I started by writing user stories to determine what the user should and shouldn't be able to do. The primary user features are to view ranked recipes, add recipes, edit recipes, delete recipes, and upvote recipes. With these features in mind, I decided it would be important to add user authentication to prevent users from editing/deleting each other's recipes, but still offer a public landing page with all the ranked recipes for those who do not wish to signup. I then created a user flow diagram to map the possible routes through the application. I also created prototypes in [Sketch](https://www.sketchapp.com/) to visualize the final product.
 
 In the development phase of this application, I followed a strategy of progressive enhancement with a RESTful architecture. I started with an HTML first approach, which enabled me to discover what aspects could be enhanced by adding client-side JavaScript. All functionality of the application is usable with client-side JavaScript disabled, however I discovered the primary enhancement of enabling client-side JavaScript would be asynchronous upvoting of recipes. This enhances the user experience because it no longer relies on form posts that require a refresh of the page after each vote. I also developed this application with automated testing for all of the user endpoints to allow for simple modifications.
-- Progressive enhancement
-- Accessibility
-- HTML first design
-- This app is fully responsive for mobile, tablet and desktop.
-- It utilizes HTML5 form validation and hcard microformats for easy user input.
+Accessibility?
 
 
 ## Tech Used
