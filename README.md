@@ -13,20 +13,23 @@ aeropress-me-app $ grunt build
 AeroPressMe is a web application that I designed and developed to help the AeroPress community share recipes/methods. It is designed to allow users to discover new for brewing  coffee with the Aeropress. AeroPressMe also allows users to see all of the recipes ranked using an upvote feature.
 
 ## Screenshots 📷
-<img alt="Landing Page" src="https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/screen-desk-landing.jpg?raw=true" width="350">
-<img alt="Login Page" src="https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/screen-desk-login.jpg?raw=true" width="350">
-<img alt="Registration Page" src="https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/screen-desk-registration.jpg?raw=true" width="350">
-<img alt="My Recipes Page" src="https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/screen-desk-myrecipes.jpg?raw=true" width="350">
-<img alt="All Recipes Page" src="https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/screen-desk-allrecipes.jpg?raw=true" width="350">
-<img alt="New Recipe Page" src="https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/screen-desk-newrecipe.jpg?raw=true" width="350">
-<img alt="Edit Recipe Page" src="https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/screen-desk-edit.jpg?raw=true" width="350">
+| <img alt="Landing Page" src="https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/screen-desk-landing.jpg?raw=true" width="350"> | <img alt="Login Page" src="https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/screen-desk-login.jpg?raw=true" width="350"> | <img alt="Registration Page" src="https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/screen-desk-registration.jpg?raw=true" width="350"> |
+|:---:|:---:|:---:|
+| Landing Page | Login Page | Registration Page |
+
+
+| <img alt="My Recipes Page" src="https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/screen-desk-myrecipes.jpg?raw=true" width="350"> | <img alt="All Recipes Page" src="https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/screen-desk-allrecipes.jpg?raw=true" width="350"> | <img alt="New Recipe Page" src="https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/screen-desk-newrecipe.jpg?raw=true" width="350"> | <img alt="Edit Recipe Page" src="https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/screen-desk-edit.jpg?raw=true" width="350"> |
+|:---:|:---:|:---:|:---:|
+| My Recipes | Top Recipes | New Recipe | Edit Recipe |
 
 
 
 
 ## Design and Development Process
-### User Flow Diagram
-![User Flow Diagram](https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/UserFlow.jpg?raw=true)
+
+| ![User Flow Diagram](https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/UserFlow.jpg?raw=true) |
+|:---:|
+| User Flow Diagram |
 
 - Progressive enhancement
 - Accessibility
@@ -65,4 +68,4 @@ AeroPressMe is a web application that I designed and developed to help the AeroP
 
 
 ## Future Improvement
-There are a number of enhancements and features that are in consideration for future versions of AeroPressME. These include automated 'forgot password' support, pagination of recipes
+There are a number of enhancements and features that are in consideration for future versions of AeroPressME. These include automated 'forgot password' support, pagination of recipes, and additional sorting features.
