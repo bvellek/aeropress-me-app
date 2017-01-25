@@ -444,6 +444,11 @@ Recipe Card Styles
           .title-container .recipe-title,
           .title-container .recipe-title a {
             overflow: hidden;
+            overflow-wrap: break-word;
+          }
+
+          .title-container {
+            overflow: hidden;
           }
         }
 
