@@ -14,7 +14,7 @@ Clone the repo `https://github.com/bvellek/aeropress-me-app.git` and run `npm in
 
 ## Project Summary
 
-AeroPressMM is a web application that I designed and developed to help the AeroPress community share recipes/methods. It is designed to allow users to discover new recipes for brewing coffee with the AeroPress. AeroPressME also allows users to see all of the recipes ranked using an upvote feature.
+AeroPressME is a web application that I designed and developed to help the AeroPress community share recipes/methods. It is designed to allow users to discover new recipes for brewing coffee with the AeroPress. AeroPressME also allows users to see all of the recipes ranked using an upvote feature.
 
 ## Screenshots 📷
 
