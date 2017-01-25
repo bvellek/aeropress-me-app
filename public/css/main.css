@@ -16,7 +16,7 @@ h1, h2, h3, h4, legend, label, span, summary {
     color: #303030;
 }
 
-h2 {
+h1, h2 {
     text-align: center;
     font-weight: 900;
 }
