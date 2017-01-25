@@ -4,7 +4,7 @@ block navigation
 
 block content
   div.your-recipes-page
-    h1 My Recipes
+    h1.page-title My Recipes
     if recipes
     each recipe in recipes
       section.recipe-card
@@ -13,7 +13,7 @@ block content
             figure.recipe-votes #{recipe.votes}
             figcaption Upvotes
           div.title-container
-            h3.recipe-title !{recipe.title}
+            h3.recipe-title(tabindex='0') !{recipe.title}
         div.info-container
           h4.recipe-author
             | Recipe Author:&nbsp;

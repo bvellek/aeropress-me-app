@@ -4,7 +4,7 @@ block navigation
 
 block content
   div.recipes-page
-    h1 Top Recipes
+    h1.page-title Top Recipes
     if message.length>0
       section.flash-alert= message
     if recipes
@@ -15,7 +15,7 @@ block content
             figure.recipe-votes #{recipe.votes}
             figcaption Upvotes
           div.title-container
-            h3.recipe-title !{recipe.title}
+            h3.recipe-title(tabindex='0') !{recipe.title}
         div.info-container
           h4.recipe-author
             | Recipe Author:&nbsp;
