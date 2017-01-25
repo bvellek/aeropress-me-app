@@ -33,6 +33,11 @@ h1, h2, h3, h4, p, legend, label, span, summary {
     font-weight: 900;
 }
 
+.page-footer {
+  text-align: center;
+  margin-top: 4em;
+}
+
 a {
     text-decoration: none;
     font-family: 'Lato', sans-serif;
