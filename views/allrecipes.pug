@@ -42,4 +42,5 @@ block content
         form.upvote-form(action='/allrecipes', method='post')
           input(type='hidden', value= recipe.id name='recipeID')
           button(type='submit', name='button') 👍 Upvote
+            span.visually-hidden &nbsp;!{recipe.title}
   script(src="./js/app.js")
