@@ -250,7 +250,7 @@ describe('Render Pages', function() {
 
     it('should show a "my recipes" header', function() {
       assert.ok(this.browser.success);
-      assert.equal(this.browser.text('.your-recipes-page h2'), 'My Recipes');
+      assert.equal(this.browser.text('.your-recipes-page h1'), 'My Recipes');
     });
 
   })
@@ -282,7 +282,7 @@ describe('Render Pages', function() {
 
     it('should show a "New AeroPress Recipe" header', function() {
       assert.ok(this.browser.success);
-      assert.equal(this.browser.text('.input-page h2'), 'New AeroPressME Recipe');
+      assert.equal(this.browser.text('.input-page h1'), 'New AeroPressME Recipe');
     });
 
     it('should have a "New Recipe" form with method post and appropriate form inputs', function() {
@@ -327,7 +327,7 @@ describe('Render Pages', function() {
 
     it('should show a "Top Recipes" header', function() {
       assert.ok(this.browser.success);
-      assert.equal(this.browser.text('.recipes-page h2'), 'Top Recipes');
+      assert.equal(this.browser.text('.recipes-page h1'), 'Top Recipes');
     });
 
     var testRecipe;
