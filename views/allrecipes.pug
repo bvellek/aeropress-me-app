@@ -4,7 +4,7 @@ block navigation
 
 block content
   div.recipes-page
-    h2 Top Recipes
+    h1.page-title Top Recipes
     if message.length>0
       section.flash-alert= message
     if recipes
@@ -15,30 +15,32 @@ block content
             figure.recipe-votes #{recipe.votes}
             figcaption Upvotes
           div.title-container
-            h3.recipe-title !{recipe.title}
+            h2.recipe-title(tabindex='0') !{recipe.title}
         div.info-container
-          h4.recipe-author
+          p.recipe-author
             | Recipe Author:&nbsp;
             span #{recipe.author}
-          h4.recipe-orientation
+          p.recipe-orientation
             | Orientation:&nbsp;
             span #{recipe.orientation}
-          h4.recipe-water-temp
+          p.recipe-water-temp
             | Water Temp:&nbsp;
             span #{recipe.waterTemp}&#8451
-          h4.recipe-water-mass
+          p.recipe-water-mass
             | Water Mass:&nbsp;
             span #{recipe.massWater}g
-          h4.recipe-coffee-mass
+          p.recipe-coffee-mass
             | Coffee Mass:&nbsp;
             span #{recipe.massCoffee}g
-          h4.recipe-grind-size
+          p.recipe-grind-size
             | Grind Size:&nbsp;
             span #{recipe.grind}
         details.recipe-instructions
-          summary Instructions
+          summary Instructions&nbsp;
+            span.visually-hidden for !{recipe.title}
           p #{recipe.instructions}
         form.upvote-form(action='/allrecipes', method='post')
           input(type='hidden', value= recipe.id name='recipeID')
           button(type='submit', name='button') 👍 Upvote
+            span.visually-hidden &nbsp;!{recipe.title}
   script(src="./js/app.js")

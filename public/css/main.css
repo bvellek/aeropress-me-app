@@ -6,17 +6,29 @@ body {
     background: #E8E6E5;
 }
 
+.visually-hidden {
+    position: absolute !important;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+    padding:0 !important;
+    border:0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
+}
+
+body:hover .visually-hidden a, body:hover .visually-hidden input, body:hover .visually-hidden button { display: none !important; }
 
 /****
 General Styles
 ****/
 
-h1, h2, h3, h4, legend, label, span, summary {
+h1, h2, h3, h4, p, legend, label, span, summary {
     font-family: 'Lato', sans-serif;
     color: #303030;
 }
 
-h2 {
+.page-title {
     text-align: center;
     font-weight: 900;
 }
@@ -452,7 +464,7 @@ Recipe Card Styles
           }
         }
 
-.info-container h4 {
+.info-container p {
   color: rgba(48,48,48,0.75);
   margin: 0.5em auto;
   font-weight: 400;
@@ -573,7 +585,7 @@ Media Queries
     font-size: 2.2rem;
   }
 
-  .info-container h4 {
+  .info-container p {
     width: 70%;
   }
 

@@ -4,7 +4,7 @@ block navigation
 
 block content
   div.edit-recipe-page
-    h2 Edit Your Recipe
+    h1.page-title Edit Your Recipe
     form.aero-form.recipe-form(action=`/editrecipe/${recipe.id}`, method='post')
       label(for='title-edit') Recipe Title:
       input#title-edit(type='text', name='title', maxlength='40', value= recipe.title)
