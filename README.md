@@ -1,20 +1,22 @@
-# AeroPressME ☕️
+# AeroPressME ☕️ [![Build Status](https://travis-ci.org/bvellek/aeropress-me-app.svg?branch=master)](https://travis-ci.org/bvellek/aeropress-me-app)
 [AeroPressME](https://aeropress-me-app.herokuapp.com) is a full-stack web application designed to help the AeroPress community share recipes and rank the best ones.
 
 
 ## Screenshots 📷
-![Landing Page](https://github.com/bvellek/elected-officials-app/blob/master/img/screenshots/landing-page.png?raw=true)
-![Address Form](https://github.com/bvellek/elected-officials-app/blob/master/img/screenshots/address-form.png?raw=true)
-![Geolocation Page](https://github.com/bvellek/elected-officials-app/blob/master/img/screenshots/geolocation-loading-page.png?raw=true)
-![Results Page](https://github.com/bvellek/elected-officials-app/blob/master/img/screenshots/results-page.png?raw=true)
-![Mobile Results Page](https://github.com/bvellek/elected-officials-app/blob/master/img/screenshots/mobile-view.png?raw=true)
+![Landing Page](https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/screen-desk-landing.jpg?raw=true)
+![Login Form](https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/screen-desk-login.jpg?raw=true)
+![Registration Form](https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/screen-desk-registration.jpg?raw=true)
+![My Recipes Page](https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/screen-desk-myrecipes.jpg?raw=true)
+![All Recipes Page](https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/screen-desk-allrecipes.jpg?raw=true)
+![New Recipe Page](https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/screen-desk-newrecipe.jpg?raw=true)
+![Edit Recipe Page](https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/screen-desk-edit.jpg?raw=true)
 
 ## Project Summary
 AeroPressMe is a web application that I designed and developed to help the AeroPress community share recipes/methods. It is designed to allow users to discover new for brewing  coffee with the Aeropress. AeroPressMe also allows users to see all of the recipes ranked using an upvote feature.
 
 ## Design and Development Process
 ### User Flow Diagram
-![User Flow Diagram](https://github.com/bvellek/aeropress-me-app/blob/master/public/img/UserFlow.jpg?raw=true)
+![User Flow Diagram](https://github.com/bvellek/aeropress-me-app/blob/master/public/img/design/UserFlow.jpg?raw=true)
 ### Prototype
 
 - This app is fully responsive for mobile, tablet and desktop.
