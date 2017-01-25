@@ -11,7 +11,7 @@ body {
 General Styles
 ****/
 
-h1, h2, h3, h4, legend, label, span, summary {
+h1, h2, h3, h4, p, legend, label, span, summary {
     font-family: 'Lato', sans-serif;
     color: #303030;
 }
@@ -453,7 +453,7 @@ Recipe Card Styles
           }
         }
 
-.info-container h4 {
+.info-container p {
   color: rgba(48,48,48,0.75);
   margin: 0.5em auto;
   font-weight: 400;
@@ -574,7 +574,7 @@ Media Queries
     font-size: 2.2rem;
   }
 
-  .info-container h4 {
+  .info-container p {
     width: 70%;
   }
 
