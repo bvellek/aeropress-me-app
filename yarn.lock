@@ -952,6 +952,16 @@ grunt-contrib-cssmin@^1.0.2:
     clean-css "~3.4.2"
     maxmin "^1.1.0"
 
+grunt-contrib-uglify@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/grunt-contrib-uglify/-/grunt-contrib-uglify-2.0.0.tgz#8c9970d690936cde6d25aa1193549bd929016930"
+  dependencies:
+    chalk "^1.0.0"
+    lodash.assign "^4.0.9"
+    maxmin "^1.1.0"
+    uglify-js "~2.7.0"
+    uri-path "^1.0.0"
+
 grunt-contrib-watch@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/grunt-contrib-watch/-/grunt-contrib-watch-1.0.0.tgz#84a1a7a1d6abd26ed568413496c73133e990018f"
@@ -1424,6 +1434,10 @@ lodash._getnative@^3.0.0:
 lodash._isiterateecall@^3.0.0:
   version "3.0.9"
   resolved "https://registry.yarnpkg.com/lodash._isiterateecall/-/lodash._isiterateecall-3.0.9.tgz#5203ad7ba425fae842460e696db9cf3e6aac057c"
+
+lodash.assign@^4.0.9:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/lodash.assign/-/lodash.assign-4.2.0.tgz#0d99f3ccd7a6d261d19bdaeb9245005d285808e7"
 
 lodash.create@3.1.1:
   version "3.1.1"
@@ -2451,7 +2465,7 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-uglify-js@^2.6.1:
+uglify-js@^2.6.1, uglify-js@~2.7.0:
   version "2.7.5"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.7.5.tgz#4612c0c7baaee2ba7c487de4904ae122079f2ca8"
   dependencies:
@@ -2510,6 +2524,10 @@ underscore@~1.7.0:
 unpipe@1.0.0, unpipe@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/unpipe/-/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
+
+uri-path@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/uri-path/-/uri-path-1.0.0.tgz#9747f018358933c31de0fccfd82d138e67262e32"
 
 url-parse@1.0.x:
   version "1.0.5"

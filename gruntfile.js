@@ -16,6 +16,16 @@ module.exports = function(grunt) {
         }
       },
     },
+    uglify: {
+      options: {
+        report: 'gzip'
+      },
+    my_target: {
+      files: {
+        '<%= dirs.theme %><%= dirs.js %>app.min.js': ['<%= dirs.theme %><%= dirs.js %>app.js']
+      }
+    }
+  },
     growl: { /* optional growl notifications requires terminal-notifer: gem install terminal-notifier */
       css: {
           message: "CSS minified",
@@ -44,6 +54,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-growl');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
 
   grunt.registerTask('default',['growl:watch','watch']);

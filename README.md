@@ -1,6 +1,6 @@
 # AeroPressME ☕️ [![Build Status](https://travis-ci.org/bvellek/aeropress-me-app.svg?branch=master)](https://travis-ci.org/bvellek/aeropress-me-app)
 
-[AeroPressME](https://aeropress-me-app.herokuapp.com) is a full-stack web application designed to help the AeroPress community share recipes and rank the best ones.
+[AeroPressME](https://aeropress-me-app.herokuapp.com) is a full-stack web application designed to help the AeroPress coffee community share recipes and rank the best ones.
 
 
 ## Usage
@@ -58,7 +58,7 @@ Using a progressive enhancement strategy with an HTML first approach and within 
 
 
 ### Performance
-With the majority of tasks running on the server, I was able to keep this application fairly light weight. Emojis offer a nice touch while costing 0kB. In order to keep the application fast and light, I removed all jQuery in favor of vanilla JavaScript. The `app.js` file is only XXXXkB (without minification). The minified `main.min.css` file is only XXXXkB.  I also deferred font loading to keep initial page loads as fast as possible.
+With the majority of tasks running on the server, I was able to keep this application fairly light weight. Emojis offer a nice touch while costing 0kB. In order to keep the application fast and light, I removed all jQuery in favor of vanilla JavaScript. The minified, GZIPed `app.min.js` file is only 530B. The minified, GZIPed `main.min.css` file is only 2.21kB.  I also deferred font loading to keep initial page loads as fast as possible.
 ```
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelector('html > head').appendChild((function(){
