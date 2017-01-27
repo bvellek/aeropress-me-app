@@ -43,8 +43,8 @@ block content
           input(type='hidden', value= recipe.id name='recipeID')
           button(type='submit', name='button') 👍 Upvote
             span.visually-hidden &nbsp;!{recipe.title}
-  block append scripts
-    if process.env.NODE_ENV == 'production'
-      script(src="./js/app.min.js")
-    else
-      script(src="./js/app.js")
+append scripts
+  if process.env.NODE_ENV == 'production'
+    script(src="./js/app.min.js")
+  else
+    script(src="./js/app.js")
