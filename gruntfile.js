@@ -58,5 +58,5 @@ module.exports = function(grunt) {
 
 
   grunt.registerTask('default',['growl:watch','watch']);
-  grunt.registerTask('build',['cssmin', 'growl:css']);
+  grunt.registerTask('build',['cssmin', 'growl:css', 'uglify']);
 };
