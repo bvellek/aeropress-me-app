@@ -505,7 +505,14 @@ Recipe Card Styles
   width: 90%;
   margin: 0.625em auto;
   line-height: 1.2;
+  word-break: break-word;
 }
+    @-moz-document url-prefix() {
+      .recipe-instructions p{
+        overflow: hidden;
+        overflow-wrap: break-word;
+      }
+    }
 
 .recipe-card .edit-link {
   margin: 0 auto;
