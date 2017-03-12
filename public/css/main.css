@@ -61,7 +61,6 @@ button {
     background: -o-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
     background: -ms-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
     background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6', GradientType=0);
     background-color: #ffffff;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -84,7 +83,6 @@ button:hover {
     background: -o-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
     background: -ms-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
     background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
     background-color: #f6f6f6;
 }
 
@@ -527,7 +525,6 @@ Recipe Card Styles
   background: -o-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
   background: -ms-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
   background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6', GradientType=0);
   background-color: #ffffff;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -550,7 +547,6 @@ Recipe Card Styles
   background: -o-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
   background: -ms-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
   background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
   background-color: #f6f6f6;
 }
 
