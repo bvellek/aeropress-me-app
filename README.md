@@ -4,12 +4,17 @@
 
 
 ## Usage
+In order to get started clone this repo. Enter the commands below in your terminal:
+```bash
+git clone https://github.com/bvellek/aeropress-me-app.git
+cd aeropress-me-app
+yarn install
+```
 
-Clone the repo `https://github.com/bvellek/aeropress-me-app.git` and run `npm install` or `yarn`.
+- __Development__: to run the app locally run `mongod` and in another terminal tab/window run `node server.js`. Open browser to 'localhost:8080'.
+- __Build__: to start the build process run `grunt build`. The build process requires [Grunt](http://gruntjs.com/) as a task runner for CSS and JS minification. If you do not already have Grunt CLI installed run `yarn global add grunt-cli`.
+- __Testing__: to run the tests run `mongod` and in another terminal tab/window run `yarn test`.
 
-- To run the app locally: `mongod` and in another terminal tab/window `node server.js`. Open browser to `localhost:8080`.
-- To run the tests: `mongod` and in another terminal tab/window `npm test`.
-- To run build: `grunt build`.
 
 
 ## Project Summary
@@ -48,7 +53,7 @@ In the development phase of this application, I followed a strategy of progressi
 |:---:|
 | Screen Reader Title Context |
 
-Using a progressive enhancement strategy with an HTML first approach and within the contraints of web standards offered an implicit level of accessibility. This application was also tested for screen reader accessibility. Other accessibility improvements:
+Using a progressive enhancement strategy with an HTML first approach and within the constraints of web standards offered an implicit level of accessibility. This application was also tested for screen reader accessibility. Other accessibility improvements:
 
 - Keyboard Accessibility: `tabindex='0'` attributes were added to recipe titles so that tabbing through the pages was more intuitive.
 - VoiceOver Context: as shown in the figure above (highlighted in red) the recipe title was added as context for people using VoiceOver. There are visual cues that imply context so I used a `.visually-hidden` class from the [A11Y Project](http://a11yproject.com/posts/how-to-hide-content/) to maintain visual styles while enhancing the experience for those navigating without sight.
