@@ -49,6 +49,7 @@ In the development phase of this application, I followed a strategy of progressi
 
 Using a progressive enhancement strategy with an HTML first approach and within the constraints of web standards offered an implicit level of accessibility. This application was also tested for screen reader accessibility. Other accessibility improvements:
 
+- WCAG 2.0 Level AA Compliance
 - Keyboard Accessibility: `tabindex='0'` attributes were added to recipe titles so that tabbing through the pages was more intuitive.
 - VoiceOver Context: as shown in the figure above (highlighted in red) the recipe title was added as context for people using VoiceOver. There are visual cues that imply context so I used a `.visually-hidden` class from the [A11Y Project](http://a11yproject.com/posts/how-to-hide-content/) to maintain visual styles while enhancing the experience for those navigating without sight.
 - VoiceOver Rotor: the Rotor is a commonly used feature that allows for more efficient web browsing by listing common elements like headings, links, and images. To maximize this feature I ensured that all pages had proper heading structure.
