@@ -57,7 +57,7 @@ Using a progressive enhancement strategy with an HTML first approach and within 
 - Emoji: they are accessible to screen readers and also give AeroPress users who don't speak English some context for actions like upvoting recipes 👍. They also do not require any alt text or labels.
 
 ### Performance ⚙️
-With the majority of tasks running on the server, I was able to keep this application fairly light weight. Emojis offer a nice touch while costing 0kB. In order to keep the application fast and light, I removed all jQuery in favor of vanilla JavaScript. The minified, GZIPed `app.min.js` file is only 530B. The minified, GZIPed `main.min.css` file is only 2.21kB.  I also deferred font loading to keep initial page loads as fast as possible.
+With the majority of tasks running on the server, I was able to keep this application fairly light weight. Emojis offer a nice touch while costing 0kB. In order to keep the application fast and light, I removed all jQuery in favor of vanilla JavaScript. The minified, GZIPed `app.min.js` file is only 530B. The minified, GZIPed `main.min.css` file is only 2.21kB.  I also deferred font loading to keep initial page loads as fast as possible. With JavaScript disabled, I have used system fonts as fallbacks.
 ```
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelector('html > head').appendChild((function(){
