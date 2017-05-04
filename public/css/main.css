@@ -35,7 +35,8 @@ h1, h2, h3, h4, p, legend, label, span, summary {
 
 .page-footer {
   text-align: center;
-  margin-top: 4em;
+  margin-top: 5.5rem;
+  font-size: 0.9rem;
 }
 
 .page-footer a {
@@ -267,7 +268,6 @@ Header Styles
     color: #25B238;
 }
 
-
 .hero-container {
     width: 100%;
     height: 30vh;
@@ -294,8 +294,6 @@ Header Styles
     overflow-wrap: normal;
     padding-left: .25em;
 }
-
-
 
 /****
 Login Page Styles
@@ -326,6 +324,35 @@ Login Page Styles
     display: inline-block;
 }
 
+/****
+Demo Styles
+****/
+
+.demo-login {
+  margin: 3em auto 0.625em;
+  max-width: 20em;
+  width: 75%;
+  background-color: #f0e0cd;
+  border-radius: 3px;
+  padding: 0.625em 1em;
+  text-align: center;
+}
+
+.demo-login .demo-login__title {
+  font-weight: 900;
+  padding: 0;
+  margin: 0 auto 1em;
+}
+
+.demo-login span {
+  font-weight: 700;
+}
+
+.demo-login span,
+.demo-login p {
+  padding: 0;
+  margin: 0.5em 0;
+}
 
 /****
 Recipe Form Styles
@@ -395,8 +422,6 @@ Recipe Form Styles
   display: inline-block;
   margin: 0.5em;
 }
-
-
 
 /****
 Recipe Card Styles
@@ -562,8 +587,6 @@ Recipe Card Styles
 /****
 Media Queries
 ****/
-
-
 
 @media only screen and (min-width: 28.75em) {
   form {
