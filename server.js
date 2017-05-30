@@ -14,6 +14,17 @@ const app = express();
 const {PORT, DATABASE_URL} = require('./config/config');
 mongoose.Promise = global.Promise;
 
+// force use of https://
+app.use((req, res, next) => {
+  let sslUrl;
+
+  if (process.env.NODE_ENV === 'production' && req.headers['x-forwarded-proto'] !== 'https') {
+    sslUrl = ['https://aeropress-me-app.herokuapp.com/', req.url].join('');
+    return res.redirect(sslUrl);
+  }
+  return next();
+});
+
 // Compression for pagespeed
 app.use(compression({ level: 9, threshold: 0 }));
 
