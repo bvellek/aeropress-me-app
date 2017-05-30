@@ -19,7 +19,7 @@ app.use((req, res, next) => {
   let sslUrl;
 
   if (process.env.NODE_ENV === 'production' && req.headers['x-forwarded-proto'] !== 'https') {
-    sslUrl = ['https://aeropress-me-app.herokuapp.com/', req.url].join('');
+    sslUrl = ['https://aeropress-me-app.herokuapp.com', req.url].join('');
     return res.redirect(sslUrl);
   }
   return next();
