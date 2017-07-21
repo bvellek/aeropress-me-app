@@ -12,7 +12,7 @@
   "author": "Ben Vellek",
   "license": "MIT",
   "engines": {
-    "node": "7.2.1",
+    "node": "6.11.1",
     "npm": "3.10.9"
   },
   "dependencies": {
